@@ -1,0 +1,21 @@
+﻿#macro(showexception $exc)
+<h1>Ooops! Perdón, pero el gran colisionador de hadrones falló...</h1>
+<b>$exc.GetType().Name</b>
+
+<i>Error:</i>$exc.Message
+	#if($exc.StackTrace)
+		StackTrace:
+		$exc.StackTrace
+	#end
+
+	#if($exc.InnerException)
+		<b>Exception Interna:</b>
+		#set($inner = $exc.InnerException)
+		#showexception($inner)
+	#end
+#end
+
+<pre>
+#set($exception = $context.LastException)
+#showexception($exception)
+</pre>
