@@ -1,0 +1,31 @@
+﻿<h2>Agregue un usuario</h2>
+
+<form action="GuardarUsuario.rails" method="post">
+
+<p>
+Nombre: $FormHelper.TextField("usuario.nombre")
+</p>
+
+<p>
+Login: $FormHelper.TextField("usuario.login")
+</p>
+
+<p>
+Contraseña: $FormHelper.TextField("usuario.contrasena", "%{size='30'}")
+</p>
+
+<p>
+Repetir: $FormHelper.TextField("usuario.contrasena2", "%{size='30'}")
+</p>
+
+<p>
+eMail: $FormHelper.TextArea("usuario.email")
+</p>
+
+<hr />
+
+<p>
+<input type="submit" value="Guardar" />
+</p>
+
+</form>
