@@ -1,0 +1,5 @@
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend\bin\etBackend.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend\bin\etBackend.pdb
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend\obj\Debug\ResolveAssemblyReference.cache
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend\obj\Debug\etBackend.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend\obj\Debug\etBackend.pdb
