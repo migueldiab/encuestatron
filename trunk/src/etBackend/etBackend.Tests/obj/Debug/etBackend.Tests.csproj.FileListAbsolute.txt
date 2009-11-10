@@ -1,0 +1,8 @@
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\bin\Debug\etBackend.Tests.dll.config
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\bin\Debug\etBackend.Tests.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\bin\Debug\etBackend.Tests.pdb
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\bin\Debug\etBackend.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\bin\Debug\etBackend.pdb
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\obj\Debug\etBackend.Tests.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etBackend\etBackend.Tests\obj\Debug\etBackend.Tests.pdb
