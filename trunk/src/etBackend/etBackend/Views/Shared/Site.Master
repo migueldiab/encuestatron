@@ -19,7 +19,7 @@
 <div class="header-container">
     <div class="nav-login">
         <ul>
-            <li class="first"><%= Html.ActionLink("Register", "Register", "Account") %></li>
+            <li class="first"><%= Html.ActionLink("Registrate Ya!", "Register", "Account") %></li>
         </ul>
     </div>
     <div class="logo"><a href="<%= Url.Action("Index", "Home") %>">et : Encuesta Tron</a></div>
@@ -50,30 +50,26 @@
 <div class="content-container">
     <div class="content-container-inner">
         <div class="content-main"><a name="maincontent" id="maincontent"></a>
-            <div class="breadcrumb"> <a href="home.html">Inicio</a> &raquo; Volver al inciio...</div>
+            <div class="breadcrumb"> <a href="./">Inicio</a> &raquo; Volver al incio...</div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
 		        <div class="content-left">
             <div class="side-bucket">
                 <ul>
-                    <li class="first"><a href="#">Side nav</a></li>
-                    <li> <a href="#">Praesent arcu ante</a></li>
-                    <li> <a href="#">Vivamus consequat tortor</a></li>
-                    <li><a href="#">Morbi sit amet</a></li>
-                    <li><a href="#">Suspendisse vulputate</a></li>
-                    <li><a href="#">Bibendum nulla</a></li>
-                    <li><a href="#">Maecenas scelerisque</a></li>
+                    <li class="first"><a href="./Encuesta">Encuestas</a></li>
+                    <li><a href="./Pregunta">Preguntas</a></li>
+                    <li><a href="./Respuesta">Respuestas</a></li>
                 </ul>
             </div>
         </div>
         <div class="content-right">
-            <h2 class="first">User Login</h2>
-            <label for="username">Username</label>
+            <h2 class="first">Ingreso de Usuarios</h2>
+            <label for="username">Usuario</label>
             <input class="input-box" id="username" type="text" />
-            <label for="password">Password</label>
+            <label for="password">Contraseña</label>
             <input class="input-box" id="password" type="password" />
-            <input class="button" name="Login" type="button" value="Login" />
-            <p class="forgot-password"><a href="#">Forgot your password?</a></p>
+            <input class="button" name="Login" type="button" value="Ingresar" />
+            <p class="forgot-password"><a href="#">Olvidaste tu clave?</a></p>
             <div class="ads"> <a href="#"><img src="../../Content/images/ad.gif" alt="ad" /></a> </div>
         </div>
         <div class="clear"></div>
@@ -85,7 +81,7 @@
             <li class="first"><%= Html.ActionLink("Home", "Index", "Home") %></li>
             <li><%= Html.ActionLink("About", "About", "Home") %></li>
         </ul>
-        <p class="copyright">&copy; 2007 Site Name</p>
+        <p class="copyright">&copy; 2009 EncuestaTron - Ricardo de Leon & Miguel A. Diab</p>
     </div>
 </div>
 </body>

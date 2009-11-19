@@ -7,20 +7,20 @@ using System.Web.Mvc.Ajax;
 
 namespace etBackend.Controllers
 {
-    public class EncuestaController : Controller
+    public class RespuestaController : Controller
     {
         //
-        // GET: /Encuesta/
+        // GET: /Respuesta/
 
         public ActionResult Index()
         {
             var db = new db();
-            var encuestas = db.encuestas;
-            return View(encuestas);
+            var respuestas = db.respuestas;
+            return View(respuestas);
         }
 
         //
-        // GET: /Encuesta/Details/5
+        // GET: /Respuesta/Details/5
 
         public ActionResult Details(int id)
         {
@@ -28,7 +28,7 @@ namespace etBackend.Controllers
         }
 
         //
-        // GET: /Encuesta/Create
+        // GET: /Respuesta/Create
 
         public ActionResult Create()
         {
@@ -36,7 +36,7 @@ namespace etBackend.Controllers
         } 
 
         //
-        // POST: /Encuesta/Create
+        // POST: /Respuesta/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
@@ -54,7 +54,7 @@ namespace etBackend.Controllers
         }
 
         //
-        // GET: /Encuesta/Edit/5
+        // GET: /Respuesta/Edit/5
  
         public ActionResult Edit(int id)
         {
@@ -62,7 +62,7 @@ namespace etBackend.Controllers
         }
 
         //
-        // POST: /Encuesta/Edit/5
+        // POST: /Respuesta/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
