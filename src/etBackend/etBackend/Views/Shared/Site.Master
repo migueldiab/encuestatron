@@ -30,8 +30,6 @@
 </div>
 <div class="nav-main">
     <ul>
-    
-                
           <% if (Html.IsCurrentAction("Index", "Inicio")) { %>
             <li class="first active"><span class="active"></span><%= Html.ActionLink("Inicio", "Index", "Inicio")%></li>
           <% } else { %>
@@ -53,12 +51,12 @@
             <div class="breadcrumb"> <a href="./">Inicio</a> &raquo; Volver al incio...</div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
-		        <div class="content-left">
+		<div class="content-left">
             <div class="side-bucket">
                 <ul>
-                    <li class="first"><a href="./Encuesta">Encuestas</a></li>
-                    <li><a href="./Pregunta">Preguntas</a></li>
-                    <li><a href="./Respuesta">Respuestas</a></li>
+                    <li class="first"><%= Html.ActionLink("Encuestas", "Index", "Encuesta")%></li>
+                    <li><%= Html.ActionLink("Preguntas", "Index", "Pregunta")%></li>
+                    <li><%= Html.ActionLink("Respuestas", "Index", "Respuesta")%></li>
                 </ul>
             </div>
         </div>
