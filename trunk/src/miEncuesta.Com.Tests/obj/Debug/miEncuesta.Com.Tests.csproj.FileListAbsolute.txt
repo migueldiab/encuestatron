@@ -1,0 +1,8 @@
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\bin\Debug\miEncuesta.Com.Tests.dll.config
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\bin\Debug\miEncuesta.Com.Tests.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\bin\Debug\miEncuesta.Com.Tests.pdb
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\bin\Debug\miEncuesta.Com.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\bin\Debug\miEncuesta.Com.pdb
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\obj\Debug\miEncuesta.Com.Tests.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com.Tests\obj\Debug\miEncuesta.Com.Tests.pdb
