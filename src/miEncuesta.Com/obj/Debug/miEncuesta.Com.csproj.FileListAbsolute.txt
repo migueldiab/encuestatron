@@ -1,0 +1,5 @@
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com\bin\miEncuesta.Com.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com\bin\miEncuesta.Com.pdb
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com\obj\Debug\ResolveAssemblyReference.cache
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com\obj\Debug\miEncuesta.Com.dll
+D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\miEncuesta.Com\obj\Debug\miEncuesta.Com.pdb
