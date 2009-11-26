@@ -4,7 +4,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F1899E96-966A-4822-9D86-B49D5BC0BB4E}</ProjectGuid>
+    <ProjectGuid>{3EB4144A-2AD5-4085-880A-E1077B3AC9A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>etWeb.Tests</RootNamespace>
@@ -40,6 +40,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +51,12 @@
   <ItemGroup>
     <Content Include="AuthoringTests.txt" />
     <Content Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\etWeb\etWeb.csproj">
+      <Project>{082E3331-6905-4FE0-8759-B1CE5C6D7B78}</Project>
+      <Name>etWeb</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
