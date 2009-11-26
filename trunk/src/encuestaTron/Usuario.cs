@@ -17,7 +17,7 @@ namespace encuestaTron
 
         internal static string Login(string usuario, string password)
         {
-            return "Loggueado";
+            return "Logueado";
         }
     }
 }
