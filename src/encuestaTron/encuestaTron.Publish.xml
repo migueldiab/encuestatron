@@ -1,0 +1,14 @@
+<publishData>
+  <publishTarget publishUrl="D:\Server\asp\">
+    <file relUrl="bin/.svn/text-base/encuestaTron.dll.svn-base" publishTime="11/25/2009 00:05:36" />
+    <file relUrl="Fachada.asmx" publishTime="11/25/2009 00:02:57" />
+    <file relUrl="bin/.svn/text-base/encuestaTron.pdb.svn-base" publishTime="11/25/2009 00:05:31" />
+    <file relUrl="bin/encuestaTron.dll" publishTime="11/25/2009 22:08:50" />
+    <file relUrl="Web.config" publishTime="11/24/2009 23:25:59" />
+    <file relUrl="bin/.svn/all-wcprops" publishTime="11/25/2009 00:06:11" />
+    <file relUrl="bin/.svn/prop-base/encuestaTron.pdb.svn-base" publishTime="11/25/2009 00:04:22" />
+    <file relUrl="bin/.svn/entries" publishTime="11/25/2009 00:06:11" />
+    <file relUrl="bin/encuestaTron.pdb" publishTime="11/25/2009 22:08:50" />
+    <file relUrl="bin/.svn/prop-base/encuestaTron.dll.svn-base" publishTime="11/25/2009 00:04:22" />
+  </publishTarget>
+</publishData>

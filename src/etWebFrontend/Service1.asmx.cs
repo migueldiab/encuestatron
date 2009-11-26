@@ -8,6 +8,7 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
 
+
 namespace etWebFrontend
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace etWebFrontend
         [WebMethod]
         public string HelloWorld()
         {
+
             return "Hello World";
         }
     }
