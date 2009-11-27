@@ -1,40 +1,86 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+<%@ Import Namespace="Helpers" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="Description of your web page goes here." />
+<meta name="keywords" content="Keywords for you web page go here. Each keyword or group of keyword phrases are separated by a comma. Keep this  list short and relevant to the content and title of this specific page." />
+<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+<link rel="shortcut icon" href="../../Content/images/favicon.ico" />
+<link href="../../Content/Site.css" rel="stylesheet" type="text/css" media="interactive, braille, emboss, handheld, projection, screen, tty, tv" />
+<link href="../../Content/print-styles.css" rel="stylesheet" type="text/css" media="print" />
 </head>
-
 <body>
-    <div class="page">
-
-        <div id="header">
-            <div id="title">
-                <h1>My MVC Application</h1>
-            </div>
-              
-            <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
-            </div> 
-            
-            <div id="menucontainer">
-            
-                <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                </ul>
-            
-            </div>
-        </div>
-
-        <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            <div id="footer">
-            </div>
-        </div>
+<div class="none"><a href="#maincontent">skip to the main content area of this page</a></div>
+<div class="header-container">
+    <div class="nav-login">
+        <ul>
+            <li class="first"><%= Html.ActionLink("Registrate Ya!", "Register", "Account") %></li>
+        </ul>
     </div>
+    <div class="logo"><a href="<%= Url.Action("Index", "Home") %>">et : Encuesta Tron</a></div>
+    <div class="clear"></div>
+</div>
+<div class="poster-container-no-image">
+    <div class="poster-inner"> </div>
+</div>
+<div class="nav-main">
+    <ul>
+          <% if (Html.IsCurrentAction("Index", "Inicio")) { %>
+            <li class="first active"><span class="active"></span><%= Html.ActionLink("Inicio", "Index", "Inicio")%></li>
+          <% } else { %>
+            <li class="first"><%= Html.ActionLink("Home", "Index", "Home") %></li>
+          <% }%>
+
+          <% if (Html.IsCurrentAction("Acerca de", "Inicio"))
+             { %>
+            <li class="active"><span class="active"></span><%= Html.ActionLink("Acerca de", "About", "Inicio")%></li>
+          <% } else { %>
+            <li><%= Html.ActionLink("Acerca de", "About", "Inicio")%></li>
+          <% }%>
+
+    </ul>
+</div>
+<div class="content-container">
+    <div class="content-container-inner">
+        <div class="content-main"><a name="maincontent" id="maincontent"></a>
+            <div class="breadcrumb"> <a href="./">Inicio</a> &raquo; Volver al incio...</div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+		<div class="content-left">
+            <div class="side-bucket">
+                <ul>
+                    <li class="first"><%= Html.ActionLink("Encuestas", "Index", "Encuesta")%></li>
+                    <li><%= Html.ActionLink("Preguntas", "Index", "Pregunta")%></li>
+                    <li><%= Html.ActionLink("Respuestas", "Index", "Respuesta")%></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-right">
+            <h2 class="first">Ingreso de Usuarios</h2>
+            <label for="username">Usuario</label>
+            <input class="input-box" id="username" type="text" />
+            <label for="password">Contraseña</label>
+            <input class="input-box" id="password" type="password" />
+            <input class="button" name="Login" type="button" value="Ingresar" />
+            <p class="forgot-password"><a href="#">Olvidaste tu clave?</a></p>
+            <div class="ads"> <a href="#"><img src="../../Content/images/ad.gif" alt="ad" /></a> </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="footer">
+    <div class="nav-footer">
+        <ul>
+            <li class="first"><%= Html.ActionLink("Home", "Index", "Home") %></li>
+            <li><%= Html.ActionLink("About", "About", "Home") %></li>
+        </ul>
+        <p class="copyright">&copy; 2009 EncuestaTron - Ricardo de Leon & Miguel A. Diab</p>
+    </div>
+</div>
 </body>
 </html>
