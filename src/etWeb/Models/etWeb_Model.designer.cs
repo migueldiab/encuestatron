@@ -229,7 +229,7 @@ namespace etWeb.Models
 			}
 		}
 		
-		[Column(Name="usuario", Storage="_usuario1", DbType="NChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Name="usuario", Storage="_usuario1", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string usuario1
 		{
 			get
@@ -483,7 +483,7 @@ namespace etWeb.Models
 			OnCreated();
 		}
 		
-		[Column(Storage="_nombre", DbType="NChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string nombre
 		{
 			get
@@ -603,7 +603,7 @@ namespace etWeb.Models
 			}
 		}
 		
-		[Column(Storage="_id_agente", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_id_agente", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string id_agente
 		{
 			get
@@ -627,7 +627,7 @@ namespace etWeb.Models
 			}
 		}
 		
-		[Column(Storage="_id_cliente", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_id_cliente", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string id_cliente
 		{
 			get
@@ -934,7 +934,7 @@ namespace etWeb.Models
 			OnCreated();
 		}
 		
-		[Column(Storage="_id_usuario", DbType="NChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Storage="_id_usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string id_usuario
 		{
 			get
@@ -1194,7 +1194,7 @@ namespace etWeb.Models
 			}
 		}
 		
-		[Column(Storage="_id_encuesta", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_id_encuesta", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string id_encuesta
 		{
 			get

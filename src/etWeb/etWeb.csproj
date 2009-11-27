@@ -92,6 +92,31 @@
     <Content Include="App_Data\etTempDB_log.ldf">
       <DependentUpon>etTempDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\ad.gif" />
+    <Content Include="Content\images\bg-button.png" />
+    <Content Include="Content\images\bg-column-left.png" />
+    <Content Include="Content\images\bg-column-right.png" />
+    <Content Include="Content\images\bg-input.png" />
+    <Content Include="Content\images\bg-poster-photo.jpg" />
+    <Content Include="Content\images\bg-poster-tile.jpg" />
+    <Content Include="Content\images\bg-poster.jpg" />
+    <Content Include="Content\images\bgBottom.gif" />
+    <Content Include="Content\images\bgHeader.gif" />
+    <Content Include="Content\images\bgHeader.jpg" />
+    <Content Include="Content\images\bgMain.jpg" />
+    <Content Include="Content\images\blue.gif" />
+    <Content Include="Content\images\bullet.png" />
+    <Content Include="Content\images\comments.gif" />
+    <Content Include="Content\images\corner.gif" />
+    <Content Include="Content\images\dot.gif" />
+    <Content Include="Content\images\extBtn.gif" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\kianu.gif" />
+    <Content Include="Content\images\photo-small-01.jpg" />
+    <Content Include="Content\images\photo-small-02.jpg" />
+    <Content Include="Content\images\picture.gif" />
+    <Content Include="Content\images\quote.gif" />
+    <Content Include="Content\images\quotes.gif" />
     <Content Include="Content\print-styles.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Default.aspx" />

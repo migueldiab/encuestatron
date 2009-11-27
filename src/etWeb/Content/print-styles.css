@@ -374,6 +374,10 @@ a:active {
 	border:1px solid #666;
 	}
 	
+.photo-content {
+   text-align:center;
+}
+
 .photo-caption {
 	font-size:.7em;
 	padding:10px 10px 0 10px;
