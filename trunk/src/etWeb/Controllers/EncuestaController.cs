@@ -23,9 +23,11 @@ namespace etWeb.Controllers
         //
         // GET: /Encuesta/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            var dbModel = new dbModel();
+            var unaEncuesta = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
+            return View(unaEncuesta);
         }
 
         //
@@ -67,27 +69,40 @@ namespace etWeb.Controllers
         //
         // GET: /Encuesta/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+          var dbModel = new dbModel();
+          var unaEncuesta = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
+          return View(unaEncuesta);
         }
 
         //
         // POST: /Encuesta/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
+          var dbModel = new dbModel();
+          var unaEncuesta = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
+          if (ModelState.IsValid)
+          {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+              UpdateModel(unaEncuesta, collection.ToValueProvider());
+              dbModel.SubmitChanges();
+              return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+              ViewData["error"] = "Error al grabar";
+              return View(unaEncuesta);
             }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unaEncuesta);
+          }
         }
     }
 }
