@@ -1,5 +1,0 @@
-D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\bin\etWeb.dll
-D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\bin\etWeb.pdb
-D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\obj\Debug\ResolveAssemblyReference.cache
-D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\obj\Debug\etWeb.dll
-D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\obj\Debug\etWeb.pdb
