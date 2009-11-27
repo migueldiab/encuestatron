@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using etWeb.Models;
+
 
 namespace etWeb.Controllers
 {
@@ -14,7 +16,9 @@ namespace etWeb.Controllers
 
         public ActionResult Index()
         {
-            return View();
+          var dbModel = new dbModel();
+          var respuestas = dbModel.respuestas;
+          return View(respuestas);
         }
 
         //
@@ -22,7 +26,9 @@ namespace etWeb.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+          var dbModel = new dbModel();
+          var unaRespuesta = dbModel.respuestas.SingleOrDefault(x => x.id == id);
+          return View(unaRespuesta);
         }
 
         //
@@ -37,18 +43,28 @@ namespace etWeb.Controllers
         // POST: /Respuesta/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(respuesta unaRespuesta)
         {
+          if (ModelState.IsValid)
+          {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+              var dbModel = new dbModel();
+              dbModel.respuestas.InsertOnSubmit(unaRespuesta);
+              dbModel.SubmitChanges();
+              return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+              ViewData["error"] = "Error al grabar";
+              return View(unaRespuesta);
             }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unaRespuesta);
+          }
         }
 
         //
@@ -56,7 +72,9 @@ namespace etWeb.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+          var dbModel = new dbModel();
+          var unaRespuesta = dbModel.respuestas.SingleOrDefault(x => x.id == id);
+          return View(unaRespuesta);
         }
 
         //
@@ -65,16 +83,27 @@ namespace etWeb.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
         {
+          var dbModel = new dbModel();
+          var unaRespuesta = dbModel.respuestas.SingleOrDefault(x => x.id == id);
+          if (ModelState.IsValid)
+          {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+              UpdateModel(unaRespuesta, collection.ToValueProvider());
+              dbModel.SubmitChanges();
+              return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+              ViewData["error"] = "Error al grabar";
+              return View(unaRespuesta);
             }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unaRespuesta);
+          }
         }
     }
 }

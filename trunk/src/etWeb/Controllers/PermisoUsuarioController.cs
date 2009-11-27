@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using etWeb.Models;
 
 namespace etWeb.Controllers
 {
@@ -14,7 +15,9 @@ namespace etWeb.Controllers
 
         public ActionResult Index()
         {
-            return View();
+          var dbModel = new dbModel();
+          var permisoUsuarios = dbModel.permiso_usuarios;
+          return View(permisoUsuarios);
         }
 
         //
@@ -22,7 +25,9 @@ namespace etWeb.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+          var dbModel = new dbModel();
+          var unPermisoUsuario = dbModel.permiso_usuarios.SingleOrDefault(x => x.id_permiso == id);
+          return View(unPermisoUsuario);
         }
 
         //
@@ -37,18 +42,28 @@ namespace etWeb.Controllers
         // POST: /PermisoUsuario/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(permiso_usuario unPermisoUsuario)
         {
+          if (ModelState.IsValid)
+          {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+              var dbModel = new dbModel();
+              dbModel.permiso_usuarios.InsertOnSubmit(unPermisoUsuario);
+              dbModel.SubmitChanges();
+              return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+              ViewData["error"] = "Error al grabar";
+              return View(unPermisoUsuario);
             }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unPermisoUsuario);
+          }
         }
 
         //
@@ -56,7 +71,9 @@ namespace etWeb.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+          var dbModel = new dbModel();
+          var unPermisoUsuario = dbModel.permiso_usuarios.SingleOrDefault(x => x.id_permiso == id);
+          return View(unPermisoUsuario);
         }
 
         //
@@ -65,16 +82,27 @@ namespace etWeb.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
         {
+          var dbModel = new dbModel();
+          var unPermisoUsuario = dbModel.permiso_usuarios.SingleOrDefault(x => x.id_permiso == id);
+          if (ModelState.IsValid)
+          {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+              UpdateModel(unPermisoUsuario, collection.ToValueProvider());
+              dbModel.SubmitChanges();
+              return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+              ViewData["error"] = "Error al grabar";
+              return View(unPermisoUsuario);
             }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unPermisoUsuario);
+          }
         }
     }
 }

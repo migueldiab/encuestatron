@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using etWeb.Models;
 
 namespace etWeb.Controllers
 {
@@ -14,15 +15,19 @@ namespace etWeb.Controllers
 
         public ActionResult Index()
         {
-            return View();
+          var dbModel = new dbModel();
+          var usuarios = dbModel.usuarios;
+          return View(usuarios);
         }
 
         //
         // GET: /Usuario/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+          var dbModel = new dbModel();
+          var unUsuario = dbModel.usuarios.SingleOrDefault(x => x.nombre == id);
+          return View(unUsuario);
         }
 
         //
@@ -37,44 +42,67 @@ namespace etWeb.Controllers
         // POST: /Usuario/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(usuario unUsuario)
         {
+          if (ModelState.IsValid)
+          {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+              var dbModel = new dbModel();
+              dbModel.usuarios.InsertOnSubmit(unUsuario);
+              dbModel.SubmitChanges();
+              return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+              ViewData["error"] = "Error al grabar";
+              return View(unUsuario);
             }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unUsuario);
+          }
         }
 
         //
         // GET: /Usuario/Edit/5
- 
-        public ActionResult Edit(int id)
+
+        public ActionResult Edit(string id)
         {
-            return View();
+          var dbModel = new dbModel();
+          var unUsuario = dbModel.usuarios.SingleOrDefault(x => x.nombre == id);
+          return View(unUsuario);
         }
 
         //
         // POST: /Usuario/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
+          var dbModel = new dbModel();
+          var unUsuario = dbModel.usuarios.SingleOrDefault(x => x.nombre == id);
+          if (ModelState.IsValid)
+          {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+              UpdateModel(unUsuario, collection.ToValueProvider());
+              dbModel.SubmitChanges();
+              return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+              ViewData["error"] = "Error al grabar";
+              return View(unUsuario);
             }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unUsuario);
+          }
         }
     }
 }
