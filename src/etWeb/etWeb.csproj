@@ -61,6 +61,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EncuestaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PermisoController.cs" />
+    <Compile Include="Controllers\PermisoUsuarioController.cs" />
+    <Compile Include="Controllers\PreguntaController.cs" />
+    <Compile Include="Controllers\RespuestaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,6 +131,26 @@
     <Content Include="Views\Encuesta\Edit.aspx" />
     <Content Include="Views\Encuesta\Index.aspx" />
     <Content Include="Views\Home\Prueba.aspx" />
+    <Content Include="Views\PermisoUsuario\Create.aspx" />
+    <Content Include="Views\PermisoUsuario\Details.aspx" />
+    <Content Include="Views\PermisoUsuario\Edit.aspx" />
+    <Content Include="Views\PermisoUsuario\Index.aspx" />
+    <Content Include="Views\Permiso\Create.aspx" />
+    <Content Include="Views\Permiso\Details.aspx" />
+    <Content Include="Views\Permiso\Edit.aspx" />
+    <Content Include="Views\Permiso\Index.aspx" />
+    <Content Include="Views\Pregunta\Create.aspx" />
+    <Content Include="Views\Pregunta\Details.aspx" />
+    <Content Include="Views\Pregunta\Edit.aspx" />
+    <Content Include="Views\Pregunta\Index.aspx" />
+    <Content Include="Views\Respuesta\Create.aspx" />
+    <Content Include="Views\Respuesta\Details.aspx" />
+    <Content Include="Views\Respuesta\Edit.aspx" />
+    <Content Include="Views\Respuesta\Index.aspx" />
+    <Content Include="Views\Usuario\Create.aspx" />
+    <Content Include="Views\Usuario\Details.aspx" />
+    <Content Include="Views\Usuario\Edit.aspx" />
+    <Content Include="Views\Usuario\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

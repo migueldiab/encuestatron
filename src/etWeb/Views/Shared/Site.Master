@@ -57,6 +57,9 @@
                     <li class="first"><%= Html.ActionLink("Encuestas", "Index", "Encuesta")%></li>
                     <li><%= Html.ActionLink("Preguntas", "Index", "Pregunta")%></li>
                     <li><%= Html.ActionLink("Respuestas", "Index", "Respuesta")%></li>
+                    <li><%= Html.ActionLink("Usuarios", "Index", "Usuario")%></li>
+                    <li><%= Html.ActionLink("Permisos", "Index", "Permiso")%></li>
+                    <li><%= Html.ActionLink("Permisos Usuario", "Index", "PermisoUsuario")%></li>
                 </ul>
             </div>
         </div>
