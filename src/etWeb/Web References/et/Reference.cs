@@ -29,7 +29,7 @@ namespace etWeb.et {
     [System.Web.Services.WebServiceBindingAttribute(Name="FachadaSoap", Namespace="http://tempuri.org/")]
     public partial class Fachada : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback UsuarioLoginOperationCompleted;
+        private System.Threading.SendOrPostCallback validarUsuarioOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -70,36 +70,36 @@ namespace etWeb.et {
         }
         
         /// <remarks/>
-        public event UsuarioLoginCompletedEventHandler UsuarioLoginCompleted;
+        public event validarUsuarioCompletedEventHandler validarUsuarioCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UsuarioLogin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string UsuarioLogin(string usuario, string password) {
-            object[] results = this.Invoke("UsuarioLogin", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/validarUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool validarUsuario(string usuario, string password) {
+            object[] results = this.Invoke("validarUsuario", new object[] {
                         usuario,
                         password});
-            return ((string)(results[0]));
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void UsuarioLoginAsync(string usuario, string password) {
-            this.UsuarioLoginAsync(usuario, password, null);
+        public void validarUsuarioAsync(string usuario, string password) {
+            this.validarUsuarioAsync(usuario, password, null);
         }
         
         /// <remarks/>
-        public void UsuarioLoginAsync(string usuario, string password, object userState) {
-            if ((this.UsuarioLoginOperationCompleted == null)) {
-                this.UsuarioLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUsuarioLoginOperationCompleted);
+        public void validarUsuarioAsync(string usuario, string password, object userState) {
+            if ((this.validarUsuarioOperationCompleted == null)) {
+                this.validarUsuarioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnvalidarUsuarioOperationCompleted);
             }
-            this.InvokeAsync("UsuarioLogin", new object[] {
+            this.InvokeAsync("validarUsuario", new object[] {
                         usuario,
-                        password}, this.UsuarioLoginOperationCompleted, userState);
+                        password}, this.validarUsuarioOperationCompleted, userState);
         }
         
-        private void OnUsuarioLoginOperationCompleted(object arg) {
-            if ((this.UsuarioLoginCompleted != null)) {
+        private void OnvalidarUsuarioOperationCompleted(object arg) {
+            if ((this.validarUsuarioCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.UsuarioLoginCompleted(this, new UsuarioLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.validarUsuarioCompleted(this, new validarUsuarioCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -124,26 +124,26 @@ namespace etWeb.et {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void UsuarioLoginCompletedEventHandler(object sender, UsuarioLoginCompletedEventArgs e);
+    public delegate void validarUsuarioCompletedEventHandler(object sender, validarUsuarioCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class UsuarioLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class validarUsuarioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal UsuarioLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal validarUsuarioCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public string Result {
+        public bool Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return ((bool)(this.results[0]));
             }
         }
     }

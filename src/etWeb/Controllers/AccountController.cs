@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
+using etWeb.et;
+using etWeb.Lib.Security;
 
 namespace etWeb.Controllers
 {
@@ -14,9 +16,6 @@ namespace etWeb.Controllers
     [HandleError]
     public class AccountController : Controller
     {
-
-        // This constructor is used by the MVC framework to instantiate the controller using
-        // the default forms authentication and membership providers.
 
         public AccountController()
             : this(null, null)
@@ -56,20 +55,48 @@ namespace etWeb.Controllers
         public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
         {
 
-            if (!ValidateLogOn(userName, password))
-            {
-                return View();
-            }
+          //if (!ValidateLogOn(userName, password))
 
-            FormsAuth.SignIn(userName, rememberMe);
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+          Fachada wsEt = new Fachada();
+          if (!wsEt.validarUsuario(userName, password))
+          {
+            return View();
+          }
+          FormsAuth.SignIn(userName, rememberMe);
+
+          //Roles.AddUserToRole(userName, "Lista");
+          HttpContext currentContext = System.Web.HttpContext.Current;
+          
+          string formsCookieStr = string.Empty;
+
+          rolesUsuario roles = new rolesUsuario();
+          string[] listaRoles = roles.GetRolesForUser(userName);
+          
+
+          FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                   1,                                // version
+                   userName,                         // user name
+                   DateTime.Now,                     // issue time
+                   DateTime.Now.AddMinutes(60),      // expires
+                   false,                            // persistent
+                   String.Join(",", listaRoles)      // user data
+             );
+
+          // Get the encrypted representation suitable for placing in a HTTP cookie.
+          formsCookieStr = FormsAuthentication.Encrypt(ticket);
+          HttpCookie FormsCookie = new HttpCookie(FormsAuthentication.FormsCookieName, formsCookieStr);
+          currentContext.Response.Cookies.Add(FormsCookie);
+
+          currentContext.Session["role"] = "ListaEncuestas";
+
+          if (!String.IsNullOrEmpty(returnUrl))
+          {
+              return Redirect(returnUrl);
+          }
+          else
+          {
+              return RedirectToAction("Index", "Home");
+          }
         }
 
         public ActionResult LogOff()
@@ -292,6 +319,7 @@ namespace etWeb.Controllers
         public void SignIn(string userName, bool createPersistentCookie)
         {
             FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+            
         }
         public void SignOut()
         {

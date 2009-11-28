@@ -12,7 +12,6 @@ namespace etWeb.Controllers
     {
         //
         // GET: /Usuario/
-
         public ActionResult Index()
         {
           var dbModel = new dbModel();

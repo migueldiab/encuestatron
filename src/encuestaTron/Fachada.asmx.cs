@@ -22,9 +22,9 @@ namespace encuestaTron
     {
 
         [WebMethod]
-        public string UsuarioLogin(String usuario, String password)
+        public bool validarUsuario(String usuario, String password)
         {
-            return Usuario.Login(usuario, password);
+            return Usuario.validarUsuario(usuario, password);
         }
     }
 }
