@@ -19,5 +19,10 @@ namespace encuestaTron
         {
             return "Logueado";
         }
+
+        internal static bool validarUsuario(string usuario, string password)
+        {
+          return true;
+        }
     }
 }
