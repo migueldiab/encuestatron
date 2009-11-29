@@ -1,0 +1,5 @@
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\eTronWeb\obj\Debug\ResolveAssemblyReference.cache
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\eTronWeb\bin\eTronWeb.dll
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\eTronWeb\bin\eTronWeb.pdb
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\eTronWeb\obj\Debug\eTronWeb.dll
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\eTronWeb\obj\Debug\eTronWeb.pdb
