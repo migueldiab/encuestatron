@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
+using DataTypesObjects;
+using System.Xml.Serialization;
 
 namespace encuestaTron
 {
@@ -20,11 +22,33 @@ namespace encuestaTron
     // [System.Web.Script.Services.ScriptService]
     public class Fachada : System.Web.Services.WebService
     {
-
+        [XmlInclude(typeof(Usuario))]
         [WebMethod]
+<<<<<<< .mine
+        public ResultadoWs UsuarioLogin(String usuario, String password)
+=======
         public bool validarUsuario(String usuario, String password)
+>>>>>>> .r31
         {
+<<<<<<< .mine
+           ResultadoWs retorno = new ResultadoWs();
+           Usuario user= new Usuario();
+            try
+            {
+                 user = Usuario.Login(usuario, password);
+                 retorno.Resultado.Add(user);
+                    
+            }
+            catch (Exception e)
+            {
+
+                retorno.Error = e.Message;
+            }
+            
+            return retorno;
+=======
             return Usuario.validarUsuario(usuario, password);
+>>>>>>> .r31
         }
     }
 }
