@@ -18,5 +18,10 @@ namespace etWeb
             httpHandler.ProcessRequest(HttpContext.Current);
             HttpContext.Current.RewritePath(originalPath, false);
         }
+
+        protected void LoginButton_Click(object sender, System.EventArgs e)
+        {
+           
+        }
     }
 }
