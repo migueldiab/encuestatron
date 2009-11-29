@@ -53,26 +53,38 @@ namespace etWeb.Controllers
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
             Justification = "Needs to take same parameter type as Controller.Redirect()")]
         public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
-        {
+        {          
+          /*
+           * Fachada wsEt = new Fachada();
+           * if (!wsEt.validarUsuario(userName, password))
+           * 
+           * Método directo mediante web services.
+           */
 
-          //if (!ValidateLogOn(userName, password))
-
-          Fachada wsEt = new Fachada();
-          if (!wsEt.validarUsuario(userName, password))
+          /*
+           * Valida modelo de datos primero
+           * si usuario y password parecen válidos
+           * delega a la clase de Membresía,
+           * que chequea contra el WebService
+           */
+          if (!ValidateLogOn(userName, password))
           {
             return View();
           }
+          // Establece Cookie de Usuario
           FormsAuth.SignIn(userName, rememberMe);
-
-          //Roles.AddUserToRole(userName, "Lista");
-          HttpContext currentContext = System.Web.HttpContext.Current;
           
+          HttpContext currentContext = System.Web.HttpContext.Current;
           string formsCookieStr = string.Empty;
-
+          /*
+           * Clase de Roles chequea por roles específicos
+           * de este usuario autenticado
+           * y le otorga un ticket por una hora
+           * con los permisos en el User Data
+           */
           rolesUsuario roles = new rolesUsuario();
           string[] listaRoles = roles.GetRolesForUser(userName);
           
-
           FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                    1,                                // version
                    userName,                         // user name
@@ -81,13 +93,15 @@ namespace etWeb.Controllers
                    false,                            // persistent
                    String.Join(",", listaRoles)      // user data
              );
-
-          // Get the encrypted representation suitable for placing in a HTTP cookie.
-          formsCookieStr = FormsAuthentication.Encrypt(ticket);
-          HttpCookie FormsCookie = new HttpCookie(FormsAuthentication.FormsCookieName, formsCookieStr);
+          HttpCookie FormsCookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
           currentContext.Response.Cookies.Add(FormsCookie);
 
-          currentContext.Session["role"] = "ListaEncuestas";
+          /*
+           * Como alternativa al ticket se puede grabar una variable X en la sesión
+           * con los datos de los roles.
+           * 
+           * Session["role"] = String.Join(",", listaRoles);
+           */
 
           if (!String.IsNullOrEmpty(returnUrl))
           {
@@ -354,13 +368,17 @@ namespace etWeb.Controllers
         {
             get
             {
-                return _provider.MinRequiredPasswordLength;
+              return 5;
+              // TODO : Cambiar esto a un enfoque mas holistico (web.config o similar)
+              //return _provider.MinRequiredPasswordLength;
             }
         }
 
         public bool ValidateUser(string userName, string password)
-        {
-            return _provider.ValidateUser(userName, password);
+        { 
+           Fachada wsEt = new Fachada();
+           return wsEt.validarUsuario(userName, password);
+           //return _provider.ValidateUser(userName, password);
         }
 
         public MembershipCreateStatus CreateUser(string userName, string password, string email)

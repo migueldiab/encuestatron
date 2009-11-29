@@ -75,7 +75,6 @@
     </Compile>
     <Compile Include="Helpers\IsCurrentActionHelper.cs" />
     <Compile Include="Lib\Security\autorizoUsuario.cs" />
-    <Compile Include="Lib\Security\membresiaUsuario.cs" />
     <Compile Include="Lib\Security\rolesUsuario.cs" />
     <Compile Include="Models\etWeb_Model.designer.cs">
       <AutoGen>True</AutoGen>

@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using etWeb.et;
 
 namespace etWeb.Lib.Security
 {
@@ -59,7 +60,8 @@ namespace etWeb.Lib.Security
       /*
        * Metodo debe consultar con fachada y devolver los roles actuales del usuario
        */
-
+      // Fachada etFachada = new Fachada();
+      // etFachada.obtenerPermisosPorUsuario(userName);
       
       List<string> roles = new List<string>();
       
