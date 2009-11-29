@@ -5,7 +5,8 @@ using System.Text;
 
 namespace DataTypesObjects
 {
-   public class Usuario
+    [Serializable]
+    public class Usuario
     {
         private int cedula;
         private String contrasenia;
@@ -14,11 +15,69 @@ namespace DataTypesObjects
         private String mail;
         private String celular;
         private String telefono;
-        private List<Rol> roles;
+        private List<Rol> roles = new List<Rol>();
 
-#region Properties
-		 
-	
+        public static Usuario Login(String user, String pass)
+        {
+            Usuario usuario ;
+            usuario = findById(user);
+            if (usuario != null)
+            {
+              if (usuario.Contrasenia ==pass)
+               // if (pass.Equals("123"))
+                {
+                    return usuario;
+                }
+                else
+                {
+                    throw new Exception("contraseña incorrecta");
+                }
+            }
+            else
+            {
+                throw new Exception("Usuario inexistente");
+            }
+            throw new Exception("ERROR desconocido");
+            
+        }
+        public static Usuario findById(String id)
+        {// aca debe ir la logica de buscar en BD
+            Usuario usuario = null;
+            if (id == "123")
+            {
+                usuario = new Usuario();
+                usuario.Apellido = "Ape1";
+                usuario.Nombre = "Nom1";
+                usuario.Cedula = 123;
+                usuario.Contrasenia = "123";
+
+                Rol rol1 = new Rol();
+                rol1.Descripcion = "agente";
+                rol1.Id = 1;
+                usuario.roles.Add(rol1);
+            }
+            if (id == "1234")
+            {
+                usuario = new Usuario();
+                usuario.Apellido = "Ape1";
+                usuario.Nombre = "Nom1";
+                usuario.Cedula = 1234;
+                usuario.Contrasenia = "1234";
+
+                Rol rol1 = new Rol();
+                rol1.Descripcion = "administrador";
+                rol1.Id = 2;
+                usuario.roles.Add(rol1);
+            }
+            return usuario;
+        }
+        public override string ToString()
+        {
+            return Nombre +" "+ Apellido;
+        }
+        #region Properties
+
+
 
         public List<Rol> Roles
         {
@@ -63,7 +122,8 @@ namespace DataTypesObjects
             set { telefono = value; }
         }
 
-#endregion
+        #endregion
 
     }
 }
+
