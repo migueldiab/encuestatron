@@ -24,5 +24,10 @@ namespace encuestaTron
         {
           return true;
         }
+
+        internal static string obtenerPermisosPorUsuario(string usuario)
+        {
+          return "ListarEncuestas";
+        }
     }
 }

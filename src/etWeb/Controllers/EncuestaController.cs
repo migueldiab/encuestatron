@@ -13,7 +13,7 @@ namespace etWeb.Controllers
     {
         //
         // GET: /Encuesta/
-        [autorizoUsuario(rolesUsuario = "ListaEncuestas")]
+        [autorizoUsuario(requiereRol = "ListaEncuestas")]
         public ActionResult Index()
         {
           var dbModel = new dbModel();

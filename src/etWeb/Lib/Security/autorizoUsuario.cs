@@ -15,34 +15,39 @@ namespace etWeb.Lib.Security
 {
   public class autorizoUsuario : AuthorizeAttribute
   {
-    public string rolesUsuario;
+    public string requiereRol;
 
     protected override bool AuthorizeCore(HttpContextBase httpContext)
     {
+      //Verifica Contexto HTTP Válido
       if (httpContext == null)
         throw new ArgumentNullException("httpContext");
 
-      string[] users = Users.Split(',');
-
+      // Si el usuario no está autenticado, retorna Falso
       if (!httpContext.User.Identity.IsAuthenticated)
         return false;
 
-      bool isAuth = httpContext.User.IsInRole(this.rolesUsuario);
+      //bool isAuth = httpContext.User.IsInRole(this.rolesUsuario);
+      // El IsInRole no me funciona :|
 
-      HttpContext currentContext = System.Web.HttpContext.Current;
-      //FormsIdentity frmId = System.Web.Security.FormsIdentity;
+      // Ticket establecido mediante FormsAuthenticationTicket en AccountController
       FormsIdentity usrFrmId = (FormsIdentity)httpContext.User.Identity;
+      string ticketRolesUsuario = usrFrmId.Ticket.UserData;
+      if (ticketRolesUsuario.Contains(this.requiereRol))
+        return true;
 
+      /*
+       * string cookieRolesUsuario = (string)httpContext.Session["role"];
+       * if (cookieRolesUsuario.Contains(this.requiereRol))
+       * return true;
+       * 
+       * De usar Cookies de Sesión en lugar de tickets, 
+       * este sería el código para habilitar el acceso
+       * 
+       */
 
-      string otherRole = (string)currentContext.Session["role"];
-
-      string role = (string)httpContext.Session["role"];
-
-
-      if (role != this.rolesUsuario)
-        return false;
-
-      return true;
+      // Si no autentica con Cookies ni con Tickets, niega acceso.
+      return false;
     }
   }
 

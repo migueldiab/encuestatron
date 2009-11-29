@@ -12,43 +12,46 @@ using System.Xml.Serialization;
 
 namespace encuestaTron
 {
-    /// <summary>
-    /// Summary description for Service1
-    /// </summary>
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
-    public class Fachada : System.Web.Services.WebService
+  /// <summary>
+  /// Summary description for Service1
+  /// </summary>
+  [WebService(Namespace = "http://tempuri.org/")]
+  [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+  [ToolboxItem(false)]
+  // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+  // [System.Web.Script.Services.ScriptService]
+  public class Fachada : System.Web.Services.WebService
+  {
+    /*
+    [WebMethod]
+    public bool validarUsuario(String usuario, String password)
     {
-        [XmlInclude(typeof(Usuario))]
-        [WebMethod]
-<<<<<<< .mine
-        public ResultadoWs UsuarioLogin(String usuario, String password)
-=======
-        public bool validarUsuario(String usuario, String password)
->>>>>>> .r31
-        {
-<<<<<<< .mine
-           ResultadoWs retorno = new ResultadoWs();
-           Usuario user= new Usuario();
-            try
-            {
-                 user = Usuario.Login(usuario, password);
-                 retorno.Resultado.Add(user);
-                    
-            }
-            catch (Exception e)
-            {
-
-                retorno.Error = e.Message;
-            }
-            
-            return retorno;
-=======
-            return Usuario.validarUsuario(usuario, password);
->>>>>>> .r31
-        }
+      return Usuario.validarUsuario(usuario, password);
     }
+    */
+    
+    [WebMethod]
+    public bool obtenerPermisosPorUsuario(String usuario)
+    {
+      return Usuario.obtenerPermisosPorUsuario(usuario);
+    }
+    
+    [XmlInclude(typeof(Usuario))]        
+    [WebMethod]
+    public bool validarUsuario(String usuario, String password)
+    {
+      ResultadoWs retorno = new ResultadoWs();
+      Usuario user= new Usuario();
+      try
+      {
+         user = Usuario.Login(usuario, password);
+         retorno.Resultado.Add(user);          
+      }
+      catch (Exception e)
+      {
+        retorno.Error = e.Message;
+      }      
+      return retorno;
+    }
+  }
 }
