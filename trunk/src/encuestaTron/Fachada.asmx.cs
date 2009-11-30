@@ -22,13 +22,6 @@ namespace encuestaTron
   // [System.Web.Script.Services.ScriptService]
   public class Fachada : System.Web.Services.WebService
   {
-    /*
-    [WebMethod]
-    public bool validarUsuario(String usuario, String password)
-    {
-      return Usuario.validarUsuario(usuario, password);
-    }
-    */
     
     [WebMethod]
     public bool obtenerPermisosPorUsuario(String usuario)
@@ -36,7 +29,7 @@ namespace encuestaTron
       return Usuario.obtenerPermisosPorUsuario(usuario);
     }
     
-    [XmlInclude(typeof(Usuario))]        
+   /* [XmlInclude(typeof(Usuario))]        
     [WebMethod]
     public bool validarUsuario(String usuario, String password)
     {
@@ -52,6 +45,33 @@ namespace encuestaTron
         retorno.Error = e.Message;
       }      
       return retorno;
+    }
+    */
+
+
+  //  [XmlInclude(typeof(Usuario))]
+    [WebMethod]
+    public LoginResult UsuarioLogin(String usuario, String password)
+    {
+        LoginResult retorno = new LoginResult();
+        Usuario user = new Usuario();
+        try
+        {
+            user = Usuario.Login(usuario, password);
+            retorno.IdUsuario = user.Cedula;
+            retorno.NombreCompleto = user.Nombre + " " + user.Apellido;
+            retorno.Token = "qqwerty";
+            retorno.Rol = (user.Roles[0].Id).ToString();
+
+
+        }
+        catch (Exception e)
+        {
+
+            retorno.Error = e.Message;
+        }
+
+        return retorno;
     }
   }
 }
