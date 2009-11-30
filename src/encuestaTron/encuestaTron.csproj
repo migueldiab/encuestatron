@@ -67,7 +67,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ResultadoWs.cs" />
+    <Compile Include="Results\LoginResult.cs" />
+    <Compile Include="Results\ResultadoWs.cs" />
     <Compile Include="Sistema.cs" />
   </ItemGroup>
   <ItemGroup>
