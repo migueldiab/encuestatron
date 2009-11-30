@@ -59,38 +59,33 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
+    <Content Include="Login.aspx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\localhost\Fachada.wsdl" />
-    <None Include="Web References\localhost\Reference.map">
+    <None Include="Web References\localhost1\Fachada.wsdl" />
+    <None Include="Web References\localhost1\LoginResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\localhost1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\localhost\ResultadoWs.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ProxyFachada\Fachada.disco" />
-    <None Include="Web References\ProxyFachada\Fachada.wsdl" />
-    <None Include="Web References\ProxyFachada\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ProxyFachada\ResultadoWs.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\localhost\Fachada.disco" />
+    <None Include="Web References\localhost1\Fachada.disco" />
+    <Content Include="vistaAdministrador.aspx" />
+    <Content Include="vistaAgente.aspx" />
+    <Content Include="vistaCliente.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="Login.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -98,15 +93,40 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Web References\localhost\Reference.cs">
+    <Compile Include="Rol.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="vistaAdministrador.aspx.cs">
+      <DependentUpon>vistaAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vistaAdministrador.aspx.designer.cs">
+      <DependentUpon>vistaAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vistaAgente.aspx.cs">
+      <DependentUpon>vistaAgente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vistaAgente.aspx.designer.cs">
+      <DependentUpon>vistaAgente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vistaCliente.aspx.cs">
+      <DependentUpon>vistaCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vistaCliente.aspx.designer.cs">
+      <DependentUpon>vistaCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\localhost1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\ProxyFachada\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -118,25 +138,14 @@
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:49882/Fachada.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\localhost\</RelPath>
+      <RelPath>Web References\localhost1\</RelPath>
       <UpdateFromURL>http://localhost:49882/Fachada.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>eTronWeb_localhost_Fachada</CachedSettingsPropName>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost:49882/Fachada.asmx%3fop=UsuarioLogin">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\ProxyFachada\</RelPath>
-      <UpdateFromURL>http://localhost:49882/Fachada.asmx%3fop=UsuarioLogin</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>eTronWeb_ProxyFachada_Fachada</CachedSettingsPropName>
+      <CachedSettingsPropName>eTronWeb_localhost1_Fachada</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

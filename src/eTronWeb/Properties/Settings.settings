@@ -2,10 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="eTronWeb.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="eTronWeb_ProxyFachada_Fachada" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:49882/Fachada.asmx</Value>
-    </Setting>
-    <Setting Name="eTronWeb_localhost_Fachada" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="eTronWeb_localhost1_Fachada" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:49882/Fachada.asmx</Value>
     </Setting>
   </Settings>

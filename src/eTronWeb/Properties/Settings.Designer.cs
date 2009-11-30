@@ -27,19 +27,9 @@ namespace eTronWeb.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:49882/Fachada.asmx")]
-        public string eTronWeb_ProxyFachada_Fachada {
+        public string eTronWeb_localhost1_Fachada {
             get {
-                return ((string)(this["eTronWeb_ProxyFachada_Fachada"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:49882/Fachada.asmx")]
-        public string eTronWeb_localhost_Fachada {
-            get {
-                return ((string)(this["eTronWeb_localhost_Fachada"]));
+                return ((string)(this["eTronWeb_localhost1_Fachada"]));
             }
         }
     }
