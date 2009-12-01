@@ -4,8 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using System.Runtime.Serialization;
+using etWeb.et;
 using etWeb.Models;
+using etWeb.Lib;
 using etWeb.Lib.Security;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
 
 namespace etWeb.Controllers
 {
@@ -13,11 +19,12 @@ namespace etWeb.Controllers
     {
         //
         // GET: /Encuesta/
-        [autorizoUsuario(requiereRol = "ListaEncuestas")]
+        [autorizoUsuario(requiereRol = "agente")]
         public ActionResult Index()
         {
-          var dbModel = new dbModel();
-          var encuestas = dbModel.encuestas;
+          Fachada etFachada = new Fachada();
+          string xmlEncuestas = etFachada.listaEncuestas();
+          List<encuesta> encuestas = (List<encuesta>)Sistema.xmlToObj(xmlEncuestas, new List<encuesta>());          
           return View(encuestas);
         }
 
@@ -26,9 +33,10 @@ namespace etWeb.Controllers
 
         public ActionResult Details(string id)
         {
-            var dbModel = new dbModel();
-            var unaEncuesta = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
-            return View(unaEncuesta);
+          Fachada etFachada = new Fachada();
+          string xmlEncuesta = etFachada.encuestaPorId(id);
+          encuesta unaEncuesta = (encuesta)Sistema.xmlToObj(xmlEncuesta, new encuesta());
+          return View(unaEncuesta);
         }
 
         //
@@ -47,14 +55,13 @@ namespace etWeb.Controllers
         {
           if (ModelState.IsValid)
           {
-            try
+            string xmlEncuesta = Sistema.objToXml(unaEncuesta);
+            Fachada etFachada = new Fachada();
+            if (etFachada.insertarEncuesta(xmlEncuesta))
             {
-              var dbModel = new dbModel();
-              dbModel.encuestas.InsertOnSubmit(unaEncuesta);
-              dbModel.SubmitChanges();
               return RedirectToAction("Index");
             }
-            catch
+            else
             {
               ViewData["error"] = "Error al grabar";  
               return View(unaEncuesta);

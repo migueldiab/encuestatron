@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.Mvc;
 using etWeb.et;
 using etWeb.Lib.Security;
 
@@ -102,7 +102,7 @@ namespace etWeb.Controllers
            * 
            * Session["role"] = String.Join(",", listaRoles);
            */
-
+          
           if (!String.IsNullOrEmpty(returnUrl))
           {
               return Redirect(returnUrl);
@@ -123,45 +123,39 @@ namespace etWeb.Controllers
 
         public ActionResult Register()
         {
-
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
-            return View();
+          ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+          return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Register(string userName, string email, string password, string confirmPassword)
         {
+          ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+          if (ValidateRegistration(userName, email, password, confirmPassword))
+          {
+            // Attempt to register the user
+            MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
-            if (ValidateRegistration(userName, email, password, confirmPassword))
+            if (createStatus == MembershipCreateStatus.Success)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsAuth.SignIn(userName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
-                }
+              FormsAuth.SignIn(userName, false /* createPersistentCookie */);
+              return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
+            }
+          }
 
-            // If we got this far, something failed, redisplay form
-            return View();
+          // If we got this far, something failed, redisplay form
+          return View();
         }
 
         [Authorize]
         public ActionResult ChangePassword()
         {
-
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
-            return View();
+          ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+          return View();
         }
 
         [Authorize]
@@ -170,14 +164,11 @@ namespace etWeb.Controllers
             Justification = "Exceptions result in password not being changed.")]
         public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
         {
-
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
             if (!ValidateChangePassword(currentPassword, newPassword, confirmPassword))
             {
                 return View();
             }
-
             try
             {
                 if (MembershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
@@ -199,7 +190,6 @@ namespace etWeb.Controllers
 
         public ActionResult ChangePasswordSuccess()
         {
-
             return View();
         }
 
@@ -239,17 +229,16 @@ namespace etWeb.Controllers
         {
             if (String.IsNullOrEmpty(userName))
             {
-                ModelState.AddModelError("username", "You must specify a username.");
+              ModelState.AddModelError("username", "You must specify a username.");
             }
             if (String.IsNullOrEmpty(password))
             {
-                ModelState.AddModelError("password", "You must specify a password.");
+              ModelState.AddModelError("password", "You must specify a password.");
             }
             if (!MembershipService.ValidateUser(userName, password))
             {
-                ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
+              ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
             }
-
             return ModelState.IsValid;
         }
 

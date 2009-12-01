@@ -17,6 +17,58 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="obtenerPermisosPorUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtenerPermisosPorUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtenerPermisosPorUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaEncuestas">
+        <s:complexType />
+      </s:element>
+      <s:element name="listaEncuestasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="encuestaPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="encuestaPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encuestaPorIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertarEncuesta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlEncuesta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertarEncuestaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertarEncuestaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="validarUsuarioSoapIn">
@@ -25,10 +77,50 @@
   <wsdl:message name="validarUsuarioSoapOut">
     <wsdl:part name="parameters" element="tns:validarUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="obtenerPermisosPorUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:obtenerPermisosPorUsuario" />
+  </wsdl:message>
+  <wsdl:message name="obtenerPermisosPorUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:obtenerPermisosPorUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasSoapIn">
+    <wsdl:part name="parameters" element="tns:listaEncuestas" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasSoapOut">
+    <wsdl:part name="parameters" element="tns:listaEncuestasResponse" />
+  </wsdl:message>
+  <wsdl:message name="encuestaPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:encuestaPorId" />
+  </wsdl:message>
+  <wsdl:message name="encuestaPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:encuestaPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertarEncuestaSoapIn">
+    <wsdl:part name="parameters" element="tns:insertarEncuesta" />
+  </wsdl:message>
+  <wsdl:message name="insertarEncuestaSoapOut">
+    <wsdl:part name="parameters" element="tns:insertarEncuestaResponse" />
+  </wsdl:message>
   <wsdl:portType name="FachadaSoap">
     <wsdl:operation name="validarUsuario">
       <wsdl:input message="tns:validarUsuarioSoapIn" />
       <wsdl:output message="tns:validarUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPermisosPorUsuario">
+      <wsdl:input message="tns:obtenerPermisosPorUsuarioSoapIn" />
+      <wsdl:output message="tns:obtenerPermisosPorUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestas">
+      <wsdl:input message="tns:listaEncuestasSoapIn" />
+      <wsdl:output message="tns:listaEncuestasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorId">
+      <wsdl:input message="tns:encuestaPorIdSoapIn" />
+      <wsdl:output message="tns:encuestaPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertarEncuesta">
+      <wsdl:input message="tns:insertarEncuestaSoapIn" />
+      <wsdl:output message="tns:insertarEncuestaSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="FachadaSoap" type="tns:FachadaSoap">
@@ -42,11 +134,83 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="obtenerPermisosPorUsuario">
+      <soap:operation soapAction="http://tempuri.org/obtenerPermisosPorUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestas">
+      <soap:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorId">
+      <soap:operation soapAction="http://tempuri.org/encuestaPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertarEncuesta">
+      <soap:operation soapAction="http://tempuri.org/insertarEncuesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="FachadaSoap12" type="tns:FachadaSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="validarUsuario">
       <soap12:operation soapAction="http://tempuri.org/validarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPermisosPorUsuario">
+      <soap12:operation soapAction="http://tempuri.org/obtenerPermisosPorUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestas">
+      <soap12:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorId">
+      <soap12:operation soapAction="http://tempuri.org/encuestaPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertarEncuesta">
+      <soap12:operation soapAction="http://tempuri.org/insertarEncuesta" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

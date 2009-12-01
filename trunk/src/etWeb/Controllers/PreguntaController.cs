@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using etWeb.Models;
+using etWeb.Lib.Security;
 
 namespace etWeb.Controllers
 {
@@ -13,6 +14,7 @@ namespace etWeb.Controllers
         //
         // GET: /Pregunta/
 
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Index()
         {
           var dbModel = new dbModel();

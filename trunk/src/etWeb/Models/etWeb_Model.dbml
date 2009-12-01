@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="etTempDB" EntityNamespace="etWeb.Models" ContextNamespace="etWeb" Class="dbModel" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<Database Name="etTempDB" EntityNamespace="etWeb.Models" ContextNamespace="etWeb" Class="dbModel" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\etTempDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="etTempDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.usuario" Member="usuarios">
     <Type Name="usuario">
