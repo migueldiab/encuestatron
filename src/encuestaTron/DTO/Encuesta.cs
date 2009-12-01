@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -14,10 +15,11 @@ using System.Xml.Linq;
 using encuestaTron.Models;
 using System.Text;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace encuestaTron.DTO
 {
-  public class Encuesta
+  public class Encuesta : Controller
   {
 
     internal static string listaEncuestas()
@@ -48,6 +50,31 @@ namespace encuestaTron.DTO
 	    {
         return false;
 	    }
+    }
+
+    internal static bool actualizarEncuesta(string id, string xmlEncuesta)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      encuesta encOriginal = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
+      try
+      {
+        encuesta unaEncuesta = (encuesta)Sistema.xmlToObj(xmlEncuesta, new encuesta());
+        encOriginal.contrasena = unaEncuesta.contrasena;
+        encOriginal.f_cierre = unaEncuesta.f_cierre;
+        encOriginal.f_ingreso = unaEncuesta.f_ingreso;
+        encOriginal.f_modificacion = unaEncuesta.f_modificacion;
+        encOriginal.f_vigencia = unaEncuesta.f_vigencia;
+        encOriginal.id_agente = unaEncuesta.id_agente;
+        encOriginal.id_cliente = unaEncuesta.id_cliente;
+        encOriginal.preguntas = unaEncuesta.preguntas;
+        
+        dbModel.SubmitChanges();
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
     }
   }
 }

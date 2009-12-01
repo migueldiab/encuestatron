@@ -32,12 +32,18 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -57,9 +63,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Encuesta.cs" />
     <Compile Include="Fachada.asmx.cs">
       <DependentUpon>Fachada.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\etWeb_Model.designer.cs">
+      <DependentUpon>etWeb_Model.dbml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -67,20 +79,32 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Results\LoginResult.cs" />
-    <Compile Include="Results\ResultadoWs.cs" />
     <Compile Include="Sistema.cs" />
+    <Compile Include="DTO\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\etWeb_Model.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>etWeb_Model.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataTypesObjects\DataTypesObjects.csproj">
-      <Project>{087B3A5D-A388-4380-AD0A-9F9EF316241D}</Project>
-      <Name>DataTypesObjects</Name>
+    <None Include="Models\etWeb_Model.dbml.layout">
+      <DependentUpon>etWeb_Model.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVC\src\SystemWebMvc\System.Web.Mvc.csproj">
+      <Project>{3D3FFD8A-624D-4E9B-954B-E1C105507975}</Project>
+      <Name>System.Web.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

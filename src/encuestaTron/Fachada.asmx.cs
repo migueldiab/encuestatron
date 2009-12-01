@@ -70,7 +70,14 @@ namespace encuestaTron
     [WebMethod]
     public bool insertarEncuesta(string xmlEncuesta)
     {
-        return Encuesta.insertarEncuesta(xmlEncuesta);
-      }      
+      return Encuesta.insertarEncuesta(xmlEncuesta);
+    }      
+    [WebMethod]
+    public bool actualizarEncuesta(string id, string xmlEncuesta)
+    {
+      return Encuesta.actualizarEncuesta(id,xmlEncuesta);
+    }      
+
+    
   }
 }

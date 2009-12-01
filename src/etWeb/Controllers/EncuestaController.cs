@@ -79,8 +79,9 @@ namespace etWeb.Controllers
  
         public ActionResult Edit(string id)
         {
-          var dbModel = new dbModel();
-          var unaEncuesta = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
+          Fachada etFachada = new Fachada();
+          string xmlEncuesta = etFachada.encuestaPorId(id);
+          encuesta unaEncuesta = (encuesta)Sistema.xmlToObj(xmlEncuesta, new encuesta());
           return View(unaEncuesta);
         }
 
@@ -88,19 +89,17 @@ namespace etWeb.Controllers
         // POST: /Encuesta/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(string id, FormCollection collection)
+        public ActionResult Edit(string id, encuesta unaEncuesta)
         {
-          var dbModel = new dbModel();
-          var unaEncuesta = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
+          Fachada etFachada = new Fachada();
           if (ModelState.IsValid)
           {
-            try
+            string xmlEncuesta = Sistema.objToXml(unaEncuesta);
+            if (etFachada.actualizarEncuesta(id, xmlEncuesta))
             {
-              UpdateModel(unaEncuesta, collection.ToValueProvider());
-              dbModel.SubmitChanges();
               return RedirectToAction("Index");
             }
-            catch
+            else
             {
               ViewData["error"] = "Error al grabar";
               return View(unaEncuesta);
