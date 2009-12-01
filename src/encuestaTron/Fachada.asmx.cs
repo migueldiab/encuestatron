@@ -7,8 +7,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
-using DataTypesObjects;
-using System.Xml.Serialization;
+using encuestaTron.DTO;
 
 namespace encuestaTron
 {
@@ -22,34 +21,9 @@ namespace encuestaTron
   // [System.Web.Script.Services.ScriptService]
   public class Fachada : System.Web.Services.WebService
   {
-    
-    [WebMethod]
-    public bool obtenerPermisosPorUsuario(String usuario)
-    {
-      return Usuario.obtenerPermisosPorUsuario(usuario);
-    }
-    
-   /* [XmlInclude(typeof(Usuario))]        
-    [WebMethod]
-    public bool validarUsuario(String usuario, String password)
-    {
-      ResultadoWs retorno = new ResultadoWs();
-      Usuario user= new Usuario();
-      try
-      {
-         user = Usuario.Login(usuario, password);
-         retorno.Resultado.Add(user);          
-      }
-      catch (Exception e)
-      {
-        retorno.Error = e.Message;
-      }      
-      return retorno;
-    }
-    */
-
-
-  //  [XmlInclude(typeof(Usuario))]
+  
+    //  [XmlInclude(typeof(Usuario))]
+    /*
     [WebMethod]
     public LoginResult UsuarioLogin(String usuario, String password)
     {
@@ -62,16 +36,41 @@ namespace encuestaTron
             retorno.NombreCompleto = user.Nombre + " " + user.Apellido;
             retorno.Token = "qqwerty";
             retorno.Rol = (user.Roles[0].Id).ToString();
-
-
         }
         catch (Exception e)
         {
-
             retorno.Error = e.Message;
         }
-
         return retorno;
     }
+    */
+    [WebMethod]
+    public bool validarUsuario(String usuario, String password)
+    {
+        return Usuario.validarUsuario(usuario, password);
+    }
+    [WebMethod]
+    public string obtenerPermisosPorUsuario(String usuario)
+    {
+      return Usuario.obtenerPermisosPorUsuario(usuario);
+    }
+
+    [WebMethod]
+    public string listaEncuestas()
+    {
+      return Encuesta.listaEncuestas();
+    }
+
+    [WebMethod]
+    public string encuestaPorId(string id)
+    {
+      return Encuesta.encuestaPorId(id);
+    }
+
+    [WebMethod]
+    public bool insertarEncuesta(string xmlEncuesta)
+    {
+        return Encuesta.insertarEncuesta(xmlEncuesta);
+      }      
   }
 }

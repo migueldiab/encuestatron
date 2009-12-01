@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="etWeb.Controllers.AccountController">
+    <Position X="0.5" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAJAAAAAAwQAAAAAAAAAAAAABAAAEAAAAABQAIAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="etWeb.Controllers.FormsAuthenticationService" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="etWeb.Controllers.AccountMembershipService" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAgAAAAQAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="etWeb.Controllers.IFormsAuthentication">
+    <Position X="4" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="etWeb.Controllers.IMembershipService">
+    <Position X="6.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAgAAAAQAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -129,6 +129,7 @@ namespace etWeb
 }
 namespace etWeb.Models
 {
+	using System.Runtime.Serialization;
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
 	using System.ComponentModel;
@@ -136,6 +137,7 @@ namespace etWeb.Models
 	
 	
 	[Table(Name="dbo.usuario")]
+	[DataContractAttribute(Namespace = "")]
 	public partial class usuario : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -161,6 +163,8 @@ namespace etWeb.Models
 		
 		private EntitySet<permiso_usuario> _permiso_usuarios;
 		
+		private bool serializing;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -183,13 +187,11 @@ namespace etWeb.Models
 		
 		public usuario()
 		{
-			this._encuestas = new EntitySet<encuesta>(new Action<encuesta>(this.attach_encuestas), new Action<encuesta>(this.detach_encuestas));
-			this._encuestas1 = new EntitySet<encuesta>(new Action<encuesta>(this.attach_encuestas1), new Action<encuesta>(this.detach_encuestas1));
-			this._permiso_usuarios = new EntitySet<permiso_usuario>(new Action<permiso_usuario>(this.attach_permiso_usuarios), new Action<permiso_usuario>(this.detach_permiso_usuarios));
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=1)]
 		public string nombre
 		{
 			get
@@ -210,6 +212,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=2)]
 		public string email
 		{
 			get
@@ -230,6 +233,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Name="usuario", Storage="_usuario1", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[DataMember(Order=3)]
 		public string usuario1
 		{
 			get
@@ -250,6 +254,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_contrasena", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=4)]
 		public string contrasena
 		{
 			get
@@ -270,6 +275,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_celular", DbType="VarChar(50)")]
+		[DataMember(Order=5)]
 		public string celular
 		{
 			get
@@ -290,6 +296,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_telefono", DbType="VarChar(50)")]
+		[DataMember(Order=6)]
 		public string telefono
 		{
 			get
@@ -310,6 +317,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_f_ingreso", DbType="DateTime")]
+		[DataMember(Order=7)]
 		public System.Nullable<System.DateTime> f_ingreso
 		{
 			get
@@ -330,10 +338,16 @@ namespace etWeb.Models
 		}
 		
 		[Association(Name="usuario_encuesta", Storage="_encuestas", ThisKey="usuario1", OtherKey="id_agente")]
+		[DataMember(Order=8, EmitDefaultValue=false)]
 		public EntitySet<encuesta> encuestas
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._encuestas.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._encuestas;
 			}
 			set
@@ -343,10 +357,16 @@ namespace etWeb.Models
 		}
 		
 		[Association(Name="usuario_encuesta1", Storage="_encuestas1", ThisKey="usuario1", OtherKey="id_cliente")]
+		[DataMember(Order=9, EmitDefaultValue=false)]
 		public EntitySet<encuesta> encuestas1
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._encuestas1.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._encuestas1;
 			}
 			set
@@ -356,10 +376,16 @@ namespace etWeb.Models
 		}
 		
 		[Association(Name="usuario_permiso_usuario", Storage="_permiso_usuarios", ThisKey="usuario1", OtherKey="id_usuario")]
+		[DataMember(Order=10, EmitDefaultValue=false)]
 		public EntitySet<permiso_usuario> permiso_usuarios
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._permiso_usuarios.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._permiso_usuarios;
 			}
 			set
@@ -423,9 +449,39 @@ namespace etWeb.Models
 			this.SendPropertyChanging();
 			entity.usuario = null;
 		}
+		
+		private void Initialize()
+		{
+			this._encuestas = new EntitySet<encuesta>(new Action<encuesta>(this.attach_encuestas), new Action<encuesta>(this.detach_encuestas));
+			this._encuestas1 = new EntitySet<encuesta>(new Action<encuesta>(this.attach_encuestas1), new Action<encuesta>(this.detach_encuestas1));
+			this._permiso_usuarios = new EntitySet<permiso_usuario>(new Action<permiso_usuario>(this.attach_permiso_usuarios), new Action<permiso_usuario>(this.detach_permiso_usuarios));
+			OnCreated();
+		}
+		
+		[OnDeserializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[OnSerializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[OnSerialized()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
 	}
 	
 	[Table(Name="dbo.encuesta")]
+  [DataContractAttribute(Namespace = "")]
 	public partial class encuesta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -453,6 +509,8 @@ namespace etWeb.Models
 		
 		private EntityRef<usuario> _usuario1;
 		
+		private bool serializing;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -477,13 +535,11 @@ namespace etWeb.Models
 		
 		public encuesta()
 		{
-			this._preguntas = new EntitySet<pregunta>(new Action<pregunta>(this.attach_preguntas), new Action<pregunta>(this.detach_preguntas));
-			this._usuario = default(EntityRef<usuario>);
-			this._usuario1 = default(EntityRef<usuario>);
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[DataMember(Order=1)]
 		public string nombre
 		{
 			get
@@ -504,6 +560,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_contrasena", DbType="NChar(255) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=2)]
 		public string contrasena
 		{
 			get
@@ -524,6 +581,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_f_ingreso", DbType="DateTime NOT NULL")]
+		[DataMember(Order=3)]
 		public System.DateTime f_ingreso
 		{
 			get
@@ -544,6 +602,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_f_modificacion", DbType="DateTime")]
+		[DataMember(Order=4)]
 		public System.Nullable<System.DateTime> f_modificacion
 		{
 			get
@@ -564,6 +623,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_f_vigencia", DbType="DateTime")]
+		[DataMember(Order=5)]
 		public System.Nullable<System.DateTime> f_vigencia
 		{
 			get
@@ -584,6 +644,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_f_cierre", DbType="DateTime")]
+		[DataMember(Order=6)]
 		public System.Nullable<System.DateTime> f_cierre
 		{
 			get
@@ -604,6 +665,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_id_agente", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=7)]
 		public string id_agente
 		{
 			get
@@ -628,6 +690,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_id_cliente", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=8)]
 		public string id_cliente
 		{
 			get
@@ -652,10 +715,16 @@ namespace etWeb.Models
 		}
 		
 		[Association(Name="encuesta_pregunta", Storage="_preguntas", OtherKey="id_encuesta")]
+		[DataMember(Order=9, EmitDefaultValue=false)]
 		public EntitySet<pregunta> preguntas
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._preguntas.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._preguntas;
 			}
 			set
@@ -763,9 +832,39 @@ namespace etWeb.Models
 			this.SendPropertyChanging();
 			entity.encuesta = null;
 		}
+		
+		private void Initialize()
+		{
+			this._preguntas = new EntitySet<pregunta>(new Action<pregunta>(this.attach_preguntas), new Action<pregunta>(this.detach_preguntas));
+			this._usuario = default(EntityRef<usuario>);
+			this._usuario1 = default(EntityRef<usuario>);
+			OnCreated();
+		}
+		
+		[OnDeserializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[OnSerializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[OnSerialized()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
 	}
 	
 	[Table(Name="dbo.permiso")]
+	[DataContractAttribute(Namespace = "")]
 	public partial class permiso : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -778,6 +877,8 @@ namespace etWeb.Models
 		private string _permiso1;
 		
 		private EntitySet<permiso_usuario> _permiso_usuarios;
+		
+		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -793,11 +894,11 @@ namespace etWeb.Models
 		
 		public permiso()
 		{
-			this._permiso_usuarios = new EntitySet<permiso_usuario>(new Action<permiso_usuario>(this.attach_permiso_usuarios), new Action<permiso_usuario>(this.detach_permiso_usuarios));
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[DataMember(Order=1)]
 		public int id
 		{
 			get
@@ -818,6 +919,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_nombre", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=2)]
 		public string nombre
 		{
 			get
@@ -838,6 +940,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Name="permiso", Storage="_permiso1", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=3)]
 		public string permiso1
 		{
 			get
@@ -858,10 +961,16 @@ namespace etWeb.Models
 		}
 		
 		[Association(Name="permiso_permiso_usuario", Storage="_permiso_usuarios", OtherKey="id_permiso")]
+		[DataMember(Order=4, EmitDefaultValue=false)]
 		public EntitySet<permiso_usuario> permiso_usuarios
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._permiso_usuarios.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._permiso_usuarios;
 			}
 			set
@@ -901,9 +1010,37 @@ namespace etWeb.Models
 			this.SendPropertyChanging();
 			entity.permiso = null;
 		}
+		
+		private void Initialize()
+		{
+			this._permiso_usuarios = new EntitySet<permiso_usuario>(new Action<permiso_usuario>(this.attach_permiso_usuarios), new Action<permiso_usuario>(this.detach_permiso_usuarios));
+			OnCreated();
+		}
+		
+		[OnDeserializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[OnSerializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[OnSerialized()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
 	}
 	
 	[Table(Name="dbo.permiso_usuario")]
+	[DataContractAttribute(Namespace = "")]
 	public partial class permiso_usuario : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -929,12 +1066,11 @@ namespace etWeb.Models
 		
 		public permiso_usuario()
 		{
-			this._permiso = default(EntityRef<permiso>);
-			this._usuario = default(EntityRef<usuario>);
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[Column(Storage="_id_usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[DataMember(Order=1)]
 		public string id_usuario
 		{
 			get
@@ -959,6 +1095,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_id_permiso", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[DataMember(Order=2)]
 		public int id_permiso
 		{
 			get
@@ -1069,9 +1206,24 @@ namespace etWeb.Models
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void Initialize()
+		{
+			this._permiso = default(EntityRef<permiso>);
+			this._usuario = default(EntityRef<usuario>);
+			OnCreated();
+		}
+		
+		[OnDeserializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
 	}
 	
 	[Table(Name="dbo.pregunta")]
+	[DataContractAttribute(Namespace = "")]
 	public partial class pregunta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1091,6 +1243,8 @@ namespace etWeb.Models
 		
 		private EntityRef<encuesta> _encuesta;
 		
+		private bool serializing;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1109,12 +1263,11 @@ namespace etWeb.Models
 		
 		public pregunta()
 		{
-			this._respuestas = new EntitySet<respuesta>(new Action<respuesta>(this.attach_respuestas), new Action<respuesta>(this.detach_respuestas));
-			this._encuesta = default(EntityRef<encuesta>);
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[DataMember(Order=1)]
 		public int id
 		{
 			get
@@ -1135,6 +1288,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_planteo", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=2)]
 		public string planteo
 		{
 			get
@@ -1155,6 +1309,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_condicion", DbType="NChar(10)")]
+		[DataMember(Order=3)]
 		public string condicion
 		{
 			get
@@ -1175,6 +1330,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_f_ultima_respuesta", DbType="DateTime")]
+		[DataMember(Order=4)]
 		public System.Nullable<System.DateTime> f_ultima_respuesta
 		{
 			get
@@ -1195,6 +1351,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_id_encuesta", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=5)]
 		public string id_encuesta
 		{
 			get
@@ -1219,10 +1376,16 @@ namespace etWeb.Models
 		}
 		
 		[Association(Name="pregunta_respuesta", Storage="_respuestas", OtherKey="id_pregunta")]
+		[DataMember(Order=6, EmitDefaultValue=false)]
 		public EntitySet<respuesta> respuestas
 		{
 			get
 			{
+				if ((this.serializing 
+							&& (this._respuestas.HasLoadedOrAssignedValues == false)))
+				{
+					return null;
+				}
 				return this._respuestas;
 			}
 			set
@@ -1296,9 +1459,38 @@ namespace etWeb.Models
 			this.SendPropertyChanging();
 			entity.pregunta = null;
 		}
+		
+		private void Initialize()
+		{
+			this._respuestas = new EntitySet<respuesta>(new Action<respuesta>(this.attach_respuestas), new Action<respuesta>(this.detach_respuestas));
+			this._encuesta = default(EntityRef<encuesta>);
+			OnCreated();
+		}
+		
+		[OnDeserializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+		
+		[OnSerializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerializing(StreamingContext context)
+		{
+			this.serializing = true;
+		}
+		
+		[OnSerialized()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnSerialized(StreamingContext context)
+		{
+			this.serializing = false;
+		}
 	}
 	
 	[Table(Name="dbo.respuesta")]
+	[DataContractAttribute(Namespace = "")]
 	public partial class respuesta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1330,11 +1522,11 @@ namespace etWeb.Models
 		
 		public respuesta()
 		{
-			this._pregunta = default(EntityRef<pregunta>);
-			OnCreated();
+			this.Initialize();
 		}
 		
 		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[DataMember(Order=1)]
 		public int id
 		{
 			get
@@ -1355,6 +1547,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_contador", DbType="Int NOT NULL")]
+		[DataMember(Order=2)]
 		public int contador
 		{
 			get
@@ -1375,6 +1568,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_texto", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[DataMember(Order=3)]
 		public string texto
 		{
 			get
@@ -1395,6 +1589,7 @@ namespace etWeb.Models
 		}
 		
 		[Column(Storage="_id_pregunta", DbType="Int NOT NULL")]
+		[DataMember(Order=4)]
 		public int id_pregunta
 		{
 			get
@@ -1470,6 +1665,19 @@ namespace etWeb.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void Initialize()
+		{
+			this._pregunta = default(EntityRef<pregunta>);
+			OnCreated();
+		}
+		
+		[OnDeserializing()]
+		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
 		}
 	}
 }

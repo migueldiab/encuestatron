@@ -14,11 +14,15 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data.SqlTypes;
 using System.Xml;
+using System.Runtime.Serialization;
+using System.Text;
+using System.IO;
 
 namespace encuestaTron
 {
   public class Sistema
   {
+    public static string connStr = global::System.Configuration.ConfigurationManager.ConnectionStrings["etTempDBConnectionString"].ConnectionString;
 
     public bool connectDb() {
       string db_server = getAppConfig("db_server");
@@ -49,6 +53,24 @@ namespace encuestaTron
         }
       }
       throw new Exception("Error! Parametro no encontrado");
+    }
+
+    internal static Object xmlToObj(string stringXml, object unObjeto)
+    {
+      DataContractSerializer dcs = new DataContractSerializer(unObjeto.GetType());
+      StringReader strReader = new StringReader(stringXml);
+      XmlReader xmlReader = new XmlTextReader(strReader);
+      return dcs.ReadObject(xmlReader);
+    }
+
+    internal static string objToXml(Object unObjeto)
+    {
+      DataContractSerializer dcs = new DataContractSerializer(unObjeto.GetType());
+      StringBuilder sb = new StringBuilder();
+      XmlWriter writer = XmlWriter.Create(sb);
+      dcs.WriteObject(writer, unObjeto);
+      writer.Close();
+      return sb.ToString();
     }
   }
 }

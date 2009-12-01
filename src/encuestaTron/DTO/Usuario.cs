@@ -9,16 +9,12 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using encuestaTron.Models;
 
-namespace encuestaTron
+namespace encuestaTron.DTO
 {
     public class Usuario
     {
-
-        internal static string Login(string usuario, string password)
-        {
-            return "Logueado";
-        }
 
         internal static bool validarUsuario(string usuario, string password)
         {
@@ -27,7 +23,19 @@ namespace encuestaTron
 
         internal static string obtenerPermisosPorUsuario(string usuario)
         {
-          return "ListarEncuestas";
+          if (usuario == "agente")
+          {
+            return "agente";
+          }
+          if (usuario == "admin")
+          {
+            return "admin";
+          }          
+          else
+          {
+            return "invitado";
+          }
+
         }
     }
 }
