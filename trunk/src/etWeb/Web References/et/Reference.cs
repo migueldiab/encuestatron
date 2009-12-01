@@ -39,6 +39,8 @@ namespace etWeb.et {
         
         private System.Threading.SendOrPostCallback insertarEncuestaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback actualizarEncuestaOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -91,6 +93,9 @@ namespace etWeb.et {
         
         /// <remarks/>
         public event insertarEncuestaCompletedEventHandler insertarEncuestaCompleted;
+        
+        /// <remarks/>
+        public event actualizarEncuestaCompletedEventHandler actualizarEncuestaCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/validarUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -238,6 +243,37 @@ namespace etWeb.et {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/actualizarEncuesta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool actualizarEncuesta(string id, string xmlEncuesta) {
+            object[] results = this.Invoke("actualizarEncuesta", new object[] {
+                        id,
+                        xmlEncuesta});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void actualizarEncuestaAsync(string id, string xmlEncuesta) {
+            this.actualizarEncuestaAsync(id, xmlEncuesta, null);
+        }
+        
+        /// <remarks/>
+        public void actualizarEncuestaAsync(string id, string xmlEncuesta, object userState) {
+            if ((this.actualizarEncuestaOperationCompleted == null)) {
+                this.actualizarEncuestaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnactualizarEncuestaOperationCompleted);
+            }
+            this.InvokeAsync("actualizarEncuesta", new object[] {
+                        id,
+                        xmlEncuesta}, this.actualizarEncuestaOperationCompleted, userState);
+        }
+        
+        private void OnactualizarEncuestaOperationCompleted(object arg) {
+            if ((this.actualizarEncuestaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.actualizarEncuestaCompleted(this, new actualizarEncuestaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -373,6 +409,32 @@ namespace etWeb.et {
         private object[] results;
         
         internal insertarEncuestaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void actualizarEncuestaCompletedEventHandler(object sender, actualizarEncuestaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class actualizarEncuestaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal actualizarEncuestaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
