@@ -58,7 +58,7 @@
         <classShapeMoniker Id="bc6b5233-455c-45b9-9d25-f3e86fc92c6c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.375 : 1.22199625651042); (6.5 : 1.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.375 : 1.22199625651042); (6.5 : 1.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/dbModel/cliente/cliente_encuesta" />
       <nodes>
         <classShapeMoniker Id="bc6b5233-455c-45b9-9d25-f3e86fc92c6c" />

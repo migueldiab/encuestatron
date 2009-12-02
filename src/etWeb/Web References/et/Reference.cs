@@ -586,10 +586,6 @@ namespace etWeb.et {
         
         private string id_clienteField;
         
-        private pregunta[] preguntasField;
-        
-        private cliente clienteField;
-        
         /// <remarks/>
         public string nombre {
             get {
@@ -662,296 +658,6 @@ namespace etWeb.et {
                 this.id_clienteField = value;
             }
         }
-        
-        /// <remarks/>
-        public pregunta[] preguntas {
-            get {
-                return this.preguntasField;
-            }
-            set {
-                this.preguntasField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public cliente cliente {
-            get {
-                return this.clienteField;
-            }
-            set {
-                this.clienteField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class pregunta {
-        
-        private int idField;
-        
-        private string planteoField;
-        
-        private string condicionField;
-        
-        private System.Nullable<System.DateTime> f_ultima_respuestaField;
-        
-        private string id_encuestaField;
-        
-        private System.Nullable<int> nro_preguntaField;
-        
-        private respuesta[] respuestasField;
-        
-        private respuesta respuestaField;
-        
-        private encuesta encuestaField;
-        
-        /// <remarks/>
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string planteo {
-            get {
-                return this.planteoField;
-            }
-            set {
-                this.planteoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string condicion {
-            get {
-                return this.condicionField;
-            }
-            set {
-                this.condicionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> f_ultima_respuesta {
-            get {
-                return this.f_ultima_respuestaField;
-            }
-            set {
-                this.f_ultima_respuestaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string id_encuesta {
-            get {
-                return this.id_encuestaField;
-            }
-            set {
-                this.id_encuestaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> nro_pregunta {
-            get {
-                return this.nro_preguntaField;
-            }
-            set {
-                this.nro_preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public respuesta[] respuestas {
-            get {
-                return this.respuestasField;
-            }
-            set {
-                this.respuestasField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public respuesta respuesta {
-            get {
-                return this.respuestaField;
-            }
-            set {
-                this.respuestaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public encuesta encuesta {
-            get {
-                return this.encuestaField;
-            }
-            set {
-                this.encuestaField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class respuesta {
-        
-        private int idField;
-        
-        private int contadorField;
-        
-        private string textoField;
-        
-        private int id_preguntaField;
-        
-        private System.Nullable<int> id_proxima_preguntaField;
-        
-        private pregunta preguntaField;
-        
-        private pregunta pregunta1Field;
-        
-        /// <remarks/>
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int contador {
-            get {
-                return this.contadorField;
-            }
-            set {
-                this.contadorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string texto {
-            get {
-                return this.textoField;
-            }
-            set {
-                this.textoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int id_pregunta {
-            get {
-                return this.id_preguntaField;
-            }
-            set {
-                this.id_preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> id_proxima_pregunta {
-            get {
-                return this.id_proxima_preguntaField;
-            }
-            set {
-                this.id_proxima_preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public pregunta pregunta {
-            get {
-                return this.preguntaField;
-            }
-            set {
-                this.preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public pregunta pregunta1 {
-            get {
-                return this.pregunta1Field;
-            }
-            set {
-                this.pregunta1Field = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class rol {
-        
-        private int idField;
-        
-        private string nombreField;
-        
-        private string permisoField;
-        
-        private usuario[] usuariosField;
-        
-        /// <remarks/>
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string nombre {
-            get {
-                return this.nombreField;
-            }
-            set {
-                this.nombreField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string permiso {
-            get {
-                return this.permisoField;
-            }
-            set {
-                this.permisoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public usuario[] usuarios {
-            get {
-                return this.usuariosField;
-            }
-            set {
-                this.usuariosField = value;
-            }
-        }
     }
     
     /// <remarks/>
@@ -977,8 +683,6 @@ namespace etWeb.et {
         private System.Nullable<System.DateTime> f_ingresoField;
         
         private System.Nullable<int> id_rolField;
-        
-        private cliente[] clientesField;
         
         private rol rolField;
         
@@ -1065,16 +769,6 @@ namespace etWeb.et {
         }
         
         /// <remarks/>
-        public cliente[] clientes {
-            get {
-                return this.clientesField;
-            }
-            set {
-                this.clientesField = value;
-            }
-        }
-        
-        /// <remarks/>
         public rol rol {
             get {
                 return this.rolField;
@@ -1091,77 +785,41 @@ namespace etWeb.et {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class cliente {
+    public partial class rol {
         
-        private string id_usuarioField;
+        private int idField;
         
-        private string id_agenteField;
+        private string nombreField;
         
-        private cliente cliente2Field;
-        
-        private encuesta[] encuestasField;
-        
-        private usuario usuarioField;
-        
-        private cliente cliente1Field;
+        private string permisoField;
         
         /// <remarks/>
-        public string id_usuario {
+        public int id {
             get {
-                return this.id_usuarioField;
+                return this.idField;
             }
             set {
-                this.id_usuarioField = value;
+                this.idField = value;
             }
         }
         
         /// <remarks/>
-        public string id_agente {
+        public string nombre {
             get {
-                return this.id_agenteField;
+                return this.nombreField;
             }
             set {
-                this.id_agenteField = value;
+                this.nombreField = value;
             }
         }
         
         /// <remarks/>
-        public cliente cliente2 {
+        public string permiso {
             get {
-                return this.cliente2Field;
+                return this.permisoField;
             }
             set {
-                this.cliente2Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        public encuesta[] encuestas {
-            get {
-                return this.encuestasField;
-            }
-            set {
-                this.encuestasField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public usuario usuario {
-            get {
-                return this.usuarioField;
-            }
-            set {
-                this.usuarioField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public cliente cliente1 {
-            get {
-                return this.cliente1Field;
-            }
-            set {
-                this.cliente1Field = value;
+                this.permisoField = value;
             }
         }
     }

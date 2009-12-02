@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="etTempDB" EntityNamespace="encuestaTron" ContextNamespace="encuestaTron.Models" Class="dbModel" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<Database Name="etTempDB" EntityNamespace="encuestaTron" ContextNamespace="encuestaTron.Models" Class="dbModel" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\App_Data\etTempDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="DataTypesObjects.Properties.Settings" SettingsPropertyName="etTempDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.bitacora" Member="bitacoras">
     <Type Name="bitacora">
@@ -20,7 +20,7 @@
       <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="f_ingreso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="id_rol" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="usuario_cliente" Member="clientes" OtherKey="id_agente" Type="cliente" />
+      <Association Name="usuario_cliente" Member="clientes" AccessModifier="Internal" OtherKey="id_agente" Type="cliente" />
       <Association Name="rol_usuario" Member="rol" ThisKey="id_rol" Type="rol" IsForeignKey="true" />
     </Type>
   </Table>
@@ -28,8 +28,8 @@
     <Type Name="cliente">
       <Column Name="id_usuario" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="id_agente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="cliente_cliente" Member="cliente2" OtherKey="id_usuario" Type="cliente" Cardinality="One" />
-      <Association Name="cliente_encuesta" Member="encuestas" OtherKey="id_cliente" Type="encuesta" />
+      <Association Name="cliente_cliente" Member="cliente2" AccessModifier="Internal" OtherKey="id_usuario" Type="cliente" Cardinality="One" />
+      <Association Name="cliente_encuesta" Member="encuestas" AccessModifier="Internal" OtherKey="id_cliente" Type="encuesta" />
       <Association Name="usuario_cliente" Member="usuario" ThisKey="id_agente" Type="usuario" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="cliente_cliente" Member="cliente1" ThisKey="id_usuario" Type="cliente" IsForeignKey="true" />
     </Type>
@@ -43,8 +43,8 @@
       <Column Name="f_vigencia" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="f_cierre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="id_cliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="encuesta_pregunta" Member="preguntas" OtherKey="id_encuesta" Type="pregunta" />
-      <Association Name="cliente_encuesta" Member="cliente" ThisKey="id_cliente" Type="cliente" IsForeignKey="true" />
+      <Association Name="encuesta_pregunta" Member="preguntas" AccessModifier="Internal" OtherKey="id_encuesta" Type="pregunta" />
+      <Association Name="cliente_encuesta" Member="cliente" AccessModifier="Internal" ThisKey="id_cliente" Type="cliente" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.pregunta" Member="preguntas">
@@ -55,9 +55,9 @@
       <Column Name="f_ultima_respuesta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="id_encuesta" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="nro_pregunta" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="pregunta_respuesta" Member="respuestas" OtherKey="id_pregunta" Type="respuesta" />
-      <Association Name="pregunta_respuesta1" Member="respuesta" OtherKey="id" Type="respuesta" Cardinality="One" />
-      <Association Name="encuesta_pregunta" Member="encuesta" ThisKey="id_encuesta" Type="encuesta" IsForeignKey="true" />
+      <Association Name="pregunta_respuesta" Member="respuestas" AccessModifier="Internal" OtherKey="id_pregunta" Type="respuesta" />
+      <Association Name="pregunta_respuesta1" Member="respuesta" AccessModifier="Internal" OtherKey="id" Type="respuesta" Cardinality="One" />
+      <Association Name="encuesta_pregunta" Member="encuesta" AccessModifier="Internal" ThisKey="id_encuesta" Type="encuesta" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.respuesta" Member="respuestas">
@@ -76,7 +76,7 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="permiso" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Association Name="rol_usuario" Member="usuarios" OtherKey="id_rol" Type="usuario" />
+      <Association Name="rol_usuario" Member="usuarios" AccessModifier="Internal" OtherKey="id_rol" Type="usuario" />
     </Type>
   </Table>
 </Database>

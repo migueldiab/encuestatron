@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using etWeb.et;
+using etWeb.Lib;
 
 namespace etWeb.Controllers
 {
@@ -16,8 +17,8 @@ namespace etWeb.Controllers
         public ActionResult Index()
         {
           Fachada etFachada = new Fachada();
-          IList<usuario> usuarioes = etFachada.listaUsuarios();
-          return View(usuarioes);
+          IList<usuario> usuarios = etFachada.listaUsuarios();
+          return View(usuarios);
         }
 
         //
