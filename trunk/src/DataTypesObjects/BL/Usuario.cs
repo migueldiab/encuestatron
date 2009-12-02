@@ -27,7 +27,7 @@ namespace DataTypesObjects
           }
         }
 
-        public static List<encuestaTron.usuario> listaUsuarios()
+        public static List<usuario> listaUsuarios()
         {
           var dbModel = new dbModel(Sistema.connStr);
           return dbModel.usuarios.ToList();

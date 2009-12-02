@@ -127,6 +127,9 @@
     <Content Include="Views\Rol\Details.aspx" />
     <Content Include="Views\Rol\Edit.aspx" />
     <Content Include="Views\Rol\Index.aspx" />
+    <Content Include="Views\Usuario\Create.aspx" />
+    <Content Include="Views\Usuario\Details.aspx" />
+    <Content Include="Views\Usuario\Edit.aspx" />
     <Content Include="Views\Usuario\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />

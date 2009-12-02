@@ -140,7 +140,6 @@ namespace encuestaTron.Models
 }
 namespace encuestaTron
 {
-	using System.Runtime.Serialization;
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
 	using System.ComponentModel;
@@ -148,7 +147,6 @@ namespace encuestaTron
 	
 	
 	[Table(Name="dbo.bitacora")]
-	[DataContract()]
 	public partial class bitacora : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -182,11 +180,10 @@ namespace encuestaTron
 		
 		public bitacora()
 		{
-			this.Initialize();
+			OnCreated();
 		}
 		
 		[Column(Storage="_id_Log", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		[DataMember(Order=1)]
 		public int id_Log
 		{
 			get
@@ -207,7 +204,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_fecha_Log", DbType="DateTime NOT NULL")]
-		[DataMember(Order=2)]
 		public System.DateTime fecha_Log
 		{
 			get
@@ -228,7 +224,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_usuario_Log", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=3)]
 		public string usuario_Log
 		{
 			get
@@ -249,7 +244,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_descripcion_Log", DbType="NChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=4)]
 		public string descripcion_Log
 		{
 			get
@@ -270,7 +264,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_severidad_Log", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=5)]
 		public string severidad_Log
 		{
 			get
@@ -309,22 +302,9 @@ namespace encuestaTron
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void Initialize()
-		{
-			OnCreated();
-		}
-		
-		[OnDeserializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
 	}
 	
 	[Table(Name="dbo.usuario")]
-	[DataContract()]
 	public partial class usuario : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -350,8 +330,6 @@ namespace encuestaTron
 		
 		private EntityRef<rol> _rol;
 		
-		private bool serializing;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -376,11 +354,12 @@ namespace encuestaTron
 		
 		public usuario()
 		{
-			this.Initialize();
+			this._clientes = new EntitySet<cliente>(new Action<cliente>(this.attach_clientes), new Action<cliente>(this.detach_clientes));
+			this._rol = default(EntityRef<rol>);
+			OnCreated();
 		}
 		
 		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=1)]
 		public string nombre
 		{
 			get
@@ -401,7 +380,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=2)]
 		public string email
 		{
 			get
@@ -422,7 +400,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_id_usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		[DataMember(Order=3)]
 		public string id_usuario
 		{
 			get
@@ -443,7 +420,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_contrasena", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=4)]
 		public string contrasena
 		{
 			get
@@ -464,7 +440,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_celular", DbType="VarChar(50)")]
-		[DataMember(Order=5)]
 		public string celular
 		{
 			get
@@ -485,7 +460,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_telefono", DbType="VarChar(50)")]
-		[DataMember(Order=6)]
 		public string telefono
 		{
 			get
@@ -506,7 +480,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_f_ingreso", DbType="DateTime")]
-		[DataMember(Order=7)]
 		public System.Nullable<System.DateTime> f_ingreso
 		{
 			get
@@ -527,7 +500,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_id_rol", DbType="Int")]
-		[DataMember(Order=8)]
 		public System.Nullable<int> id_rol
 		{
 			get
@@ -552,16 +524,10 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="usuario_cliente", Storage="_clientes", OtherKey="id_agente")]
-		[DataMember(Order=9, EmitDefaultValue=false)]
-		public EntitySet<cliente> clientes
+		internal EntitySet<cliente> clientes
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._clientes.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
 				return this._clientes;
 			}
 			set
@@ -635,38 +601,9 @@ namespace encuestaTron
 			this.SendPropertyChanging();
 			entity.usuario = null;
 		}
-		
-		private void Initialize()
-		{
-			this._clientes = new EntitySet<cliente>(new Action<cliente>(this.attach_clientes), new Action<cliente>(this.detach_clientes));
-			this._rol = default(EntityRef<rol>);
-			OnCreated();
-		}
-		
-		[OnDeserializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-		
-		[OnSerializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[OnSerialized()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
-		}
 	}
 	
 	[Table(Name="dbo.cliente")]
-	[DataContract()]
 	public partial class cliente : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -684,8 +621,6 @@ namespace encuestaTron
 		
 		private EntityRef<cliente> _cliente1;
 		
-		private bool serializing;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -698,11 +633,14 @@ namespace encuestaTron
 		
 		public cliente()
 		{
-			this.Initialize();
+			this._cliente2 = default(EntityRef<cliente>);
+			this._encuestas = new EntitySet<encuesta>(new Action<encuesta>(this.attach_encuestas), new Action<encuesta>(this.detach_encuestas));
+			this._usuario = default(EntityRef<usuario>);
+			this._cliente1 = default(EntityRef<cliente>);
+			OnCreated();
 		}
 		
 		[Column(Storage="_id_usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		[DataMember(Order=1)]
 		public string id_usuario
 		{
 			get
@@ -727,7 +665,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_id_agente", DbType="VarChar(50)")]
-		[DataMember(Order=2)]
 		public string id_agente
 		{
 			get
@@ -752,16 +689,10 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="cliente_cliente", Storage="_cliente2", ThisKey="id_usuario", IsUnique=true, IsForeignKey=false)]
-		[DataMember(Order=3, EmitDefaultValue=false)]
-		public cliente cliente2
+		internal cliente cliente2
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._cliente2.HasLoadedOrAssignedValue == false)))
-				{
-					return null;
-				}
 				return this._cliente2.Entity;
 			}
 			set
@@ -787,16 +718,10 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="cliente_encuesta", Storage="_encuestas", OtherKey="id_cliente")]
-		[DataMember(Order=4, EmitDefaultValue=false)]
-		public EntitySet<encuesta> encuestas
+		internal EntitySet<encuesta> encuestas
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._encuestas.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
 				return this._encuestas;
 			}
 			set
@@ -904,40 +829,9 @@ namespace encuestaTron
 			this.SendPropertyChanging();
 			entity.cliente = null;
 		}
-		
-		private void Initialize()
-		{
-			this._cliente2 = default(EntityRef<cliente>);
-			this._encuestas = new EntitySet<encuesta>(new Action<encuesta>(this.attach_encuestas), new Action<encuesta>(this.detach_encuestas));
-			this._usuario = default(EntityRef<usuario>);
-			this._cliente1 = default(EntityRef<cliente>);
-			OnCreated();
-		}
-		
-		[OnDeserializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-		
-		[OnSerializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[OnSerialized()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
-		}
 	}
 	
 	[Table(Name="dbo.encuesta")]
-	[DataContract()]
 	public partial class encuesta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -961,8 +855,6 @@ namespace encuestaTron
 		
 		private EntityRef<cliente> _cliente;
 		
-		private bool serializing;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -985,11 +877,12 @@ namespace encuestaTron
 		
 		public encuesta()
 		{
-			this.Initialize();
+			this._preguntas = new EntitySet<pregunta>(new Action<pregunta>(this.attach_preguntas), new Action<pregunta>(this.detach_preguntas));
+			this._cliente = default(EntityRef<cliente>);
+			OnCreated();
 		}
 		
 		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		[DataMember(Order=1)]
 		public string nombre
 		{
 			get
@@ -1010,7 +903,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_contrasena", DbType="NChar(255) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=2)]
 		public string contrasena
 		{
 			get
@@ -1031,7 +923,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_f_ingreso", DbType="DateTime NOT NULL")]
-		[DataMember(Order=3)]
 		public System.DateTime f_ingreso
 		{
 			get
@@ -1052,7 +943,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_f_modificacion", DbType="DateTime")]
-		[DataMember(Order=4)]
 		public System.Nullable<System.DateTime> f_modificacion
 		{
 			get
@@ -1073,7 +963,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_f_vigencia", DbType="DateTime")]
-		[DataMember(Order=5)]
 		public System.Nullable<System.DateTime> f_vigencia
 		{
 			get
@@ -1094,7 +983,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_f_cierre", DbType="DateTime")]
-		[DataMember(Order=6)]
 		public System.Nullable<System.DateTime> f_cierre
 		{
 			get
@@ -1115,7 +1003,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_id_cliente", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=7)]
 		public string id_cliente
 		{
 			get
@@ -1140,16 +1027,10 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="encuesta_pregunta", Storage="_preguntas", OtherKey="id_encuesta")]
-		[DataMember(Order=8, EmitDefaultValue=false)]
-		public EntitySet<pregunta> preguntas
+		internal EntitySet<pregunta> preguntas
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._preguntas.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
 				return this._preguntas;
 			}
 			set
@@ -1159,7 +1040,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="cliente_encuesta", Storage="_cliente", ThisKey="id_cliente", IsForeignKey=true)]
-		public cliente cliente
+		internal cliente cliente
 		{
 			get
 			{
@@ -1223,38 +1104,9 @@ namespace encuestaTron
 			this.SendPropertyChanging();
 			entity.encuesta = null;
 		}
-		
-		private void Initialize()
-		{
-			this._preguntas = new EntitySet<pregunta>(new Action<pregunta>(this.attach_preguntas), new Action<pregunta>(this.detach_preguntas));
-			this._cliente = default(EntityRef<cliente>);
-			OnCreated();
-		}
-		
-		[OnDeserializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-		
-		[OnSerializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[OnSerialized()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
-		}
 	}
 	
 	[Table(Name="dbo.pregunta")]
-	[DataContract()]
 	public partial class pregunta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1278,8 +1130,6 @@ namespace encuestaTron
 		
 		private EntityRef<encuesta> _encuesta;
 		
-		private bool serializing;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1300,11 +1150,13 @@ namespace encuestaTron
 		
 		public pregunta()
 		{
-			this.Initialize();
+			this._respuestas = new EntitySet<respuesta>(new Action<respuesta>(this.attach_respuestas), new Action<respuesta>(this.detach_respuestas));
+			this._respuesta = default(EntityRef<respuesta>);
+			this._encuesta = default(EntityRef<encuesta>);
+			OnCreated();
 		}
 		
 		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		[DataMember(Order=1)]
 		public int id
 		{
 			get
@@ -1325,7 +1177,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_planteo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=2)]
 		public string planteo
 		{
 			get
@@ -1346,7 +1197,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_condicion", DbType="VarChar(50)")]
-		[DataMember(Order=3)]
 		public string condicion
 		{
 			get
@@ -1367,7 +1217,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_f_ultima_respuesta", DbType="DateTime")]
-		[DataMember(Order=4)]
 		public System.Nullable<System.DateTime> f_ultima_respuesta
 		{
 			get
@@ -1388,7 +1237,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_id_encuesta", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=5)]
 		public string id_encuesta
 		{
 			get
@@ -1413,7 +1261,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_nro_pregunta", DbType="Int")]
-		[DataMember(Order=6)]
 		public System.Nullable<int> nro_pregunta
 		{
 			get
@@ -1434,16 +1281,10 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="pregunta_respuesta", Storage="_respuestas", OtherKey="id_pregunta")]
-		[DataMember(Order=7, EmitDefaultValue=false)]
-		public EntitySet<respuesta> respuestas
+		internal EntitySet<respuesta> respuestas
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._respuestas.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
 				return this._respuestas;
 			}
 			set
@@ -1453,16 +1294,10 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="pregunta_respuesta1", Storage="_respuesta", ThisKey="id", IsUnique=true, IsForeignKey=false)]
-		[DataMember(Order=8, EmitDefaultValue=false)]
-		public respuesta respuesta
+		internal respuesta respuesta
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._respuesta.HasLoadedOrAssignedValue == false)))
-				{
-					return null;
-				}
 				return this._respuesta.Entity;
 			}
 			set
@@ -1488,7 +1323,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="encuesta_pregunta", Storage="_encuesta", ThisKey="id_encuesta", IsForeignKey=true)]
-		public encuesta encuesta
+		internal encuesta encuesta
 		{
 			get
 			{
@@ -1552,39 +1387,9 @@ namespace encuestaTron
 			this.SendPropertyChanging();
 			entity.pregunta = null;
 		}
-		
-		private void Initialize()
-		{
-			this._respuestas = new EntitySet<respuesta>(new Action<respuesta>(this.attach_respuestas), new Action<respuesta>(this.detach_respuestas));
-			this._respuesta = default(EntityRef<respuesta>);
-			this._encuesta = default(EntityRef<encuesta>);
-			OnCreated();
-		}
-		
-		[OnDeserializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-		
-		[OnSerializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[OnSerialized()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
-		}
 	}
 	
 	[Table(Name="dbo.respuesta")]
-	[DataContract()]
 	public partial class respuesta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1622,11 +1427,12 @@ namespace encuestaTron
 		
 		public respuesta()
 		{
-			this.Initialize();
+			this._pregunta = default(EntityRef<pregunta>);
+			this._pregunta1 = default(EntityRef<pregunta>);
+			OnCreated();
 		}
 		
 		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		[DataMember(Order=1)]
 		public int id
 		{
 			get
@@ -1651,7 +1457,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_contador", DbType="Int NOT NULL")]
-		[DataMember(Order=2)]
 		public int contador
 		{
 			get
@@ -1672,7 +1477,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_texto", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=3)]
 		public string texto
 		{
 			get
@@ -1693,7 +1497,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_id_pregunta", DbType="Int NOT NULL")]
-		[DataMember(Order=4)]
 		public int id_pregunta
 		{
 			get
@@ -1718,7 +1521,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_id_proxima_pregunta", DbType="Int")]
-		[DataMember(Order=5)]
 		public System.Nullable<int> id_proxima_pregunta
 		{
 			get
@@ -1825,24 +1627,9 @@ namespace encuestaTron
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void Initialize()
-		{
-			this._pregunta = default(EntityRef<pregunta>);
-			this._pregunta1 = default(EntityRef<pregunta>);
-			OnCreated();
-		}
-		
-		[OnDeserializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
 	}
 	
 	[Table(Name="dbo.rol")]
-	[DataContract()]
 	public partial class rol : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1855,8 +1642,6 @@ namespace encuestaTron
 		private string _permiso;
 		
 		private EntitySet<usuario> _usuarios;
-		
-		private bool serializing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1872,11 +1657,11 @@ namespace encuestaTron
 		
 		public rol()
 		{
-			this.Initialize();
+			this._usuarios = new EntitySet<usuario>(new Action<usuario>(this.attach_usuarios), new Action<usuario>(this.detach_usuarios));
+			OnCreated();
 		}
 		
 		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		[DataMember(Order=1)]
 		public int id
 		{
 			get
@@ -1897,7 +1682,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=2)]
 		public string nombre
 		{
 			get
@@ -1918,7 +1702,6 @@ namespace encuestaTron
 		}
 		
 		[Column(Storage="_permiso", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		[DataMember(Order=3)]
 		public string permiso
 		{
 			get
@@ -1939,16 +1722,10 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="rol_usuario", Storage="_usuarios", OtherKey="id_rol")]
-		[DataMember(Order=4, EmitDefaultValue=false)]
-		public EntitySet<usuario> usuarios
+		internal EntitySet<usuario> usuarios
 		{
 			get
 			{
-				if ((this.serializing 
-							&& (this._usuarios.HasLoadedOrAssignedValues == false)))
-				{
-					return null;
-				}
 				return this._usuarios;
 			}
 			set
@@ -1987,33 +1764,6 @@ namespace encuestaTron
 		{
 			this.SendPropertyChanging();
 			entity.rol = null;
-		}
-		
-		private void Initialize()
-		{
-			this._usuarios = new EntitySet<usuario>(new Action<usuario>(this.attach_usuarios), new Action<usuario>(this.detach_usuarios));
-			OnCreated();
-		}
-		
-		[OnDeserializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-		
-		[OnSerializing()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerializing(StreamingContext context)
-		{
-			this.serializing = true;
-		}
-		
-		[OnSerialized()]
-		[System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnSerialized(StreamingContext context)
-		{
-			this.serializing = false;
 		}
 	}
 }

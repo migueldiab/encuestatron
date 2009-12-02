@@ -55,84 +55,6 @@
           <s:element minOccurs="1" maxOccurs="1" name="f_vigencia" nillable="true" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="f_cierre" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="id_cliente" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="preguntas" type="tns:ArrayOfPregunta" />
-          <s:element minOccurs="0" maxOccurs="1" name="cliente" type="tns:cliente" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfPregunta">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="pregunta" nillable="true" type="tns:pregunta" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="pregunta">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="planteo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="f_ultima_respuesta" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="id_encuesta" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="nro_pregunta" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="respuestas" type="tns:ArrayOfRespuesta" />
-          <s:element minOccurs="0" maxOccurs="1" name="respuesta" type="tns:respuesta" />
-          <s:element minOccurs="0" maxOccurs="1" name="encuesta" type="tns:encuesta" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfRespuesta">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="respuesta" nillable="true" type="tns:respuesta" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="respuesta">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="contador" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="texto" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="id_pregunta" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="id_proxima_pregunta" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="pregunta" type="tns:pregunta" />
-          <s:element minOccurs="0" maxOccurs="1" name="pregunta1" type="tns:pregunta" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="cliente">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="id_usuario" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="id_agente" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="cliente2" type="tns:cliente" />
-          <s:element minOccurs="0" maxOccurs="1" name="encuestas" type="tns:ArrayOfEncuesta" />
-          <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:usuario" />
-          <s:element minOccurs="0" maxOccurs="1" name="cliente1" type="tns:cliente" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="usuario">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="id_usuario" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="celular" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="f_ingreso" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="id_rol" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="clientes" type="tns:ArrayOfCliente" />
-          <s:element minOccurs="0" maxOccurs="1" name="rol" type="tns:rol" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfCliente">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="cliente" nillable="true" type="tns:cliente" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="rol">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="permiso" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="usuarios" type="tns:ArrayOfUsuario" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfUsuario">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="usuario" nillable="true" type="tns:usuario" />
         </s:sequence>
       </s:complexType>
       <s:element name="encuestaPorId">
@@ -193,6 +115,13 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="rol" nillable="true" type="tns:rol" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="rol">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="permiso" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="rolPorId">
         <s:complexType>
           <s:sequence>
@@ -246,6 +175,24 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="ArrayOfUsuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="usuario" nillable="true" type="tns:usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="usuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="id_usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="celular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_ingreso" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_rol" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="rol" type="tns:rol" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="usuarioPorId">
         <s:complexType>
           <s:sequence>

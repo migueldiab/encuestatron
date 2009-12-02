@@ -105,8 +105,9 @@ namespace encuestaTron
     [WebMethod]
     public List<usuario> listaUsuarios()
     {
-      return Usuario.listaUsuarios();
+      return Usuario.listaUsuarios(); 
     }
+    
 
     [WebMethod]
     public usuario usuarioPorId(string id)
