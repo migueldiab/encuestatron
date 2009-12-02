@@ -51,7 +51,7 @@
             </p>
             <p>
                 <label for="id_rol">id_rol:</label>
-                <%= Html.TextBox("id_rol", Model.id_rol) %>
+                <%= Html.DropDownList("listaRoles")%>
                 <%= Html.ValidationMessage("id_rol", "*") %>
             </p>
             <p>
