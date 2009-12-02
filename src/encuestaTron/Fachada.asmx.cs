@@ -79,13 +79,14 @@ namespace encuestaTron
     public bool actualizarEncuesta(string id, encuesta unaEncuesta)
     {
       return Encuesta.actualizarEncuesta(id,unaEncuesta);
-    }      
+    }
 
     [WebMethod]
     public List<rol> listaRoles()
     {
       return Rol.listaRoles();
-    }    
+    }
+
     [WebMethod]
     public rol rolPorId(int id)
     {

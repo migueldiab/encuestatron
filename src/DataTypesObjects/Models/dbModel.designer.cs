@@ -1765,6 +1765,7 @@ namespace encuestaTron
 			this.SendPropertyChanging();
 			entity.rol = null;
 		}
+
 	}
 }
 #pragma warning restore 1591

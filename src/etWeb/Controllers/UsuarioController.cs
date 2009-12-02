@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using etWeb.et;
 using etWeb.Lib;
+using System.Web.UI.WebControls;
 
 namespace etWeb.Controllers
 {
@@ -18,6 +19,7 @@ namespace etWeb.Controllers
         {
           Fachada etFachada = new Fachada();
           IList<usuario> usuarios = etFachada.listaUsuarios();
+          ViewData["roles"] = etFachada.listaRoles();
           return View(usuarios);
         }
 
@@ -36,7 +38,9 @@ namespace etWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+          Fachada etFachada = new Fachada();
+          ViewData["listaRoles"] = new SelectList(etFachada.listaRoles(), "id", "nombre");
+          return View();
         } 
 
         //
@@ -70,8 +74,10 @@ namespace etWeb.Controllers
  
         public ActionResult Edit(string id)
         {
+
           Fachada etFachada = new Fachada();
           usuario unUsuario = etFachada.usuarioPorId(id);
+          ViewData["listaRoles"] = new SelectList(etFachada.listaRoles(), "id", "nombre",unUsuario.id_rol);
           return View(unUsuario);
         }
 

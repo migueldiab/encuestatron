@@ -41,8 +41,8 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
-                <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
+                <%= Html.ActionLink("Edit", "Edit", new { id = item.id_usuario })%> |
+                <%= Html.ActionLink("Details", "Details", new { id=item.id_usuario })%>
             </td>
             <td>
                 <%= Html.Encode(item.nombre) %>
@@ -66,7 +66,7 @@
                 <%= Html.Encode(String.Format("{0:g}", item.f_ingreso)) %>
             </td>
             <td>
-                <%= Html.Encode(item.id_rol) %>
+                <%= Html.Encode(item.rol) %>
             </td>
         </tr>
     
