@@ -23,6 +23,7 @@ namespace encuestaTron.DTO
 
         internal static string obtenerPermisosPorUsuario(string usuario)
         {
+          
           if (usuario == "agente")
           {
             return "agente";

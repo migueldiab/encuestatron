@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Runtime.Serialization;
 using etWeb.et;
-using etWeb.Models;
 using etWeb.Lib;
 using etWeb.Lib.Security;
 using System.Xml.Serialization;
@@ -23,8 +22,9 @@ namespace etWeb.Controllers
         public ActionResult Index()
         {
           Fachada etFachada = new Fachada();
-          string xmlEncuestas = etFachada.listaEncuestas();
-          List<encuesta> encuestas = (List<encuesta>)Sistema.xmlToObj(xmlEncuestas, new List<encuesta>());          
+          //string xmlEncuestas = etFachada.listaEncuestas();
+          //List<encuesta> encuestas = (List<encuesta>)Sistema.xmlToObj(xmlEncuestas, new List<encuesta>());          
+          encuesta[] encuestas = etFachada.listaEncuestas2();
           return View(encuestas);
         }
 
