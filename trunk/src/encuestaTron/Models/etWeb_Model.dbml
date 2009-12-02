@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="etTempDB" EntityNamespace="etWeb.Models" ContextNamespace="etWeb" Class="dbModel" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\etTempDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="etTempDBConnectionString" Provider="System.Data.SqlClient" />
+<Database Name="etTempDB" EntityNamespace="encuestaTron.Models" ContextNamespace="encuestaTron" Class="dbModel" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=lorien\sqlexpress;Initial Catalog=eTronDb;Integrated Security=False;User ID=admin" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="etTempDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.usuario" Member="usuarios">
     <Type Name="usuario">
       <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />

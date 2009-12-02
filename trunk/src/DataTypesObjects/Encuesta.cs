@@ -33,8 +33,9 @@ namespace encuestaTron.DTO
       var dbModel = new dbModel(Sistema.connStr);
 
       usuario unAgente = (usuario)Sistema.xmlToObj(xmlAgente, new usuario());
-      //List<encuesta> encuestas = dbModel.encuestas.SelectMany(x => x.id_agente == unAgente.usuario1);
-      return null;
+      
+      List<encuesta> encuestas = dbModel.encuestas.SelectMany(x => x.id_agente == unAgente.usuario1);
+      return Sistema.objToXml(encuestas);
     }
 
     internal static string encuestaPorId(string id)
@@ -83,13 +84,6 @@ namespace encuestaTron.DTO
       {
         return false;
       }
-    }
-
-    internal static List<encuesta> listaEncuestas2()
-    {
-      var dbModel = new dbModel(Sistema.connStr);
-      var encuestas = dbModel.encuestas.ToList();
-      return encuestas;
     }
   }
 }

@@ -8,6 +8,8 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
 using encuestaTron.DTO;
+using System.Collections.Generic;
+using encuestaTron.Models;
 
 namespace encuestaTron
 {
@@ -59,6 +61,12 @@ namespace encuestaTron
     public string listaEncuestas()
     {
       return Encuesta.listaEncuestas();
+    }
+
+    [WebMethod]
+    public List<encuesta> listaEncuestas2()
+    {
+      return Encuesta.listaEncuestas2();
     }
 
     [WebMethod]

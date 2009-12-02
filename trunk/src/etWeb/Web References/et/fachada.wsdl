@@ -41,6 +41,101 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="listaEncuestas2">
+        <s:complexType />
+      </s:element>
+      <s:element name="listaEncuestas2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestas2Result" type="tns:ArrayOfEncuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEncuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="encuesta" nillable="true" type="tns:encuesta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="encuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_ingreso" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_modificacion" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_vigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_cierre" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="id_agente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="id_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="preguntas" type="tns:ArrayOfPregunta" />
+          <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:usuario" />
+          <s:element minOccurs="0" maxOccurs="1" name="usuario1" type="tns:usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPregunta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="pregunta" nillable="true" type="tns:pregunta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pregunta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="planteo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_ultima_respuesta" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="id_encuesta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="respuestas" type="tns:ArrayOfRespuesta" />
+          <s:element minOccurs="0" maxOccurs="1" name="encuesta" type="tns:encuesta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="respuesta" nillable="true" type="tns:respuesta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="respuesta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="contador" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="texto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_pregunta" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pregunta" type="tns:pregunta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="usuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="usuario1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="celular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_ingreso" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="encuestas" type="tns:ArrayOfEncuesta" />
+          <s:element minOccurs="0" maxOccurs="1" name="encuestas1" type="tns:ArrayOfEncuesta" />
+          <s:element minOccurs="0" maxOccurs="1" name="permiso_usuarios" type="tns:ArrayOfPermiso_usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPermiso_usuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="permiso_usuario" nillable="true" type="tns:permiso_usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="permiso_usuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="id_usuario" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_permiso" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="permiso" type="tns:permiso" />
+          <s:element minOccurs="0" maxOccurs="1" name="usuario" type="tns:usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="permiso">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="permiso1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="permiso_usuarios" type="tns:ArrayOfPermiso_usuario" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="encuestaPorId">
         <s:complexType>
           <s:sequence>
@@ -104,6 +199,12 @@
   <wsdl:message name="listaEncuestasSoapOut">
     <wsdl:part name="parameters" element="tns:listaEncuestasResponse" />
   </wsdl:message>
+  <wsdl:message name="listaEncuestas2SoapIn">
+    <wsdl:part name="parameters" element="tns:listaEncuestas2" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestas2SoapOut">
+    <wsdl:part name="parameters" element="tns:listaEncuestas2Response" />
+  </wsdl:message>
   <wsdl:message name="encuestaPorIdSoapIn">
     <wsdl:part name="parameters" element="tns:encuestaPorId" />
   </wsdl:message>
@@ -134,6 +235,10 @@
     <wsdl:operation name="listaEncuestas">
       <wsdl:input message="tns:listaEncuestasSoapIn" />
       <wsdl:output message="tns:listaEncuestasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestas2">
+      <wsdl:input message="tns:listaEncuestas2SoapIn" />
+      <wsdl:output message="tns:listaEncuestas2SoapOut" />
     </wsdl:operation>
     <wsdl:operation name="encuestaPorId">
       <wsdl:input message="tns:encuestaPorIdSoapIn" />
@@ -170,6 +275,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestas">
       <soap:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestas2">
+      <soap:operation soapAction="http://tempuri.org/listaEncuestas2" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -227,6 +341,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestas">
       <soap12:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestas2">
+      <soap12:operation soapAction="http://tempuri.org/listaEncuestas2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

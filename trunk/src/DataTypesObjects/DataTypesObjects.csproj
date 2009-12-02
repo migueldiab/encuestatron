@@ -48,10 +48,16 @@
     <Compile Include="Administrador.cs" />
     <Compile Include="Agente.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Encuesta.cs" />
     <Compile Include="eTronDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>eTronDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\etWeb_Model.designer.cs">
+      <DependentUpon>etWeb_Model.dbml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Periodo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -77,10 +83,23 @@
     <None Include="eTronDBDataSet.xss">
       <DependentUpon>eTronDBDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Models\etWeb_Model.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>etWeb_Model.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\etWeb_Model.dbml.layout">
+      <DependentUpon>etWeb_Model.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

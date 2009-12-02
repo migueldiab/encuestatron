@@ -1,8 +1,27 @@
-1- Portal M
-2- Admin Agente R
-3- Cliente Web M
-4 - Ws Logs R
-5 - DOminio M Y R
-	5.1 Encuesta Preg y resp M
-	5.2 Personas Roles y permisos R
-6 Encuesta Ws M
+Logs - (R)
+	- Agregar APPConfig a la Doc
+	- Integrar Clase de prueba en encuestaTron
+
+DTO (M & R)
+	- Migrar Encuesta desde et
+	- Migrar Usuario desde et
+	- Pregunta
+	- Respuesta
+	- Rol
+
+encuestaTron (M)
+	- Fachada referencia a DTO.dll
+	- ?
+
+etWeb (M)
+	- ABM Agentes por Admin
+	- ABM Clientes por Agentes
+	- ABM Encuestas por Clientes con Preguntas y Respuestas (anidadas)
+
+miEncuesta (R)
+	- Crear Sitio simple que conecte a wsEncuestas
+
+wsEncuestas (R)
+	- Crear método que devuelva una encuesta
+	- Crear metodo que devuelva pregunta
+	- Crear metodo que reciba respuesta y devuelva proxima pregunta
