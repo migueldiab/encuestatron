@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<etWeb.Models.usuario>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<etWeb.et.usuario>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -18,7 +18,7 @@
                 email
             </th>
             <th>
-                usuario1
+                id_usuario
             </th>
             <th>
                 contrasena
@@ -32,14 +32,17 @@
             <th>
                 f_ingreso
             </th>
+            <th>
+                id_rol
+            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.usuario1 }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.usuario1 })%>
+                <%= Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
+                <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
             </td>
             <td>
                 <%= Html.Encode(item.nombre) %>
@@ -48,7 +51,7 @@
                 <%= Html.Encode(item.email) %>
             </td>
             <td>
-                <%= Html.Encode(item.usuario1) %>
+                <%= Html.Encode(item.id_usuario) %>
             </td>
             <td>
                 <%= Html.Encode(item.contrasena) %>
@@ -61,6 +64,9 @@
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.f_ingreso)) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.id_rol) %>
             </td>
         </tr>
     

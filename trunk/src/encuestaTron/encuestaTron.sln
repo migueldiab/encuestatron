@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etWeb.Tests", "..\etWeb.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Web.Mvc", "..\MVC\src\SystemWebMvc\System.Web.Mvc.csproj", "{3D3FFD8A-624D-4E9B-954B-E1C105507975}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypesObjects", "..\DataTypesObjects\DataTypesObjects.csproj", "{087B3A5D-A388-4380-AD0A-9F9EF316241D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{3D3FFD8A-624D-4E9B-954B-E1C105507975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3FFD8A-624D-4E9B-954B-E1C105507975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3FFD8A-624D-4E9B-954B-E1C105507975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087B3A5D-A388-4380-AD0A-9F9EF316241D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087B3A5D-A388-4380-AD0A-9F9EF316241D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087B3A5D-A388-4380-AD0A-9F9EF316241D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087B3A5D-A388-4380-AD0A-9F9EF316241D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

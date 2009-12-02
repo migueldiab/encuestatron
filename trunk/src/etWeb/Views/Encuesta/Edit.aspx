@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<etWeb.Models.encuesta>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<etWeb.et.encuesta>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -43,11 +43,6 @@
                 <label for="f_cierre">f_cierre:</label>
                 <%= Html.TextBox("f_cierre", String.Format("{0:g}", Model.f_cierre)) %>
                 <%= Html.ValidationMessage("f_cierre", "*") %>
-            </p>
-            <p>
-                <label for="id_agente">id_agente:</label>
-                <%= Html.TextBox("id_agente", Model.id_agente) %>
-                <%= Html.ValidationMessage("id_agente", "*") %>
             </p>
             <p>
                 <label for="id_cliente">id_cliente:</label>

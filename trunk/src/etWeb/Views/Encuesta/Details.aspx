@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<etWeb.Models.encuesta>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<etWeb.et.encuesta>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Details
@@ -35,17 +35,12 @@
             <%= Html.Encode(String.Format("{0:g}", Model.f_cierre)) %>
         </p>
         <p>
-            id_agente:
-            <%= Html.Encode(Model.id_agente) %>
-        </p>
-        <p>
             id_cliente:
             <%= Html.Encode(Model.id_cliente) %>
         </p>
     </fieldset>
     <p>
-
-        <%=Html.ActionLink("Edit", "Edit", new { id=Model.nombre }) %> |
+        <%=Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
         <%=Html.ActionLink("Back to List", "Index") %>
     </p>
 

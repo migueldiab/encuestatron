@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<etWeb.Models.encuesta>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<etWeb.et.encuesta>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -30,9 +30,6 @@
                 f_cierre
             </th>
             <th>
-                id_agente
-            </th>
-            <th>
                 id_cliente
             </th>
         </tr>
@@ -41,8 +38,8 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.nombre }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.nombre })%>
+                <%= Html.ActionLink("Edit", "Edit", new { id=item.PrimaryKey }) %> |
+                <%= Html.ActionLink("Details", "Details", new { id=item.PrimaryKey })%>
             </td>
             <td>
                 <%= Html.Encode(item.nombre) %>
@@ -61,9 +58,6 @@
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.f_cierre)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.id_agente) %>
             </td>
             <td>
                 <%= Html.Encode(item.id_cliente) %>
