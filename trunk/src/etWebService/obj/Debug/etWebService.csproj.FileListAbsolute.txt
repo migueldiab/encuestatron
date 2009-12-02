@@ -1,0 +1,3 @@
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\etWebService\obj\Debug\ResolveAssemblyReference.cache
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\etWebService\obj\Debug\etWebService.etWebService.resources
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\etWebService\obj\Debug\etWebService.csproj.GenerateResource.Cache
