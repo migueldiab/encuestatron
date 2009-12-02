@@ -7,9 +7,10 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
-using encuestaTron.DTO;
 using System.Collections.Generic;
+using encuestaTron.DTO;
 using encuestaTron.Models;
+using DataTypesObjects;
 
 namespace encuestaTron
 {
@@ -58,34 +59,71 @@ namespace encuestaTron
     }
 
     [WebMethod]
-    public string listaEncuestas()
+    public List<encuesta> listaEncuestas()
     {
       return Encuesta.listaEncuestas();
     }
 
     [WebMethod]
-    public List<encuesta> listaEncuestas2()
-    {
-      return Encuesta.listaEncuestas2();
-    }
-
-    [WebMethod]
-    public string encuestaPorId(string id)
+    public encuesta encuestaPorId(string id)
     {
       return Encuesta.encuestaPorId(id);
     }
 
     [WebMethod]
-    public bool insertarEncuesta(string xmlEncuesta)
+    public bool insertarEncuesta(encuesta unaEncuesta)
     {
-      return Encuesta.insertarEncuesta(xmlEncuesta);
+      return Encuesta.insertarEncuesta(unaEncuesta);
     }      
     [WebMethod]
-    public bool actualizarEncuesta(string id, string xmlEncuesta)
+    public bool actualizarEncuesta(string id, encuesta unaEncuesta)
     {
-      return Encuesta.actualizarEncuesta(id,xmlEncuesta);
+      return Encuesta.actualizarEncuesta(id,unaEncuesta);
     }      
 
-    
+    [WebMethod]
+    public List<rol> listaRoles()
+    {
+      return Rol.listaRoles();
+    }    
+    [WebMethod]
+    public rol rolPorId(int id)
+    {
+      return Rol.rolPorId(id);
+    }
+    [WebMethod]
+    public bool insertarRol(rol unRol)
+    {
+      return Rol.insertarRol(unRol);
+    } 
+    [WebMethod]
+    public bool actualizarRol(int id, rol unRol)
+    {
+      return Rol.actualizarRol(id, unRol);
+    }
+
+    [WebMethod]
+    public List<usuario> listaUsuarios()
+    {
+      return Usuario.listaUsuarios();
+    }
+
+    [WebMethod]
+    public usuario usuarioPorId(string id)
+    {
+      return Usuario.usuarioPorId(id);
+    }
+
+    [WebMethod]
+    public bool insertarUsuario(usuario unUsuario)
+    {
+      return Usuario.insertarUsuario(unUsuario);
+    }
+
+    [WebMethod]
+    public bool actualizarUsuario(string id, usuario unUsuario)
+    {
+      return Usuario.actualizarUsuario(id, unUsuario);
+    } 
   }
 }

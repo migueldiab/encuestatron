@@ -2,11 +2,6 @@
 using System.Configuration;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data;
 using System.Data.Common;
@@ -22,7 +17,7 @@ namespace encuestaTron
 {
   public class Sistema
   {
-    public static string connStr = global::System.Configuration.ConfigurationManager.ConnectionStrings["etTempDBConnectionString"].ConnectionString;
+    public static string connStr = "Data Source=.\\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmin";
 
     public bool connectDb() {
       string db_server = getAppConfig("db_server");
@@ -43,15 +38,6 @@ namespace encuestaTron
 
     private string getAppConfig(string nombre) 
     {
-      System.Configuration.Configuration web_config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(null);
-      if (web_config.AppSettings.Settings.Count > 0)
-      {
-        string parametro = ConfigurationSettings.AppSettings["nombre"];
-        if (parametro != null)
-        {
-          return parametro;
-        }
-      }
       throw new Exception("Error! Parametro no encontrado");
     }
 

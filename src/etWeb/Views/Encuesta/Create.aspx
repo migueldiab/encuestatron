@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<etWeb.Models.encuesta>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<etWeb.et.encuesta>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Create
@@ -45,11 +45,6 @@
                 <%= Html.ValidationMessage("f_cierre", "*") %>
             </p>
             <p>
-                <label for="id_agente">id_agente:</label>
-                <%= Html.TextBox("id_agente") %>
-                <%= Html.ValidationMessage("id_agente", "*") %>
-            </p>
-            <p>
                 <label for="id_cliente">id_cliente:</label>
                 <%= Html.TextBox("id_cliente") %>
                 <%= Html.ValidationMessage("id_cliente", "*") %>
@@ -57,7 +52,6 @@
             <p>
                 <input type="submit" value="Create" />
             </p>
-            <%= Html.Encode(ViewData["error"]) %>
         </fieldset>
 
     <% } %>

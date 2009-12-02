@@ -4,40 +4,34 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
-using System.Runtime.Serialization;
-using etWeb.Lib;
-using etWeb.Lib.Security;
-using System.Xml.Serialization;
-using System.IO;
-using System.Xml;
 using etWeb.et;
 
 namespace etWeb.Controllers
 {
-    public class EncuestaController : Controller
+    public class UsuarioController : Controller
     {
         //
-        // GET: /Encuesta/
-        [autorizoUsuario(requiereRol = "agente")]
+        // GET: /Usuario/
+
         public ActionResult Index()
         {
           Fachada etFachada = new Fachada();
-          IList<encuesta> encuestas = etFachada.listaEncuestas();
-          return View(encuestas);
+          IList<usuario> usuarioes = etFachada.listaUsuarios();
+          return View(usuarioes);
         }
 
         //
-        // GET: /Encuesta/Details/5
+        // GET: /Usuario/Details/5
 
         public ActionResult Details(string id)
         {
           Fachada etFachada = new Fachada();
-          encuesta unaEncuesta = etFachada.encuestaPorId(id);
-          return View(unaEncuesta);
+          usuario unUsuario = etFachada.usuarioPorId(id);
+          return View(unUsuario);
         }
 
         //
-        // GET: /Encuesta/Create
+        // GET: /Usuario/Create
 
         public ActionResult Create()
         {
@@ -45,64 +39,64 @@ namespace etWeb.Controllers
         } 
 
         //
-        // POST: /Encuesta/Create
+        // POST: /Usuario/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(encuesta unaEncuesta)
+        public ActionResult Create(usuario unUsuario)
         {
           if (ModelState.IsValid)
           {
             Fachada etFachada = new Fachada();
-            if (etFachada.insertarEncuesta(unaEncuesta))
-            {
-              return RedirectToAction("Index");
-            }
-            else
-            {
-              ViewData["error"] = "Error al grabar";  
-              return View(unaEncuesta);
-            }
-          }
-          else
-          {
-            ViewData["error"] = "Error al validar modelo";  
-            return View(unaEncuesta);
-          }
-        }
-
-        //
-        // GET: /Encuesta/Edit/5
- 
-        public ActionResult Edit(string id)
-        {
-          Fachada etFachada = new Fachada();
-          encuesta unaEncuesta = etFachada.encuestaPorId(id);
-          return View(unaEncuesta);
-        }
-
-        //
-        // POST: /Encuesta/Edit/5
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(string id, encuesta unaEncuesta)
-        {
-          Fachada etFachada = new Fachada();
-          if (ModelState.IsValid)
-          {
-            if (etFachada.actualizarEncuesta(id, unaEncuesta))
+            if (etFachada.insertarUsuario(unUsuario))
             {
               return RedirectToAction("Index");
             }
             else
             {
               ViewData["error"] = "Error al grabar";
-              return View(unaEncuesta);
+              return View(unUsuario);
             }
           }
           else
           {
             ViewData["error"] = "Error al validar modelo";
-            return View(unaEncuesta);
+            return View(unUsuario);
+          }
+        }
+
+        //
+        // GET: /Usuario/Edit/5
+ 
+        public ActionResult Edit(string id)
+        {
+          Fachada etFachada = new Fachada();
+          usuario unUsuario = etFachada.usuarioPorId(id);
+          return View(unUsuario);
+        }
+
+        //
+        // POST: /Usuario/Edit/5
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(string id, usuario unUsuario)
+        {
+          if (ModelState.IsValid)
+          {
+            Fachada etFachada = new Fachada();
+            if (etFachada.actualizarUsuario(id, unUsuario))
+            {
+              return RedirectToAction("Index");
+            }
+            else
+            {
+              ViewData["error"] = "Error al grabar";
+              return View(unUsuario);
+            }
+          }
+          else
+          {
+            ViewData["error"] = "Error al validar modelo";
+            return View(unUsuario);
           }
         }
     }
