@@ -10,12 +10,12 @@ using System.Xml.Linq;
 using System.Text;
 using System.Xml;
 using System.Collections.Generic;
-
+using encuestaTron;
 using encuestaTron.Models;
 
-namespace encuestaTron.DTO
+namespace DataTypesObjects
 {
-  public class Encuesta : Controller
+    public class Encuesta : Controller
   {
 
     public static List<encuesta> listaEncuestas()
