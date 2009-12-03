@@ -62,7 +62,12 @@ namespace DataTypesObjects
           try
           {
             usuarioOriginal.nombre = unUsuario.nombre;
-            
+            usuarioOriginal.celular = unUsuario.celular;
+            usuarioOriginal.contrasena = unUsuario.contrasena;
+            usuarioOriginal.email = unUsuario.email;
+            usuarioOriginal.f_ingreso = unUsuario.f_ingreso;
+            usuarioOriginal.id_rol = unUsuario.id_rol;
+            usuarioOriginal.telefono = unUsuario.telefono;
             dbModel.SubmitChanges();
             return true;
           }

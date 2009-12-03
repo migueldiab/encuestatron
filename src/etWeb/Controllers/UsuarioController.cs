@@ -39,7 +39,7 @@ namespace etWeb.Controllers
         public ActionResult Create()
         {
           Fachada etFachada = new Fachada();
-          ViewData["listaRoles"] = new SelectList(etFachada.listaRoles(), "id", "nombre");
+          ViewData["id_rol"] = new SelectList(etFachada.listaRoles(), "id", "nombre");
           return View();
         } 
 
@@ -77,10 +77,17 @@ namespace etWeb.Controllers
 
           Fachada etFachada = new Fachada();
           usuario unUsuario = etFachada.usuarioPorId(id);
-          ViewData["listaRoles"] = new SelectList(etFachada.listaRoles(), "id", "nombre",unUsuario.id_rol);
+          ViewData["id_rol"] = new SelectList(etFachada.listaRoles(), "id", "nombre",unUsuario.id_rol);
           return View(unUsuario);
         }
 
+        public ActionResult Borrar(string id)
+        {
+
+          Fachada etFachada = new Fachada();
+          usuario unUsuario = etFachada.usuarioPorId(id);          
+          return View(unUsuario);
+        }
         //
         // POST: /Usuario/Edit/5
 
@@ -92,6 +99,7 @@ namespace etWeb.Controllers
             Fachada etFachada = new Fachada();
             if (etFachada.actualizarUsuario(id, unUsuario))
             {
+              
               return RedirectToAction("Index");
             }
             else
