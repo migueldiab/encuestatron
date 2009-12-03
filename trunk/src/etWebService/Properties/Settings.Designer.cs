@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace wsEncuestas.Properties {
+namespace etWebService.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,20 +26,10 @@ namespace wsEncuestas.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/et/Fachada.asmx")]
-        public string wsEncuestas_localhost_Fachada {
-            get {
-                return ((string)(this["wsEncuestas_localhost_Fachada"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/et/fachada.asmx")]
-        public string wsEncuestas_et_Fachada {
+        public string etWebService_et_Fachada {
             get {
-                return ((string)(this["wsEncuestas_et_Fachada"]));
+                return ((string)(this["etWebService_et_Fachada"]));
             }
         }
     }

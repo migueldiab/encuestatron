@@ -24,7 +24,8 @@ namespace encuestaTron
   // [System.Web.Script.Services.ScriptService]
   public class Fachada : System.Web.Services.WebService
   {
-  
+
+#region Usuarios
     //  [XmlInclude(typeof(Usuario))]
     /*
     [WebMethod]
@@ -57,7 +58,40 @@ namespace encuestaTron
     {
       return Usuario.obtenerPermisosPorUsuario(usuario);
     }
+    
+    [WebMethod]
+    public List<usuario> listaUsuarios()
+    {
+      return Usuario.listaUsuarios(); 
+    }
+    
+    
+    [WebMethod]
+    public bool borrarUsuarioPorId(string id)
+    {
+      return Usuario.borrarUsuarioPorId(id);
+    }
+    [WebMethod]
+    public usuario usuarioPorId(string id)
+    {
+      return Usuario.usuarioPorId(id);
+    }
 
+    [WebMethod]
+    public bool insertarUsuario(usuario unUsuario)
+    {
+      return Usuario.insertarUsuario(unUsuario);
+    }
+
+    [WebMethod]
+    public bool actualizarUsuario(string id, usuario unUsuario)
+    {
+      return Usuario.actualizarUsuario(id, unUsuario);
+    } 
+
+#endregion
+
+#region Encuestas
     [WebMethod]
     public List<encuesta> listaEncuestas()
     {
@@ -80,6 +114,9 @@ namespace encuestaTron
     {
       return Encuesta.actualizarEncuesta(id,unaEncuesta);
     }
+#endregion
+
+#region Roles
 
     [WebMethod]
     public List<rol> listaRoles()
@@ -102,30 +139,7 @@ namespace encuestaTron
     {
       return Rol.actualizarRol(id, unRol);
     }
-
-    [WebMethod]
-    public List<usuario> listaUsuarios()
-    {
-      return Usuario.listaUsuarios(); 
-    }
+#endregion
     
-
-    [WebMethod]
-    public usuario usuarioPorId(string id)
-    {
-      return Usuario.usuarioPorId(id);
-    }
-
-    [WebMethod]
-    public bool insertarUsuario(usuario unUsuario)
-    {
-      return Usuario.insertarUsuario(unUsuario);
-    }
-
-    [WebMethod]
-    public bool actualizarUsuario(string id, usuario unUsuario)
-    {
-      return Usuario.actualizarUsuario(id, unUsuario);
-    } 
   }
 }

@@ -85,8 +85,15 @@ namespace etWeb.Controllers
         {
 
           Fachada etFachada = new Fachada();
-          usuario unUsuario = etFachada.usuarioPorId(id);          
-          return View(unUsuario);
+          if (etFachada.borrarUsuarioPorId(id))
+          {
+            return View();
+          }
+          else
+          {
+            ViewData["error"] = "Error al borrar";
+            return RedirectToAction("Edit", id);
+          }
         }
         //
         // POST: /Usuario/Edit/5
