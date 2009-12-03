@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using etWeb.et;
+using etWeb.Lib.Security;
 
 namespace etWeb.Controllers
 {
@@ -12,7 +13,7 @@ namespace etWeb.Controllers
     {
         //
         // GET: /Rol/
-
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Index()
         {
           Fachada etFachada = new Fachada();
@@ -23,6 +24,7 @@ namespace etWeb.Controllers
         //
         // GET: /Rol/Details/5
 
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Details(int id)
         {
           Fachada etFachada = new Fachada();
@@ -33,6 +35,7 @@ namespace etWeb.Controllers
         //
         // GET: /Rol/Create
 
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -41,6 +44,7 @@ namespace etWeb.Controllers
         //
         // POST: /Rol/Create
 
+      [autorizoUsuario(requiereRol = "admin")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(rol unRol)
         {
@@ -66,7 +70,8 @@ namespace etWeb.Controllers
 
         //
         // GET: /Rol/Edit/5
- 
+
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Edit(int id)
         {
           Fachada etFachada = new Fachada();
@@ -77,6 +82,7 @@ namespace etWeb.Controllers
         //
         // POST: /Rol/Edit/5
 
+      [autorizoUsuario(requiereRol = "admin")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, rol unRol)
         {
