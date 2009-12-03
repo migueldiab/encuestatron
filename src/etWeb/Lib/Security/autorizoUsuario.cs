@@ -33,7 +33,7 @@ namespace etWeb.Lib.Security
       // Ticket establecido mediante FormsAuthenticationTicket en AccountController
       FormsIdentity usrFrmId = (FormsIdentity)httpContext.User.Identity;
       string ticketRolesUsuario = usrFrmId.Ticket.UserData;
-      if (ticketRolesUsuario.Contains(this.requiereRol))
+      if (this.requiereRol.Contains(ticketRolesUsuario))
         return true;
 
       /*

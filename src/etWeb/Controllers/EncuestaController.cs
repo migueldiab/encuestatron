@@ -14,96 +14,114 @@ using etWeb.et;
 
 namespace etWeb.Controllers
 {
-    public class EncuestaController : Controller
+  public class EncuestaController : Controller
+  {
+    //
+    // GET: /Encuesta/
+    [autorizoUsuario(requiereRol = "admin,agente")]
+    public ActionResult Index()
     {
-        //
-        // GET: /Encuesta/
-        [autorizoUsuario(requiereRol = "agente")]
-        public ActionResult Index()
-        {
-          Fachada etFachada = new Fachada();
-          IList<encuesta> encuestas = etFachada.listaEncuestas();
-          return View(encuestas);
-        }
-
-        //
-        // GET: /Encuesta/Details/5
-
-        public ActionResult Details(string id)
-        {
-          Fachada etFachada = new Fachada();
-          encuesta unaEncuesta = etFachada.encuestaPorId(id);
-          return View(unaEncuesta);
-        }
-
-        //
-        // GET: /Encuesta/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        //
-        // POST: /Encuesta/Create
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(encuesta unaEncuesta)
-        {
-          if (ModelState.IsValid)
-          {
-            Fachada etFachada = new Fachada();
-            if (etFachada.insertarEncuesta(unaEncuesta))
-            {
-              return RedirectToAction("Index");
-            }
-            else
-            {
-              ViewData["error"] = "Error al grabar";  
-              return View(unaEncuesta);
-            }
-          }
-          else
-          {
-            ViewData["error"] = "Error al validar modelo";  
-            return View(unaEncuesta);
-          }
-        }
-
-        //
-        // GET: /Encuesta/Edit/5
- 
-        public ActionResult Edit(string id)
-        {
-          Fachada etFachada = new Fachada();
-          encuesta unaEncuesta = etFachada.encuestaPorId(id);
-          return View(unaEncuesta);
-        }
-
-        //
-        // POST: /Encuesta/Edit/5
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(string id, encuesta unaEncuesta)
-        {
-          Fachada etFachada = new Fachada();
-          if (ModelState.IsValid)
-          {
-            if (etFachada.actualizarEncuesta(id, unaEncuesta))
-            {
-              return RedirectToAction("Index");
-            }
-            else
-            {
-              ViewData["error"] = "Error al grabar";
-              return View(unaEncuesta);
-            }
-          }
-          else
-          {
-            ViewData["error"] = "Error al validar modelo";
-            return View(unaEncuesta);
-          }
-        }
+      Fachada etFachada = new Fachada();
+      IList<encuesta> encuestas = etFachada.listaEncuestas();
+      return View(encuestas);
     }
+
+    [autorizoUsuario(requiereRol = "admin")]
+    public ActionResult ListaPorAgente()
+    {
+      Fachada etFachada = new Fachada();      
+      ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre");
+      return View();
+    }
+
+    [autorizoUsuario(requiereRol = "admin")]
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult ListaPorAgente(string id_agente)
+    {
+      Fachada etFachada = new Fachada();
+      ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre", id_agente);
+      IList<encuesta> encuestas = etFachada.listaEncuestasPorIdAgente(id_agente);
+      return View(encuestas);
+    }
+
+    //
+    // GET: /Encuesta/Details/5
+
+    public ActionResult Details(string id)
+    {
+      Fachada etFachada = new Fachada();
+      encuesta unaEncuesta = etFachada.encuestaPorId(id);
+      return View(unaEncuesta);
+    }
+
+    //
+    // GET: /Encuesta/Create
+
+    public ActionResult Create()
+    {
+        return View();
+    } 
+
+    //
+    // POST: /Encuesta/Create
+
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult Create(encuesta unaEncuesta)
+    {
+      if (ModelState.IsValid)
+      {
+        Fachada etFachada = new Fachada();
+        if (etFachada.insertarEncuesta(unaEncuesta))
+        {
+          return RedirectToAction("Index");
+        }
+        else
+        {
+          ViewData["error"] = "Error al grabar";  
+          return View(unaEncuesta);
+        }
+      }
+      else
+      {
+        ViewData["error"] = "Error al validar modelo";  
+        return View(unaEncuesta);
+      }
+    }
+
+    //
+    // GET: /Encuesta/Edit/5
+
+    public ActionResult Edit(string id)
+    {
+      Fachada etFachada = new Fachada();
+      encuesta unaEncuesta = etFachada.encuestaPorId(id);
+      return View(unaEncuesta);
+    }
+
+    //
+    // POST: /Encuesta/Edit/5
+
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult Edit(string id, encuesta unaEncuesta)
+    {
+      Fachada etFachada = new Fachada();
+      if (ModelState.IsValid)
+      {
+        if (etFachada.actualizarEncuesta(id, unaEncuesta))
+        {
+          return RedirectToAction("Index");
+        }
+        else
+        {
+          ViewData["error"] = "Error al grabar";
+          return View(unaEncuesta);
+        }
+      }
+      else
+      {
+        ViewData["error"] = "Error al validar modelo";
+        return View(unaEncuesta);
+      }
+    }
+  }
 }

@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using etWeb.et;
 using etWeb.Lib;
 using System.Web.UI.WebControls;
+using etWeb.Lib.Security;
 
 namespace etWeb.Controllers
 {
@@ -15,6 +16,7 @@ namespace etWeb.Controllers
         //
         // GET: /Usuario/
 
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Index()
         {
           Fachada etFachada = new Fachada();
@@ -26,6 +28,7 @@ namespace etWeb.Controllers
         //
         // GET: /Usuario/Details/5
 
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Details(string id)
         {
           Fachada etFachada = new Fachada();
@@ -36,6 +39,7 @@ namespace etWeb.Controllers
         //
         // GET: /Usuario/Create
 
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Create()
         {
           Fachada etFachada = new Fachada();
@@ -46,6 +50,7 @@ namespace etWeb.Controllers
         //
         // POST: /Usuario/Create
 
+      [autorizoUsuario(requiereRol = "admin")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(usuario unUsuario)
         {
@@ -71,7 +76,8 @@ namespace etWeb.Controllers
 
         //
         // GET: /Usuario/Edit/5
- 
+
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Edit(string id)
         {
 
@@ -81,6 +87,7 @@ namespace etWeb.Controllers
           return View(unUsuario);
         }
 
+      [autorizoUsuario(requiereRol = "admin")]
         public ActionResult Borrar(string id)
         {
 
@@ -98,6 +105,7 @@ namespace etWeb.Controllers
         //
         // POST: /Usuario/Edit/5
 
+      [autorizoUsuario(requiereRol = "admin")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(string id, usuario unUsuario)
         {

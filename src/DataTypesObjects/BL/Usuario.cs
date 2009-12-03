@@ -89,7 +89,6 @@ namespace DataTypesObjects
           usuario usuarioOriginal = dbModel.usuarios.SingleOrDefault(x => x.id_usuario == id);
           try
           {
-
             dbModel.usuarios.DeleteOnSubmit(usuarioOriginal);
             dbModel.SubmitChanges();
             return true;
@@ -98,6 +97,13 @@ namespace DataTypesObjects
           {
             return false;
           }
+        }
+
+        public static List<usuario> listaPorRol(string nombreRol)
+        {
+          var dbModel = new dbModel(Sistema.connStr);
+          IQueryable<usuario> lista = from m in dbModel.usuarios where m.rol.permiso == nombreRol select m;
+          return lista.ToList();
         }
     }
 }

@@ -66,6 +66,20 @@
           <s:element minOccurs="0" maxOccurs="1" name="permiso" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="listaPorRol">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rol" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaPorRolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaPorRolResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="borrarUsuarioPorId">
         <s:complexType>
           <s:sequence>
@@ -149,6 +163,20 @@
           <s:element minOccurs="0" maxOccurs="1" name="id_cliente" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="listaEncuestasPorIdAgente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idAgente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaEncuestasPorIdAgenteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasPorIdAgenteResult" type="tns:ArrayOfEncuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="encuestaPorId">
         <s:complexType>
           <s:sequence>
@@ -270,6 +298,12 @@
   <wsdl:message name="listaUsuariosSoapOut">
     <wsdl:part name="parameters" element="tns:listaUsuariosResponse" />
   </wsdl:message>
+  <wsdl:message name="listaPorRolSoapIn">
+    <wsdl:part name="parameters" element="tns:listaPorRol" />
+  </wsdl:message>
+  <wsdl:message name="listaPorRolSoapOut">
+    <wsdl:part name="parameters" element="tns:listaPorRolResponse" />
+  </wsdl:message>
   <wsdl:message name="borrarUsuarioPorIdSoapIn">
     <wsdl:part name="parameters" element="tns:borrarUsuarioPorId" />
   </wsdl:message>
@@ -299,6 +333,12 @@
   </wsdl:message>
   <wsdl:message name="listaEncuestasSoapOut">
     <wsdl:part name="parameters" element="tns:listaEncuestasResponse" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasPorIdAgenteSoapIn">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorIdAgente" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasPorIdAgenteSoapOut">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorIdAgenteResponse" />
   </wsdl:message>
   <wsdl:message name="encuestaPorIdSoapIn">
     <wsdl:part name="parameters" element="tns:encuestaPorId" />
@@ -355,6 +395,10 @@
       <wsdl:input message="tns:listaUsuariosSoapIn" />
       <wsdl:output message="tns:listaUsuariosSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="listaPorRol">
+      <wsdl:input message="tns:listaPorRolSoapIn" />
+      <wsdl:output message="tns:listaPorRolSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="borrarUsuarioPorId">
       <wsdl:input message="tns:borrarUsuarioPorIdSoapIn" />
       <wsdl:output message="tns:borrarUsuarioPorIdSoapOut" />
@@ -374,6 +418,10 @@
     <wsdl:operation name="listaEncuestas">
       <wsdl:input message="tns:listaEncuestasSoapIn" />
       <wsdl:output message="tns:listaEncuestasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorIdAgente">
+      <wsdl:input message="tns:listaEncuestasPorIdAgenteSoapIn" />
+      <wsdl:output message="tns:listaEncuestasPorIdAgenteSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="encuestaPorId">
       <wsdl:input message="tns:encuestaPorIdSoapIn" />
@@ -433,6 +481,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="listaPorRol">
+      <soap:operation soapAction="http://tempuri.org/listaPorRol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="borrarUsuarioPorId">
       <soap:operation soapAction="http://tempuri.org/borrarUsuarioPorId" style="document" />
       <wsdl:input>
@@ -471,6 +528,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestas">
       <soap:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorIdAgente">
+      <soap:operation soapAction="http://tempuri.org/listaEncuestasPorIdAgente" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -571,6 +637,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="listaPorRol">
+      <soap12:operation soapAction="http://tempuri.org/listaPorRol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="borrarUsuarioPorId">
       <soap12:operation soapAction="http://tempuri.org/borrarUsuarioPorId" style="document" />
       <wsdl:input>
@@ -609,6 +684,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestas">
       <soap12:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorIdAgente">
+      <soap12:operation soapAction="http://tempuri.org/listaEncuestasPorIdAgente" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

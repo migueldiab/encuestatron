@@ -64,6 +64,11 @@ namespace encuestaTron
     {
       return Usuario.listaUsuarios(); 
     }
+    [WebMethod]
+    public List<usuario> listaPorRol(string rol)
+    {
+      return Usuario.listaPorRol(rol); 
+    }
     
     
     [WebMethod]
@@ -92,28 +97,34 @@ namespace encuestaTron
 #endregion
 
 #region Encuestas
-    [WebMethod]
-    public List<encuesta> listaEncuestas()
-    {
-      return Encuesta.listaEncuestas();
-    }
+  [WebMethod]
+  public List<encuesta> listaEncuestas()
+  {
+    return Encuesta.listaEncuestas();
+  }
+  [WebMethod]
+  public List<encuesta> listaEncuestasPorIdAgente(string idAgente)
+  {
+    return Encuesta.listaEncuestasPorIdAgente(idAgente);
+  }
 
-    [WebMethod]
-    public encuesta encuestaPorId(string id)
-    {
-      return Encuesta.encuestaPorId(id);
-    }
+  
+  [WebMethod]
+  public encuesta encuestaPorId(string id)
+  {
+    return Encuesta.encuestaPorId(id);
+  }
 
-    [WebMethod]
-    public bool insertarEncuesta(encuesta unaEncuesta)
-    {
-      return Encuesta.insertarEncuesta(unaEncuesta);
-    }      
-    [WebMethod]
-    public bool actualizarEncuesta(string id, encuesta unaEncuesta)
-    {
-      return Encuesta.actualizarEncuesta(id,unaEncuesta);
-    }
+  [WebMethod]
+  public bool insertarEncuesta(encuesta unaEncuesta)
+  {
+    return Encuesta.insertarEncuesta(unaEncuesta);
+  }      
+  [WebMethod]
+  public bool actualizarEncuesta(string id, encuesta unaEncuesta)
+  {
+    return Encuesta.actualizarEncuesta(id,unaEncuesta);
+  }
 #endregion
 
 #region Roles
