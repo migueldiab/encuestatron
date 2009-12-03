@@ -124,6 +124,7 @@
     <Content Include="Views\Encuesta\Edit.aspx" />
     <Content Include="Views\Encuesta\Index.aspx" />
     <Content Include="Views\Encuesta\ListaPorAgente.aspx" />
+    <Content Include="Views\Encuesta\ListaPorCliente.aspx" />
     <Content Include="Views\Home\Prueba.aspx" />
     <Content Include="Views\Rol\Create.aspx" />
     <Content Include="Views\Rol\Details.aspx" />

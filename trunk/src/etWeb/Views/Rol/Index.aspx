@@ -8,7 +8,7 @@
 
     <h2>Index</h2>
 
-    <table>
+    <table class="data-table">
         <tr>
             <th></th>
             <th>

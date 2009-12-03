@@ -50,6 +50,33 @@ namespace etWeb.Controllers
       return View(encuestas);
     }
 
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    public ActionResult ListaPorCliente()
+    {
+      Fachada etFachada = new Fachada();
+      ViewData["id_cliente"] = new SelectList(etFachada.listaPorRol("cliente"), "id_usuario", "nombre");
+      return View();
+    }
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult ListaPorCliente(string id_cliente)
+    {
+      Fachada etFachada = new Fachada();
+      IList<encuesta> encuestas = null;
+      ViewData["id_cliente"] = new SelectList(etFachada.listaPorRol("cliente"), "id_usuario", "nombre", id_cliente);
+      if (id_cliente == "")
+      {
+        encuestas = etFachada.listaEncuestas();
+      }
+      else
+      {
+        encuestas = etFachada.listaEncuestasPorIdCliente(id_cliente);
+      }
+      return View(encuestas);
+    }
+
     //
     // GET: /Encuesta/Details/5
 

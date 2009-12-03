@@ -83,5 +83,12 @@ namespace encuestaTron.DTO
 
       return lista.ToList();      
     }
+
+    public static List<encuesta> listaEncuestasPorIdCliente(string idCliente)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      IQueryable<encuesta> lista = from e in dbModel.encuestas where e.id_cliente == idCliente select e;
+      return lista.ToList();    
+    }
   }
 }

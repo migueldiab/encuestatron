@@ -1,19 +1,19 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<etWeb.et.encuesta>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Encuestas Por Agente
+	Encuestas por Cliente
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Encuestas Por Agente</h2>
+    <h2>Encuestas por Cliente</h2>
 
   <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-                <label for="id_agente">Agente :</label>
-                <%= Html.DropDownList("id_agente", "[Todos]")%>
-                <%= Html.ValidationMessage("id_agente", "*") %>
+                <label for="id_agente">Cliente :</label>
+                <%= Html.DropDownList("id_cliente", "[Todos]")%>
+                <%= Html.ValidationMessage("id_cliente", "*")%>
                 <input type="submit" value="Ver" />
             
          <fieldset>
