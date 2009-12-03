@@ -107,6 +107,11 @@ namespace encuestaTron
   {
     return Encuesta.listaEncuestasPorIdAgente(idAgente);
   }
+  [WebMethod]
+  public List<encuesta> listaEncuestasPorIdCliente(string idCliente)
+  {
+    return Encuesta.listaEncuestasPorIdCliente(idCliente);
+  }
 
   
   [WebMethod]

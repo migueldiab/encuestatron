@@ -49,6 +49,8 @@ namespace etWeb.et {
         
         private System.Threading.SendOrPostCallback listaEncuestasPorIdAgenteOperationCompleted;
         
+        private System.Threading.SendOrPostCallback listaEncuestasPorIdClienteOperationCompleted;
+        
         private System.Threading.SendOrPostCallback encuestaPorIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback insertarEncuestaOperationCompleted;
@@ -130,6 +132,9 @@ namespace etWeb.et {
         
         /// <remarks/>
         public event listaEncuestasPorIdAgenteCompletedEventHandler listaEncuestasPorIdAgenteCompleted;
+        
+        /// <remarks/>
+        public event listaEncuestasPorIdClienteCompletedEventHandler listaEncuestasPorIdClienteCompleted;
         
         /// <remarks/>
         public event encuestaPorIdCompletedEventHandler encuestaPorIdCompleted;
@@ -439,6 +444,35 @@ namespace etWeb.et {
             if ((this.listaEncuestasPorIdAgenteCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.listaEncuestasPorIdAgenteCompleted(this, new listaEncuestasPorIdAgenteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listaEncuestasPorIdCliente", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public encuesta[] listaEncuestasPorIdCliente(string idCliente) {
+            object[] results = this.Invoke("listaEncuestasPorIdCliente", new object[] {
+                        idCliente});
+            return ((encuesta[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void listaEncuestasPorIdClienteAsync(string idCliente) {
+            this.listaEncuestasPorIdClienteAsync(idCliente, null);
+        }
+        
+        /// <remarks/>
+        public void listaEncuestasPorIdClienteAsync(string idCliente, object userState) {
+            if ((this.listaEncuestasPorIdClienteOperationCompleted == null)) {
+                this.listaEncuestasPorIdClienteOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlistaEncuestasPorIdClienteOperationCompleted);
+            }
+            this.InvokeAsync("listaEncuestasPorIdCliente", new object[] {
+                        idCliente}, this.listaEncuestasPorIdClienteOperationCompleted, userState);
+        }
+        
+        private void OnlistaEncuestasPorIdClienteOperationCompleted(object arg) {
+            if ((this.listaEncuestasPorIdClienteCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.listaEncuestasPorIdClienteCompleted(this, new listaEncuestasPorIdClienteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1173,6 +1207,32 @@ namespace etWeb.et {
         private object[] results;
         
         internal listaEncuestasPorIdAgenteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public encuesta[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((encuesta[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void listaEncuestasPorIdClienteCompletedEventHandler(object sender, listaEncuestasPorIdClienteCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class listaEncuestasPorIdClienteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal listaEncuestasPorIdClienteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

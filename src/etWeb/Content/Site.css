@@ -591,6 +591,11 @@ a:active {
 	 	 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+table 
+{
+  border:1px;
+}
+
 table.data-table {
 	background:#f6f6f6;
 	font-size:.7em;
