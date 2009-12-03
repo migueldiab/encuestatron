@@ -82,6 +82,23 @@ namespace DataTypesObjects
         {
           return true;
         }
+
+        public static bool borrarUsuarioPorId(string id)
+        {
+          var dbModel = new dbModel(Sistema.connStr);
+          usuario usuarioOriginal = dbModel.usuarios.SingleOrDefault(x => x.id_usuario == id);
+          try
+          {
+
+            dbModel.usuarios.DeleteOnSubmit(usuarioOriginal);
+            dbModel.SubmitChanges();
+            return true;
+          }
+          catch
+          {
+            return false;
+          }
+        }
     }
 }
 

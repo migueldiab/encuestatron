@@ -24,23 +24,31 @@ namespace etWebService
         [WebMethod]
         public ResultWs getListaEncuestas()
         {
-            return "Hello World";
+          ResultWs resultado = new ResultWs();
+          resultado.Error = "Hello World";
+            return resultado;
         }
         [WebMethod]
         public ResultWs getEncuesta(int id, String user, String pass)
         {
-            return "Hello World";
+          ResultWs resultado = new ResultWs();
+          resultado.Error = "Hello World";
+          return resultado;
         }
 
         [WebMethod]
         public ResultWs getPreguntaEncuestas()
         {
-            return "Hello World";
+          ResultWs resultado = new ResultWs();
+          resultado.Error = "Hello World";
+          return resultado;
         }
         [WebMethod]
         public ResultWs getResultadoEncuesta(int id, String user, String pass)
         {
-            return "Hello World";
+          ResultWs resultado = new ResultWs();
+          resultado.Error = "Hello World";
+          return resultado;
         }
 
         private void InitializeComponent()

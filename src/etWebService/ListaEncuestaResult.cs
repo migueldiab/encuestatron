@@ -10,14 +10,15 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using etWebService.et;
 
 namespace etWebService
 {
     public class ListaEncuestaResult: ResultWs
     {
-        private List<Encuesta> listaEncuestas;
+        private List<encuesta> listaEncuestas;
 
-        public List<Encuesta> ListaEncuestas
+        public List<encuesta> ListaEncuestas
         {
             get { return listaEncuestas; }
             set { listaEncuestas = value; }

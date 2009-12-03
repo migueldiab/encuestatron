@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace etWeb.et {
+namespace etWebService.et {
     using System.Diagnostics;
     using System.Web.Services;
     using System.ComponentModel;
@@ -63,7 +63,7 @@ namespace etWeb.et {
         
         /// <remarks/>
         public Fachada() {
-            this.Url = global::etWeb.Properties.Settings.Default.etWeb_localhost_Fachada;
+            this.Url = global::etWebService.Properties.Settings.Default.etWebService_et_Fachada;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
