@@ -40,11 +40,12 @@
         </p>
         <p>
             id_rol:
-            <%= Html.Encode(Model.id_rol) %>
+            <%= Html.Encode(Model.rol) %>
         </p>
     </fieldset>
     <p>
-        <%=Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
+        <%=Html.ActionLink("Edit", "Edit", new { id=Model.id_usuario }) %> |
+        <%=Html.ActionLink("Borrar", "Borrar", new { id = Model.id_usuario })%> |
         <%=Html.ActionLink("Back to List", "Index") %>
     </p>
 
