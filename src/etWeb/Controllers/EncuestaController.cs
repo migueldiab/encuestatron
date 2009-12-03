@@ -29,7 +29,7 @@ namespace etWeb.Controllers
     [autorizoUsuario(requiereRol = "admin")]
     public ActionResult ListaPorAgente()
     {
-      Fachada etFachada = new Fachada();      
+      Fachada etFachada = new Fachada();
       ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre");
       return View();
     }
@@ -39,8 +39,14 @@ namespace etWeb.Controllers
     public ActionResult ListaPorAgente(string id_agente)
     {
       Fachada etFachada = new Fachada();
+      IList<encuesta> encuestas = null;
       ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre", id_agente);
-      IList<encuesta> encuestas = etFachada.listaEncuestasPorIdAgente(id_agente);
+      if (id_agente == "") {
+        encuestas = etFachada.listaEncuestas();
+      }
+      else {
+        encuestas = etFachada.listaEncuestasPorIdAgente(id_agente);
+      }
       return View(encuestas);
     }
 

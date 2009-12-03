@@ -15,7 +15,7 @@
             <legend>Seleccione el Agente</legend>            
             <p>
                 <label for="id_agente">Agente :</label>
-                <%= Html.DropDownList("id_agente")%>
+                <%= Html.DropDownList("id_agente", "[Todos]")%>
                 <%= Html.ValidationMessage("id_agente", "*") %>
             </p>
             <p>
