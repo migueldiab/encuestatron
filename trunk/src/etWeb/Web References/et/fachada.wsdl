@@ -80,6 +80,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="listaClientePorAgente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombreAgente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaClientePorAgenteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaClientePorAgenteResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="borrarUsuarioPorId">
         <s:complexType>
           <s:sequence>
@@ -318,6 +332,12 @@
   <wsdl:message name="listaPorRolSoapOut">
     <wsdl:part name="parameters" element="tns:listaPorRolResponse" />
   </wsdl:message>
+  <wsdl:message name="listaClientePorAgenteSoapIn">
+    <wsdl:part name="parameters" element="tns:listaClientePorAgente" />
+  </wsdl:message>
+  <wsdl:message name="listaClientePorAgenteSoapOut">
+    <wsdl:part name="parameters" element="tns:listaClientePorAgenteResponse" />
+  </wsdl:message>
   <wsdl:message name="borrarUsuarioPorIdSoapIn">
     <wsdl:part name="parameters" element="tns:borrarUsuarioPorId" />
   </wsdl:message>
@@ -419,6 +439,10 @@
       <wsdl:input message="tns:listaPorRolSoapIn" />
       <wsdl:output message="tns:listaPorRolSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="listaClientePorAgente">
+      <wsdl:input message="tns:listaClientePorAgenteSoapIn" />
+      <wsdl:output message="tns:listaClientePorAgenteSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="borrarUsuarioPorId">
       <wsdl:input message="tns:borrarUsuarioPorIdSoapIn" />
       <wsdl:output message="tns:borrarUsuarioPorIdSoapOut" />
@@ -507,6 +531,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaPorRol">
       <soap:operation soapAction="http://tempuri.org/listaPorRol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaClientePorAgente">
+      <soap:operation soapAction="http://tempuri.org/listaClientePorAgente" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -672,6 +705,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaPorRol">
       <soap12:operation soapAction="http://tempuri.org/listaPorRol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaClientePorAgente">
+      <soap12:operation soapAction="http://tempuri.org/listaClientePorAgente" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

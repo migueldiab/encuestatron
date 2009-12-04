@@ -13,18 +13,18 @@ namespace DataTypesObjects
     {
         public static string obtenerPermisosPorUsuario(string usuario)
         {
-          if (usuario == "agente")
-          {
-            return "agente";
-          }
-          if (usuario == "admin")
-          {
-            return "admin";
-          }
+          var dbModel = new dbModel(Sistema.connStr);
+          usuario unUsuario = dbModel.usuarios.SingleOrDefault(x => x.id_usuario == usuario);
+          if (unUsuario == null)
+            return "invitado";
           else
           {
-            return "invitado";
+            if (unUsuario.rol == null)
+              return "invitado";
+            else
+              return unUsuario.rol.permiso;
           }
+            
         }
 
         public static List<usuario> listaUsuarios()
@@ -38,8 +38,6 @@ namespace DataTypesObjects
           usuario unUsuario = dbModel.usuarios.SingleOrDefault(x => x.id_usuario == id);
           return unUsuario;
         }
-
-
         public static bool insertarUsuario(usuario unUsuario)
         {
           try
@@ -80,7 +78,14 @@ namespace DataTypesObjects
 
         public static bool validarUsuario(string usuario, string password)
         {
-          return true;
+          var dbModel = new dbModel(Sistema.connStr);
+          usuario unUsuario = dbModel.usuarios.SingleOrDefault(x => x.id_usuario == usuario);
+          if (unUsuario == null)
+            return false;
+          if (unUsuario.contrasena == password)
+            return true;
+          else
+            return false;
         }
 
         public static bool borrarUsuarioPorId(string id)
@@ -103,6 +108,18 @@ namespace DataTypesObjects
         {
           var dbModel = new dbModel(Sistema.connStr);
           IQueryable<usuario> lista = from m in dbModel.usuarios where m.rol.permiso == nombreRol select m;
+          return lista.ToList();
+        }
+
+        public static List<usuario> listaClientePorAgente(string nombreAgente)
+        {
+          var dbModel = new dbModel(Sistema.connStr);
+          IQueryable<usuario> lista = from m in dbModel.usuarios 
+                                      where (from a in dbModel.clientes
+                                             where a.id_agente == nombreAgente 
+                                             select a.id_usuario
+                                             ).Contains(m.id_usuario)
+                                      select m;
           return lista.ToList();
         }
     }

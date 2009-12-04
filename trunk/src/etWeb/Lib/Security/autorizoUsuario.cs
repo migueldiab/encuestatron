@@ -49,6 +49,23 @@ namespace etWeb.Lib.Security
       // Si no autentica con Cookies ni con Tickets, niega acceso.
       return false;
     }
+
+    internal static bool esAgente()
+    {
+      FormsIdentity usrFrmId = (FormsIdentity)HttpContext.Current.User.Identity;
+      string ticketRolesUsuario = usrFrmId.Ticket.UserData;
+      if (ticketRolesUsuario.Contains("agente"))
+      {
+        return true;
+      }
+      return false;
+
+    }
+
+    internal static et.usuario usuarioActual()
+    {
+      return (et.usuario)HttpContext.Current.Session["usuarioActual"];
+    }
   }
 
   [Serializable]

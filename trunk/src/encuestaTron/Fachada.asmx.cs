@@ -51,7 +51,7 @@ namespace encuestaTron
     [WebMethod]
     public bool validarUsuario(String usuario, String password)
     {
-        return Usuario.validarUsuario(usuario, password);
+      return Usuario.validarUsuario(usuario, password);
     }
     [WebMethod]
     public string obtenerPermisosPorUsuario(String usuario)
@@ -68,6 +68,11 @@ namespace encuestaTron
     public List<usuario> listaPorRol(string rol)
     {
       return Usuario.listaPorRol(rol); 
+    }
+    [WebMethod]
+    public List<usuario> listaClientePorAgente(string nombreAgente)
+    {
+      return Usuario.listaClientePorAgente(nombreAgente); 
     }
     
     

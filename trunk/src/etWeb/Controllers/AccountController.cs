@@ -97,11 +97,11 @@ namespace etWeb.Controllers
           currentContext.Response.Cookies.Add(FormsCookie);
 
           /*
-           * Como alternativa al ticket se puede grabar una variable X en la sesión
-           * con los datos de los roles.
-           * 
-           * Session["role"] = String.Join(",", listaRoles);
+           * Guardo el Usuario Actual Logueado
            */
+          Fachada etFachada = new Fachada();
+          Session["usuarioActual"] = etFachada.usuarioPorId(userName);          
+
           
           if (!String.IsNullOrEmpty(returnUrl))
           {

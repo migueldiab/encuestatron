@@ -11,6 +11,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Xml;
 using etWeb.et;
+using System.Web.Security;
 
 namespace etWeb.Controllers
 {
@@ -50,25 +51,47 @@ namespace etWeb.Controllers
       return View(encuestas);
     }
 
-
     [autorizoUsuario(requiereRol = "admin, agente")]
-    public ActionResult ListaPorCliente()
+    public ActionResult ListaPorCliente() 
     {
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
       Fachada etFachada = new Fachada();
-      ViewData["id_cliente"] = new SelectList(etFachada.listaPorRol("cliente"), "id_usuario", "nombre");
+      if (autorizoUsuario.esAgente())
+      {
+        ViewData["id_cliente"] = new SelectList(etFachada.listaClientePorAgente(usuarioActual.id_usuario), "id_usuario", "nombre");
+      }
+      else
+      {
+        ViewData["id_cliente"] = new SelectList(etFachada.listaPorRol("cliente"), "id_usuario", "nombre");
+      }
       return View();
     }
-
+    
     [autorizoUsuario(requiereRol = "admin, agente")]
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult ListaPorCliente(string id_cliente)
     {
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
       Fachada etFachada = new Fachada();
       IList<encuesta> encuestas = null;
-      ViewData["id_cliente"] = new SelectList(etFachada.listaPorRol("cliente"), "id_usuario", "nombre", id_cliente);
+      if (autorizoUsuario.esAgente())
+      {
+        ViewData["id_cliente"] = new SelectList(etFachada.listaClientePorAgente(usuarioActual.id_usuario), "id_usuario", "nombre", id_cliente);
+      }
+      else
+      {
+        ViewData["id_cliente"] = new SelectList(etFachada.listaPorRol("cliente"), "id_usuario", "nombre", id_cliente);
+      }
       if (id_cliente == "")
       {
-        encuestas = etFachada.listaEncuestas();
+        if (autorizoUsuario.esAgente())
+        {
+          encuestas = etFachada.listaEncuestasPorIdAgente(usuarioActual.id_usuario);
+        }
+        else
+        {
+          encuestas = etFachada.listaEncuestas();
+        }
       }
       else
       {
@@ -79,7 +102,7 @@ namespace etWeb.Controllers
 
     //
     // GET: /Encuesta/Details/5
-
+    [autorizoUsuario(requiereRol = "agente,admin,cliente")]
     public ActionResult Details(string id)
     {
       Fachada etFachada = new Fachada();
@@ -90,6 +113,7 @@ namespace etWeb.Controllers
     //
     // GET: /Encuesta/Create
 
+    [autorizoUsuario(requiereRol = "agente")]
     public ActionResult Create()
     {
         return View();
@@ -97,7 +121,7 @@ namespace etWeb.Controllers
 
     //
     // POST: /Encuesta/Create
-
+    [autorizoUsuario(requiereRol = "agente")]
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult Create(encuesta unaEncuesta)
     {
@@ -123,7 +147,7 @@ namespace etWeb.Controllers
 
     //
     // GET: /Encuesta/Edit/5
-
+    [autorizoUsuario(requiereRol = "agente")]
     public ActionResult Edit(string id)
     {
       Fachada etFachada = new Fachada();
@@ -133,7 +157,7 @@ namespace etWeb.Controllers
 
     //
     // POST: /Encuesta/Edit/5
-
+    [autorizoUsuario(requiereRol = "agente")]
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult Edit(string id, encuesta unaEncuesta)
     {
