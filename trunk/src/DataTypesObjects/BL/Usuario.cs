@@ -114,13 +114,18 @@ namespace DataTypesObjects
         public static List<usuario> listaClientePorAgente(string nombreAgente)
         {
           var dbModel = new dbModel(Sistema.connStr);
-          IQueryable<usuario> lista = from m in dbModel.usuarios 
-                                      where (from a in dbModel.clientes
-                                             where a.id_agente == nombreAgente 
-                                             select a.id_usuario
-                                             ).Contains(m.id_usuario)
+          var listaClientes = clientesPorAgente(nombreAgente);
+          IQueryable<usuario> lista = from m in dbModel.usuarios
+                                      where listaClientes.Contains(m.id_usuario)
                                       select m;
           return lista.ToList();
+        }
+
+        internal static List<string> clientesPorAgente(string nombreAgente)
+        {
+          var dbModel = new dbModel(Sistema.connStr);
+          IQueryable<string> listaClientes = from a in dbModel.clientes where a.id_agente == nombreAgente select a.id_usuario;
+          return listaClientes.ToList();
         }
     }
 }

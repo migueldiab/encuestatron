@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Web.Mvc;
+using etWeb.et;
 
 namespace etWeb.Lib.Security
 {
@@ -62,9 +63,24 @@ namespace etWeb.Lib.Security
 
     }
 
-    internal static et.usuario usuarioActual()
+    internal static usuario usuarioActual()
     {
-      return (et.usuario)HttpContext.Current.Session["usuarioActual"];
+      usuario usuarioActual = null;
+      if (HttpContext.Current.Session["usuarioActual"]==null) {
+        if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+          string idUsuario = HttpContext.Current.User.Identity.Name;
+          if (idUsuario != null)
+          {
+            Fachada etFachada = new Fachada();
+            usuarioActual = etFachada.usuarioPorId(idUsuario);
+          }
+        }
+      }
+      else {
+        usuarioActual = (et.usuario)HttpContext.Current.Session["usuarioActual"];
+      }
+      return usuarioActual;
     }
   }
 

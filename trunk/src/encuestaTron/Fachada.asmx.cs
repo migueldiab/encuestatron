@@ -103,7 +103,7 @@ namespace encuestaTron
 
 #region Encuestas
   [WebMethod]
-  public ResultWs listaEncuestas()
+  public ListaEncuestaResult listaEncuestas()
   {
       ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
       if (Encuesta.listaEncuestas().Count() > 0)
@@ -120,30 +120,45 @@ namespace encuestaTron
   }
 
   [WebMethod]
-  public ResultWs encuestaPorId(int id,String pass)
+  public ResultWs encuestaPorIdPassword(int id, String pass)
   {
-      ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
-      encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
-      if (unaEncuesta!=null)
+    ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
+    encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
+    if (unaEncuesta != null)
+    {
+      if (Encuesta.esAutenticada(unaEncuesta, pass))
       {
-          if (Encuesta.esAutenticada(unaEncuesta, pass))
-          {
-              listaEncuestaResult.ListaEncuestas.Add(unaEncuesta);
-              listaEncuestaResult.Error = null;
-          }
-          else
-          {
-              listaEncuestaResult.Error = "No se valido la contraseña para la encuesta id: " + id;
-
-          }
-          
+        listaEncuestaResult.ListaEncuestas.Add(unaEncuesta);
+        listaEncuestaResult.Error = null;
       }
       else
       {
-          listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
-       }
+        listaEncuestaResult.Error = "No se valido la contraseña para la encuesta id: " + id;
+      }
+    }
+    else
+    {
+      listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
+    }
 
-      return listaEncuestaResult;
+    return listaEncuestaResult;
+  }
+
+  [WebMethod]
+  public ListaEncuestaResult encuestaPorId(string id)
+  {
+    ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
+    encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
+    if (unaEncuesta != null)
+    {
+      listaEncuestaResult.ListaEncuestas.Add(unaEncuesta);
+      listaEncuestaResult.Error = null;
+    }
+    else
+    {
+      listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
+    }
+    return listaEncuestaResult;
   }
 
   [WebMethod]
@@ -161,10 +176,6 @@ namespace encuestaTron
   {
     return Encuesta.listaEncuestasPorIdCliente(idCliente);
   }
-
-  
-  
-
   [WebMethod]
   public bool insertarEncuesta(encuesta unaEncuesta)
   {
@@ -175,6 +186,13 @@ namespace encuestaTron
   {
     return Encuesta.actualizarEncuesta(id,unaEncuesta);
   }
+
+  [WebMethod]
+  public List<encuesta> listaEncuestasPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+  {
+    return Encuesta.listaEncuestasPorIdCliente(fechaInicial, fechaFinal, idAgente);
+  }
+
 #endregion
 
 #region Roles

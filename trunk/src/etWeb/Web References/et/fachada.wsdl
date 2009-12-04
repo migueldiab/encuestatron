@@ -157,10 +157,24 @@
       <s:element name="listaEncuestasResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasResult" type="tns:ArrayOfEncuesta" />
+            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasResult" type="tns:ListaEncuestaResult" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="ListaEncuestaResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResultWs">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ListaEncuestas" type="tns:ArrayOfEncuesta" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResultWs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:complexType name="ArrayOfEncuesta">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="unbounded" name="encuesta" nillable="true" type="tns:encuesta" />
@@ -177,6 +191,72 @@
           <s:element minOccurs="0" maxOccurs="1" name="id_cliente" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="encuestaPorIdPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="encuestaPorIdPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encuestaPorIdPasswordResult" type="tns:ResultWs" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="encuestaPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="encuestaPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encuestaPorIdResult" type="tns:ListaEncuestaResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPregunta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idEncuesta" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respuesta" type="tns:respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="respuesta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="contador" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="texto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_pregunta" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_proxima_pregunta" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pregunta" type="tns:pregunta" />
+          <s:element minOccurs="0" maxOccurs="1" name="pregunta1" type="tns:pregunta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pregunta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="planteo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_ultima_respuesta" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="id_encuesta" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="nro_pregunta" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getPreguntaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getPreguntaResult" type="tns:ResultWs" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="listaEncuestasPorIdAgente">
         <s:complexType>
           <s:sequence>
@@ -202,20 +282,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasPorIdClienteResult" type="tns:ArrayOfEncuesta" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="encuestaPorId">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="encuestaPorIdResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="encuestaPorIdResult" type="tns:encuesta" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -245,6 +311,22 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="actualizarEncuestaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaEncuestasPorFechaIngreso">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fechaInicial" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="fechaFinal" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="idAgente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaEncuestasPorFechaIngresoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasPorFechaIngresoResult" type="tns:ArrayOfEncuesta" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -368,6 +450,24 @@
   <wsdl:message name="listaEncuestasSoapOut">
     <wsdl:part name="parameters" element="tns:listaEncuestasResponse" />
   </wsdl:message>
+  <wsdl:message name="encuestaPorIdPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:encuestaPorIdPassword" />
+  </wsdl:message>
+  <wsdl:message name="encuestaPorIdPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:encuestaPorIdPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="encuestaPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:encuestaPorId" />
+  </wsdl:message>
+  <wsdl:message name="encuestaPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:encuestaPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntaSoapIn">
+    <wsdl:part name="parameters" element="tns:getPregunta" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntaSoapOut">
+    <wsdl:part name="parameters" element="tns:getPreguntaResponse" />
+  </wsdl:message>
   <wsdl:message name="listaEncuestasPorIdAgenteSoapIn">
     <wsdl:part name="parameters" element="tns:listaEncuestasPorIdAgente" />
   </wsdl:message>
@@ -380,12 +480,6 @@
   <wsdl:message name="listaEncuestasPorIdClienteSoapOut">
     <wsdl:part name="parameters" element="tns:listaEncuestasPorIdClienteResponse" />
   </wsdl:message>
-  <wsdl:message name="encuestaPorIdSoapIn">
-    <wsdl:part name="parameters" element="tns:encuestaPorId" />
-  </wsdl:message>
-  <wsdl:message name="encuestaPorIdSoapOut">
-    <wsdl:part name="parameters" element="tns:encuestaPorIdResponse" />
-  </wsdl:message>
   <wsdl:message name="insertarEncuestaSoapIn">
     <wsdl:part name="parameters" element="tns:insertarEncuesta" />
   </wsdl:message>
@@ -397,6 +491,12 @@
   </wsdl:message>
   <wsdl:message name="actualizarEncuestaSoapOut">
     <wsdl:part name="parameters" element="tns:actualizarEncuestaResponse" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasPorFechaIngresoSoapIn">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorFechaIngreso" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasPorFechaIngresoSoapOut">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorFechaIngresoResponse" />
   </wsdl:message>
   <wsdl:message name="listaRolesSoapIn">
     <wsdl:part name="parameters" element="tns:listaRoles" />
@@ -463,6 +563,18 @@
       <wsdl:input message="tns:listaEncuestasSoapIn" />
       <wsdl:output message="tns:listaEncuestasSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="encuestaPorIdPassword">
+      <wsdl:input message="tns:encuestaPorIdPasswordSoapIn" />
+      <wsdl:output message="tns:encuestaPorIdPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorId">
+      <wsdl:input message="tns:encuestaPorIdSoapIn" />
+      <wsdl:output message="tns:encuestaPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getPregunta">
+      <wsdl:input message="tns:getPreguntaSoapIn" />
+      <wsdl:output message="tns:getPreguntaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="listaEncuestasPorIdAgente">
       <wsdl:input message="tns:listaEncuestasPorIdAgenteSoapIn" />
       <wsdl:output message="tns:listaEncuestasPorIdAgenteSoapOut" />
@@ -471,10 +583,6 @@
       <wsdl:input message="tns:listaEncuestasPorIdClienteSoapIn" />
       <wsdl:output message="tns:listaEncuestasPorIdClienteSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="encuestaPorId">
-      <wsdl:input message="tns:encuestaPorIdSoapIn" />
-      <wsdl:output message="tns:encuestaPorIdSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="insertarEncuesta">
       <wsdl:input message="tns:insertarEncuestaSoapIn" />
       <wsdl:output message="tns:insertarEncuestaSoapOut" />
@@ -482,6 +590,10 @@
     <wsdl:operation name="actualizarEncuesta">
       <wsdl:input message="tns:actualizarEncuestaSoapIn" />
       <wsdl:output message="tns:actualizarEncuestaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaIngreso">
+      <wsdl:input message="tns:listaEncuestasPorFechaIngresoSoapIn" />
+      <wsdl:output message="tns:listaEncuestasPorFechaIngresoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="listaRoles">
       <wsdl:input message="tns:listaRolesSoapIn" />
@@ -592,6 +704,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="encuestaPorIdPassword">
+      <soap:operation soapAction="http://tempuri.org/encuestaPorIdPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorId">
+      <soap:operation soapAction="http://tempuri.org/encuestaPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPregunta">
+      <soap:operation soapAction="http://tempuri.org/getPregunta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="listaEncuestasPorIdAgente">
       <soap:operation soapAction="http://tempuri.org/listaEncuestasPorIdAgente" style="document" />
       <wsdl:input>
@@ -610,15 +749,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="encuestaPorId">
-      <soap:operation soapAction="http://tempuri.org/encuestaPorId" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="insertarEncuesta">
       <soap:operation soapAction="http://tempuri.org/insertarEncuesta" style="document" />
       <wsdl:input>
@@ -630,6 +760,15 @@
     </wsdl:operation>
     <wsdl:operation name="actualizarEncuesta">
       <soap:operation soapAction="http://tempuri.org/actualizarEncuesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaIngreso">
+      <soap:operation soapAction="http://tempuri.org/listaEncuestasPorFechaIngreso" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -766,6 +905,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="encuestaPorIdPassword">
+      <soap12:operation soapAction="http://tempuri.org/encuestaPorIdPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorId">
+      <soap12:operation soapAction="http://tempuri.org/encuestaPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPregunta">
+      <soap12:operation soapAction="http://tempuri.org/getPregunta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="listaEncuestasPorIdAgente">
       <soap12:operation soapAction="http://tempuri.org/listaEncuestasPorIdAgente" style="document" />
       <wsdl:input>
@@ -784,15 +950,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="encuestaPorId">
-      <soap12:operation soapAction="http://tempuri.org/encuestaPorId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="insertarEncuesta">
       <soap12:operation soapAction="http://tempuri.org/insertarEncuesta" style="document" />
       <wsdl:input>
@@ -804,6 +961,15 @@
     </wsdl:operation>
     <wsdl:operation name="actualizarEncuesta">
       <soap12:operation soapAction="http://tempuri.org/actualizarEncuesta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaIngreso">
+      <soap12:operation soapAction="http://tempuri.org/listaEncuestasPorFechaIngreso" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
