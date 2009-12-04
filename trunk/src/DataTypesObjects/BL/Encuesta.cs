@@ -99,10 +99,17 @@ namespace DataTypesObjects
       {
         var listaClientes = Usuario.clientesPorAgente(idAgente);
         lista = from e in dbModel.encuestas
-                                     where listaClientes.Contains(e.id_cliente)
-                                     where e.f_ingreso > fechaInicial
-                                     where e.f_ingreso < fechaFinal
-                                     select e;
+                where listaClientes.Contains(e.id_cliente)
+                where e.f_ingreso > fechaInicial
+                where e.f_ingreso < fechaFinal
+                select e;
+      }
+      else
+      {
+        lista = from e in dbModel.encuestas
+                where e.f_ingreso > fechaInicial
+                where e.f_ingreso < fechaFinal
+                select e;
       }
       return lista.ToList();    
     }
