@@ -320,6 +320,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="fechaInicial" type="s:dateTime" />
             <s:element minOccurs="1" maxOccurs="1" name="fechaFinal" type="s:dateTime" />
             <s:element minOccurs="0" maxOccurs="1" name="idAgente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idCliente" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -336,6 +337,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="fechaInicial" type="s:dateTime" />
             <s:element minOccurs="1" maxOccurs="1" name="fechaFinal" type="s:dateTime" />
             <s:element minOccurs="0" maxOccurs="1" name="idAgente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idCliente" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -352,6 +354,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="fechaInicial" type="s:dateTime" />
             <s:element minOccurs="1" maxOccurs="1" name="fechaFinal" type="s:dateTime" />
             <s:element minOccurs="0" maxOccurs="1" name="idAgente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idCliente" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>

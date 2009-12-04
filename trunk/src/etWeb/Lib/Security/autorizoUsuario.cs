@@ -82,6 +82,17 @@ namespace etWeb.Lib.Security
       }
       return usuarioActual;
     }
+
+    internal static bool esCliente()
+    {
+      FormsIdentity usrFrmId = (FormsIdentity)HttpContext.Current.User.Identity;
+      string ticketRolesUsuario = usrFrmId.Ticket.UserData;
+      if (ticketRolesUsuario.Contains("cliente"))
+      {
+        return true;
+      }
+      return false;
+    }
   }
 
   [Serializable]

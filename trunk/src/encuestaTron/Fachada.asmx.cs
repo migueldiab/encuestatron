@@ -188,19 +188,19 @@ namespace encuestaTron
   }
 
   [WebMethod]
-  public List<encuesta> listaEncuestasPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+  public List<encuesta> listaEncuestasPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
   {
-    return Encuesta.listaEncuestasPorIdCliente(fechaInicial, fechaFinal, idAgente);
+    return Encuesta.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, idAgente, idCliente);
   }
   [WebMethod]
-  public List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+  public List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
   {
-    return Encuesta.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, idAgente);
+    return Encuesta.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, idAgente, idCliente);
   }
   [WebMethod]
-  public List<encuesta> listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+  public List<encuesta> listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
   {
-    return Encuesta.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, idAgente);
+    return Encuesta.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, idAgente, idCliente);
   }
 
 #endregion

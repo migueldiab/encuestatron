@@ -690,28 +690,30 @@ namespace etWeb.et {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listaEncuestasPorFechaIngreso", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public encuesta[] listaEncuestasPorFechaIngreso(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente) {
+        public encuesta[] listaEncuestasPorFechaIngreso(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente) {
             object[] results = this.Invoke("listaEncuestasPorFechaIngreso", new object[] {
                         fechaInicial,
                         fechaFinal,
-                        idAgente});
+                        idAgente,
+                        idCliente});
             return ((encuesta[])(results[0]));
         }
         
         /// <remarks/>
-        public void listaEncuestasPorFechaIngresoAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente) {
-            this.listaEncuestasPorFechaIngresoAsync(fechaInicial, fechaFinal, idAgente, null);
+        public void listaEncuestasPorFechaIngresoAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente) {
+            this.listaEncuestasPorFechaIngresoAsync(fechaInicial, fechaFinal, idAgente, idCliente, null);
         }
         
         /// <remarks/>
-        public void listaEncuestasPorFechaIngresoAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, object userState) {
+        public void listaEncuestasPorFechaIngresoAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente, object userState) {
             if ((this.listaEncuestasPorFechaIngresoOperationCompleted == null)) {
                 this.listaEncuestasPorFechaIngresoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlistaEncuestasPorFechaIngresoOperationCompleted);
             }
             this.InvokeAsync("listaEncuestasPorFechaIngreso", new object[] {
                         fechaInicial,
                         fechaFinal,
-                        idAgente}, this.listaEncuestasPorFechaIngresoOperationCompleted, userState);
+                        idAgente,
+                        idCliente}, this.listaEncuestasPorFechaIngresoOperationCompleted, userState);
         }
         
         private void OnlistaEncuestasPorFechaIngresoOperationCompleted(object arg) {
@@ -723,28 +725,30 @@ namespace etWeb.et {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listaEncuestasPorFechaVigencia", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public encuesta[] listaEncuestasPorFechaVigencia(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente) {
+        public encuesta[] listaEncuestasPorFechaVigencia(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente) {
             object[] results = this.Invoke("listaEncuestasPorFechaVigencia", new object[] {
                         fechaInicial,
                         fechaFinal,
-                        idAgente});
+                        idAgente,
+                        idCliente});
             return ((encuesta[])(results[0]));
         }
         
         /// <remarks/>
-        public void listaEncuestasPorFechaVigenciaAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente) {
-            this.listaEncuestasPorFechaVigenciaAsync(fechaInicial, fechaFinal, idAgente, null);
+        public void listaEncuestasPorFechaVigenciaAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente) {
+            this.listaEncuestasPorFechaVigenciaAsync(fechaInicial, fechaFinal, idAgente, idCliente, null);
         }
         
         /// <remarks/>
-        public void listaEncuestasPorFechaVigenciaAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, object userState) {
+        public void listaEncuestasPorFechaVigenciaAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente, object userState) {
             if ((this.listaEncuestasPorFechaVigenciaOperationCompleted == null)) {
                 this.listaEncuestasPorFechaVigenciaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlistaEncuestasPorFechaVigenciaOperationCompleted);
             }
             this.InvokeAsync("listaEncuestasPorFechaVigencia", new object[] {
                         fechaInicial,
                         fechaFinal,
-                        idAgente}, this.listaEncuestasPorFechaVigenciaOperationCompleted, userState);
+                        idAgente,
+                        idCliente}, this.listaEncuestasPorFechaVigenciaOperationCompleted, userState);
         }
         
         private void OnlistaEncuestasPorFechaVigenciaOperationCompleted(object arg) {
@@ -756,28 +760,30 @@ namespace etWeb.et {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/listaEncuestasPorFechaCierre", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public encuesta[] listaEncuestasPorFechaCierre(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente) {
+        public encuesta[] listaEncuestasPorFechaCierre(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente) {
             object[] results = this.Invoke("listaEncuestasPorFechaCierre", new object[] {
                         fechaInicial,
                         fechaFinal,
-                        idAgente});
+                        idAgente,
+                        idCliente});
             return ((encuesta[])(results[0]));
         }
         
         /// <remarks/>
-        public void listaEncuestasPorFechaCierreAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente) {
-            this.listaEncuestasPorFechaCierreAsync(fechaInicial, fechaFinal, idAgente, null);
+        public void listaEncuestasPorFechaCierreAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente) {
+            this.listaEncuestasPorFechaCierreAsync(fechaInicial, fechaFinal, idAgente, idCliente, null);
         }
         
         /// <remarks/>
-        public void listaEncuestasPorFechaCierreAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, object userState) {
+        public void listaEncuestasPorFechaCierreAsync(System.DateTime fechaInicial, System.DateTime fechaFinal, string idAgente, string idCliente, object userState) {
             if ((this.listaEncuestasPorFechaCierreOperationCompleted == null)) {
                 this.listaEncuestasPorFechaCierreOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlistaEncuestasPorFechaCierreOperationCompleted);
             }
             this.InvokeAsync("listaEncuestasPorFechaCierre", new object[] {
                         fechaInicial,
                         fechaFinal,
-                        idAgente}, this.listaEncuestasPorFechaCierreOperationCompleted, userState);
+                        idAgente,
+                        idCliente}, this.listaEncuestasPorFechaCierreOperationCompleted, userState);
         }
         
         private void OnlistaEncuestasPorFechaCierreOperationCompleted(object arg) {

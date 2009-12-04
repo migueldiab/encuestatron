@@ -91,7 +91,7 @@ namespace DataTypesObjects
       return lista.ToList();    
     }
 
-    public static List<encuesta> listaEncuestasPorIdCliente(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+    public static List<encuesta> listaEncuestasPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
     {
       var dbModel = new dbModel(Sistema.connStr);
       IQueryable<encuesta> lista = null;
@@ -100,6 +100,14 @@ namespace DataTypesObjects
         var listaClientes = Usuario.clientesPorAgente(idAgente);
         lista = from e in dbModel.encuestas
                 where listaClientes.Contains(e.id_cliente)
+                where e.f_ingreso > fechaInicial
+                where e.f_ingreso < fechaFinal
+                select e;
+      }
+      else if (idCliente != null)
+      {
+        lista = from e in dbModel.encuestas
+                where e.id_cliente == idCliente
                 where e.f_ingreso > fechaInicial
                 where e.f_ingreso < fechaFinal
                 select e;
@@ -119,7 +127,7 @@ namespace DataTypesObjects
       throw new NotImplementedException();
     }
 
-    public static List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+    public static List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
     {
       var dbModel = new dbModel(Sistema.connStr);
       IQueryable<encuesta> lista = null;
@@ -128,6 +136,14 @@ namespace DataTypesObjects
         var listaClientes = Usuario.clientesPorAgente(idAgente);
         lista = from e in dbModel.encuestas
                 where listaClientes.Contains(e.id_cliente)
+                where e.f_vigencia > fechaInicial
+                where e.f_vigencia < fechaFinal
+                select e;
+      }
+      else if (idCliente != null)
+      {
+        lista = from e in dbModel.encuestas
+                where e.id_cliente == idCliente
                 where e.f_vigencia > fechaInicial
                 where e.f_vigencia < fechaFinal
                 select e;
@@ -142,7 +158,7 @@ namespace DataTypesObjects
       return lista.ToList();    
     }
 
-    public static List<encuesta> listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+    public static List<encuesta> listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
     {
       var dbModel = new dbModel(Sistema.connStr);
       IQueryable<encuesta> lista = null;
@@ -151,6 +167,14 @@ namespace DataTypesObjects
         var listaClientes = Usuario.clientesPorAgente(idAgente);
         lista = from e in dbModel.encuestas
                 where listaClientes.Contains(e.id_cliente)
+                where e.f_cierre > fechaInicial
+                where e.f_cierre < fechaFinal
+                select e;
+      }
+      else if (idCliente != null)
+      {
+        lista = from e in dbModel.encuestas
+                where e.id_cliente == idCliente
                 where e.f_cierre > fechaInicial
                 where e.f_cierre < fechaFinal
                 select e;
