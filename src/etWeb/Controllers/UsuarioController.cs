@@ -22,7 +22,6 @@ namespace etWeb.Controllers
       {
         Fachada etFachada = new Fachada();
         IList<usuario> usuarios = etFachada.listaUsuarios();
-        ViewData["roles"] = etFachada.listaRoles();
         return View(usuarios);
       }
 
@@ -115,18 +114,20 @@ namespace etWeb.Controllers
       public ActionResult CrearCliente()
       {
         Fachada etFachada = new Fachada();
+        ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre");
         return View();
       }      
       [autorizoUsuario(requiereRol = "admin")]
       [AcceptVerbs(HttpVerbs.Post)]
-      public ActionResult CrearCliente(usuario unUsuario, string idAgente)
+      public ActionResult CrearCliente(usuario unUsuario, string id_agente)
       {
+        Fachada etFachada = new Fachada();
+        ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre");
         if (ModelState.IsValid)
         {
-          Fachada etFachada = new Fachada();
           rol rolCliente = etFachada.rolPorNombre("cliente");
           unUsuario.id_rol = rolCliente.id;
-          usuario unAgente = etFachada.usuarioPorId(idAgente);
+          usuario unAgente = etFachada.usuarioPorId(id_agente);
           if (etFachada.insertarCliente(unUsuario, unAgente))
           {
             return RedirectToAction("Index");
@@ -181,7 +182,43 @@ namespace etWeb.Controllers
           return View(unUsuario);
         }
       }
-      
+
+
+      /*
+       * Editar Cliente
+       */
+      [autorizoUsuario(requiereRol = "admin")]
+      public ActionResult EditarCliente(string id)
+      {
+        Fachada etFachada = new Fachada();
+        usuario unUsuario = etFachada.usuarioPorId(id);        
+        ViewData["id_rol"] = new SelectList(etFachada.listaRoles(), "id", "nombre", unUsuario.id_rol);
+        return View(unUsuario);
+      }
+      [autorizoUsuario(requiereRol = "admin")]
+      [AcceptVerbs(HttpVerbs.Post)]
+      public ActionResult EditarCliente(string id, usuario unUsuario)
+      {
+        if (ModelState.IsValid)
+        {
+          Fachada etFachada = new Fachada();
+          if (etFachada.actualizarUsuario(id, unUsuario))
+          {
+
+            return RedirectToAction("Index");
+          }
+          else
+          {
+            ViewData["error"] = "Error al grabar";
+            return View(unUsuario);
+          }
+        }
+        else
+        {
+          ViewData["error"] = "Error al validar modelo";
+          return View(unUsuario);
+        }
+      }
       /*
        * Borrar Generico
        */

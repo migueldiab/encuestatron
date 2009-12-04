@@ -42,7 +42,11 @@
     
         <tr>
             <td>
+            <% if (item.rol == "Cliente") { %>
+              <%= Html.ActionLink(Html.Encode(item.id_usuario), "EditarCliente", new { id = item.id_usuario })%>
+            <% } else { %>
               <%= Html.ActionLink(Html.Encode(item.id_usuario), "Edit", new { id = item.id_usuario })%>
+            <% } %>
             </td>
             <td>
                 <%= Html.Encode(item.nombre) %>
