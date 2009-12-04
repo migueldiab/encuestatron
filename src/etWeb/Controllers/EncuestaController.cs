@@ -19,7 +19,7 @@ namespace etWeb.Controllers
   {
     //
     // GET: /Encuesta/
-    [autorizoUsuario(requiereRol = "admin,agente")]
+    [autorizoUsuario(requiereRol = "admin,agente, cliente")]
     public ActionResult Index()
     {
       Fachada etFachada = new Fachada();
@@ -101,13 +101,13 @@ namespace etWeb.Controllers
     }
 
 
-    [autorizoUsuario(requiereRol = "admin, agente")]
+    [autorizoUsuario(requiereRol = "admin, agente, cliente")]
     public ActionResult ListaPorFechaIngreso()
     {
       return View();
     }
 
-    [autorizoUsuario(requiereRol = "admin, agente")]
+    [autorizoUsuario(requiereRol = "admin, agente, cliente")]
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult ListaPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal)
     {
@@ -115,20 +115,22 @@ namespace etWeb.Controllers
       Fachada etFachada = new Fachada();
       List<encuesta> encuestas = null;
       if (autorizoUsuario.esAgente())
-        encuestas = etFachada.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, usuarioActual.id_usuario).ToList();
+        encuestas = etFachada.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, usuarioActual.id_usuario, null).ToList();
+      else if (autorizoUsuario.esCliente())
+        encuestas = etFachada.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, null, usuarioActual.id_usuario).ToList();
       else
-        encuestas = etFachada.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, null).ToList();
+        encuestas = etFachada.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, null, null).ToList();
       return View(encuestas);
     }
 
 
-    [autorizoUsuario(requiereRol = "admin, agente")]
+    [autorizoUsuario(requiereRol = "admin, agente, cliente")]
     public ActionResult ListaPorFechaVigencia()
     {
       return View();
     }
 
-    [autorizoUsuario(requiereRol = "admin, agente")]
+    [autorizoUsuario(requiereRol = "admin, agente, cliente")]
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult ListaPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal)
     {
@@ -136,19 +138,21 @@ namespace etWeb.Controllers
       Fachada etFachada = new Fachada();
       List<encuesta> encuestas = null;
       if (autorizoUsuario.esAgente())
-        encuestas = etFachada.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, usuarioActual.id_usuario).ToList();
+        encuestas = etFachada.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, usuarioActual.id_usuario, null).ToList();
+      else if (autorizoUsuario.esCliente())
+        encuestas = etFachada.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, null, usuarioActual.id_usuario).ToList();
       else
-        encuestas = etFachada.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, null).ToList();
+        encuestas = etFachada.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, null, null).ToList();
       return View(encuestas);
     }
 
-    [autorizoUsuario(requiereRol = "admin, agente")]
+    [autorizoUsuario(requiereRol = "admin, agente, cliente")]
     public ActionResult ListaPorFechaCierre()
     {
       return View();
     }
 
-    [autorizoUsuario(requiereRol = "admin, agente")]
+    [autorizoUsuario(requiereRol = "admin, agente, cliente")]
     [AcceptVerbs(HttpVerbs.Post)]
     public ActionResult ListaPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal)
     {
@@ -156,9 +160,11 @@ namespace etWeb.Controllers
       Fachada etFachada = new Fachada();
       List<encuesta> encuestas = null;
       if (autorizoUsuario.esAgente())
-        encuestas = etFachada.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, usuarioActual.id_usuario).ToList();
+        encuestas = etFachada.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, usuarioActual.id_usuario, null).ToList();
+      else if (autorizoUsuario.esCliente())
+        encuestas = etFachada.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, null, usuarioActual.id_usuario).ToList();
       else
-        encuestas = etFachada.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, null).ToList();
+        encuestas = etFachada.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, null, null).ToList();
       return View(encuestas);
     }
     
