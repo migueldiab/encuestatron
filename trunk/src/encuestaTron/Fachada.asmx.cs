@@ -164,6 +164,8 @@ namespace encuestaTron
   [WebMethod]
   public ResultWs getPregunta(int idEncuesta, string pass, respuesta respuesta)
   {
+      Encuesta
+      Pregunta pregunta = Pregunta.getPregunta(respuesta.id_proxima_pregunta,idEncuesta);
       return new ResultWs();
   }
   [WebMethod]
