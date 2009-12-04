@@ -78,7 +78,7 @@ namespace DataTypesObjects
     public static List<encuesta> listaEncuestasPorIdAgente(string idAgente)
     {
       var dbModel = new dbModel(Sistema.connStr);
-      var listaClientes = from c in dbModel.clientes where c.id_agente == idAgente select c.id_usuario;
+      var listaClientes = Usuario.clientesPorAgente(idAgente);
       IQueryable<encuesta> lista = from e in dbModel.encuestas where listaClientes.Contains(e.id_cliente) select e;
 
       return lista.ToList();      
@@ -89,6 +89,27 @@ namespace DataTypesObjects
       var dbModel = new dbModel(Sistema.connStr);
       IQueryable<encuesta> lista = from e in dbModel.encuestas where e.id_cliente == idCliente select e;
       return lista.ToList();    
+    }
+
+    public static List<encuesta> listaEncuestasPorIdCliente(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      IQueryable<encuesta> lista = null;
+      if (idAgente != null)
+      {
+        var listaClientes = Usuario.clientesPorAgente(idAgente);
+        lista = from e in dbModel.encuestas
+                                     where listaClientes.Contains(e.id_cliente)
+                                     where e.f_ingreso > fechaInicial
+                                     where e.f_ingreso < fechaFinal
+                                     select e;
+      }
+      return lista.ToList();    
+    }
+
+    public static bool esAutenticada(encuesta unaEncuesta, string pass)
+    {
+      throw new NotImplementedException();
     }
   }
 }

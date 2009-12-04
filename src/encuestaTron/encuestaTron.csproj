@@ -67,12 +67,15 @@
       <DependentUpon>Fachada.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ListaEncuestaResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ResultadoWs.cs" />
+    <Compile Include="ResultWs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">

@@ -23,7 +23,7 @@ namespace etWeb.Controllers
     public ActionResult Index()
     {
       Fachada etFachada = new Fachada();
-      IList<encuesta> encuestas = etFachada.listaEncuestas();
+      IList<encuesta> encuestas = etFachada.listaEncuestas().ListaEncuestas;
       return View(encuestas);
     }
 
@@ -43,7 +43,7 @@ namespace etWeb.Controllers
       IList<encuesta> encuestas = null;
       ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre", id_agente);
       if (id_agente == "") {
-        encuestas = etFachada.listaEncuestas();
+        encuestas = etFachada.listaEncuestas().ListaEncuestas;
       }
       else {
         encuestas = etFachada.listaEncuestasPorIdAgente(id_agente);
@@ -90,7 +90,7 @@ namespace etWeb.Controllers
         }
         else
         {
-          encuestas = etFachada.listaEncuestas();
+          encuestas = etFachada.listaEncuestas().ListaEncuestas;
         }
       }
       else
@@ -100,13 +100,36 @@ namespace etWeb.Controllers
       return View(encuestas);
     }
 
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    public ActionResult ListaPorFechaIngreso()
+    {
+      Fachada etFachada = new Fachada();
+      IList<encuesta> encuestas = etFachada.listaEncuestas().ListaEncuestas;
+      return View(encuestas);
+    }
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult ListaPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal)
+    {
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
+      Fachada etFachada = new Fachada();
+      List<encuesta> encuestas = null;
+      if (autorizoUsuario.esAgente())
+        encuestas = etFachada.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, usuarioActual.id_usuario).ToList();
+      else
+        encuestas = etFachada.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, null).ToList();
+      return View(encuestas);
+    }
+
     //
     // GET: /Encuesta/Details/5
     [autorizoUsuario(requiereRol = "agente,admin,cliente")]
     public ActionResult Details(string id)
     {
       Fachada etFachada = new Fachada();
-      encuesta unaEncuesta = etFachada.encuestaPorId(id);
+      encuesta unaEncuesta = etFachada.encuestaPorId(id).ListaEncuestas.First();
       return View(unaEncuesta);
     }
 
@@ -151,7 +174,7 @@ namespace etWeb.Controllers
     public ActionResult Edit(string id)
     {
       Fachada etFachada = new Fachada();
-      encuesta unaEncuesta = etFachada.encuestaPorId(id);
+      encuesta unaEncuesta = etFachada.encuestaPorId(id).ListaEncuestas.First();
       return View(unaEncuesta);
     }
 
