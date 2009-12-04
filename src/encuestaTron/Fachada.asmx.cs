@@ -8,7 +8,6 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
 using System.Collections.Generic;
-using encuestaTron.DTO;
 using encuestaTron.Models;
 using DataTypesObjects;
 
@@ -72,7 +71,8 @@ namespace encuestaTron
     [WebMethod]
     public List<usuario> listaClientePorAgente(string nombreAgente)
     {
-      return Usuario.listaClientePorAgente(nombreAgente); 
+      //return Usuario.listaClientePorAgente(nombreAgente); 
+        return null;
     }
     
     
@@ -103,9 +103,53 @@ namespace encuestaTron
 
 #region Encuestas
   [WebMethod]
-  public List<encuesta> listaEncuestas()
+  public ResultWs listaEncuestas()
   {
-    return Encuesta.listaEncuestas();
+      ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
+      if (Encuesta.listaEncuestas().Count() > 0)
+      {
+          listaEncuestaResult.ListaEncuestas = Encuesta.listaEncuestas();
+          listaEncuestaResult.Error = null;
+      }
+      else
+      {
+          listaEncuestaResult.Error = "No se encontraron encuestas";
+      }
+      
+    return listaEncuestaResult;
+  }
+
+  [WebMethod]
+  public ResultWs encuestaPorId(int id,String pass)
+  {
+      ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
+      encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
+      if (unaEncuesta!=null)
+      {
+          if (Encuesta.esAutenticada(unaEncuesta, pass))
+          {
+              listaEncuestaResult.ListaEncuestas.Add(unaEncuesta);
+              listaEncuestaResult.Error = null;
+          }
+          else
+          {
+              listaEncuestaResult.Error = "No se valido la contraseña para la encuesta id: " + id;
+
+          }
+          
+      }
+      else
+      {
+          listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
+       }
+
+      return listaEncuestaResult;
+  }
+
+  [WebMethod]
+  public ResultWs getPregunta(int idEncuesta, string pass, respuesta respuesta)
+  {
+      return new ResultWs();
   }
   [WebMethod]
   public List<encuesta> listaEncuestasPorIdAgente(string idAgente)
@@ -119,11 +163,7 @@ namespace encuestaTron
   }
 
   
-  [WebMethod]
-  public encuesta encuestaPorId(string id)
-  {
-    return Encuesta.encuestaPorId(id);
-  }
+  
 
   [WebMethod]
   public bool insertarEncuesta(encuesta unaEncuesta)
