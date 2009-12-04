@@ -12,6 +12,8 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 using etWebService.et;
 
+
+
 namespace etWebService
 {
     public class ListaEncuestaResult: ResultWs
