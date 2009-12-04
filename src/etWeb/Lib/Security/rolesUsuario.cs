@@ -55,23 +55,14 @@ namespace etWeb.Lib.Security
       throw new NotImplementedException();
     }
 
+    /*
+     * Consulta la fachada y devuelve los roles actuales del usuario
+     */
     public override string[] GetRolesForUser(string userName)
     {
-      /*
-       * Metodo debe consultar con fachada y devolver los roles actuales del usuario
-       */
       Fachada etFachada = new Fachada();
       string permisos = etFachada.obtenerPermisosPorUsuario(userName);
       return permisos.Split(',');
-
-      /*
-      List<string> roles = new List<string>();      
-      roles.Add("Guest");
-      if (userName.Equals("madrax"))
-        roles.Add("ListaEncuestas");
-      return roles.ToArray();
-       */
-
     }
 
     public override string[] GetUsersInRole(string roleName)
