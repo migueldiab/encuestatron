@@ -89,24 +89,24 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\et\encuesta1.datasource">
+    <None Include="Web References\et\encuesta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\et\fachada.wsdl" />
-    <None Include="Web References\et\ListaEncuestaResult1.datasource">
+    <None Include="Web References\et\ListaEncuestaResult.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\et\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\et\ResultWs1.datasource">
+    <None Include="Web References\et\ResultWs.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\et\rol1.datasource">
+    <None Include="Web References\et\rol.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\et\usuario1.datasource">
+    <None Include="Web References\et\usuario.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
@@ -120,7 +120,7 @@
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>etWebService_localhost_Fachada</CachedSettingsPropName>
+      <CachedSettingsPropName>etWebService_et_Fachada</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

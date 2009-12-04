@@ -92,6 +92,13 @@ namespace encuestaTron
     {
       return Usuario.insertarUsuario(unUsuario);
     }
+    [WebMethod]
+    public bool insertarCliente(usuario unCliente, usuario unAgente)
+    {
+      return Usuario.insertarCliente(unCliente, unAgente);
+    }
+
+    
 
     [WebMethod]
     public bool actualizarUsuario(string id, usuario unUsuario)

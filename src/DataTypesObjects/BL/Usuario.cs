@@ -128,6 +128,11 @@ namespace DataTypesObjects
           IQueryable<string> listaClientes = from a in dbModel.clientes where a.id_agente == nombreAgente select a.id_usuario;
           return listaClientes.ToList();
         }
+
+        public static bool insertarCliente(usuario unCliente, usuario unAgente)
+        {
+          throw new NotImplementedException();
+        }
     }
 }
 
