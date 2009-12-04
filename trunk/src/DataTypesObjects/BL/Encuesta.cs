@@ -118,5 +118,51 @@ namespace DataTypesObjects
     {
       throw new NotImplementedException();
     }
+
+    public static List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      IQueryable<encuesta> lista = null;
+      if (idAgente != null)
+      {
+        var listaClientes = Usuario.clientesPorAgente(idAgente);
+        lista = from e in dbModel.encuestas
+                where listaClientes.Contains(e.id_cliente)
+                where e.f_vigencia > fechaInicial
+                where e.f_vigencia < fechaFinal
+                select e;
+      }
+      else
+      {
+        lista = from e in dbModel.encuestas
+                where e.f_vigencia > fechaInicial
+                where e.f_vigencia < fechaFinal
+                select e;
+      }
+      return lista.ToList();    
+    }
+
+    public static List<encuesta> listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      IQueryable<encuesta> lista = null;
+      if (idAgente != null)
+      {
+        var listaClientes = Usuario.clientesPorAgente(idAgente);
+        lista = from e in dbModel.encuestas
+                where listaClientes.Contains(e.id_cliente)
+                where e.f_cierre > fechaInicial
+                where e.f_cierre < fechaFinal
+                select e;
+      }
+      else
+      {
+        lista = from e in dbModel.encuestas
+                where e.f_cierre > fechaInicial
+                where e.f_cierre < fechaFinal
+                select e;
+      }
+      return lista.ToList();
+    }
   }
 }

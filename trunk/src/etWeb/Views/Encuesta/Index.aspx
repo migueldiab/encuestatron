@@ -13,8 +13,8 @@
       <li><%= Html.ActionLink("Agente", "ListaPorAgente")%></li>
       <li><%= Html.ActionLink("Cliente", "ListaPorCliente")%></li>
       <li><%= Html.ActionLink("Fecha de Ingreso", "ListaPorFechaIngreso")%></li>
-      <li><%= Html.ActionLink("Fecha de Vigencia", "ListaPorVigencia")%></li>
-      <li><%= Html.ActionLink("Fecha de Cierre", "ListaPorCierre")%></li>      
+      <li><%= Html.ActionLink("Fecha de Vigencia", "ListaPorFechaVigencia")%></li>
+      <li><%= Html.ActionLink("Fecha de Cierre", "ListaPorFechaCierre")%></li>      
     </ul>
 
     <h4>Funciones : </h4>
