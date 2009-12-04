@@ -27,9 +27,9 @@ namespace etWebService.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/et/fachada.asmx")]
-        public string etWebService_localhost_Fachada {
+        public string etWebService_et_Fachada {
             get {
-                return ((string)(this["etWebService_localhost_Fachada"]));
+                return ((string)(this["etWebService_et_Fachada"]));
             }
         }
     }

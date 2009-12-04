@@ -137,6 +137,7 @@
     <Content Include="Views\Rol\Index.aspx" />
     <Content Include="Views\Usuario\Borrar.aspx" />
     <Content Include="Views\Usuario\CrearAgente.aspx" />
+    <Content Include="Views\Usuario\CrearCliente.aspx" />
     <Content Include="Views\Usuario\Create.aspx" />
     <Content Include="Views\Usuario\Details.aspx" />
     <Content Include="Views\Usuario\Edit.aspx" />

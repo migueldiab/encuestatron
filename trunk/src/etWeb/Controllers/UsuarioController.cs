@@ -119,14 +119,15 @@ namespace etWeb.Controllers
       }      
       [autorizoUsuario(requiereRol = "admin")]
       [AcceptVerbs(HttpVerbs.Post)]
-      public ActionResult CrearCliente(usuario unUsuario)
+      public ActionResult CrearCliente(usuario unUsuario, string idAgente)
       {
         if (ModelState.IsValid)
         {
           Fachada etFachada = new Fachada();
-          rol rolAgente = etFachada.rolPorNombre("agente");
-          unUsuario.id_rol = rolAgente.id;
-          if (etFachada.insertarUsuario(unUsuario))
+          rol rolCliente = etFachada.rolPorNombre("cliente");
+          unUsuario.id_rol = rolCliente.id;
+          usuario unAgente = etFachada.usuarioPorId(idAgente);
+          if (etFachada.insertarCliente(unUsuario, unAgente))
           {
             return RedirectToAction("Index");
           }
@@ -180,15 +181,13 @@ namespace etWeb.Controllers
           return View(unUsuario);
         }
       }
-
-
+      
       /*
        * Borrar Generico
        */
       [autorizoUsuario(requiereRol = "admin")]
       public ActionResult Borrar(string id)
       {
-
         Fachada etFachada = new Fachada();
         if (etFachada.borrarUsuarioPorId(id))
         {
