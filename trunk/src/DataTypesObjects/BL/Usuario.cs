@@ -131,7 +131,22 @@ namespace DataTypesObjects
 
         public static bool insertarCliente(usuario unCliente, usuario unAgente)
         {
-          throw new NotImplementedException();
+          try
+          {
+            var dbModel = new dbModel(Sistema.connStr);
+            dbModel.usuarios.InsertOnSubmit(unCliente);
+            cliente unClienteAgente = new cliente();
+            unClienteAgente.id_usuario = unCliente.id_usuario;
+            unClienteAgente.id_agente = unAgente.id_usuario;
+            dbModel.clientes.InsertOnSubmit(unClienteAgente);
+            dbModel.SubmitChanges();
+            return true;
+          }
+          catch (Exception e)
+          {
+            string error = e.ToString();
+            return false;
+          }
         }
     }
 }
