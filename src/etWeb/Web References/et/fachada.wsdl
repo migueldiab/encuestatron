@@ -330,6 +330,38 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="listaEncuestasPorFechaVigencia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fechaInicial" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="fechaFinal" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="idAgente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaEncuestasPorFechaVigenciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasPorFechaVigenciaResult" type="tns:ArrayOfEncuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaEncuestasPorFechaCierre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fechaInicial" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="fechaFinal" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="idAgente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaEncuestasPorFechaCierreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaEncuestasPorFechaCierreResult" type="tns:ArrayOfEncuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="listaRoles">
         <s:complexType />
       </s:element>
@@ -498,6 +530,18 @@
   <wsdl:message name="listaEncuestasPorFechaIngresoSoapOut">
     <wsdl:part name="parameters" element="tns:listaEncuestasPorFechaIngresoResponse" />
   </wsdl:message>
+  <wsdl:message name="listaEncuestasPorFechaVigenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorFechaVigencia" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasPorFechaVigenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorFechaVigenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasPorFechaCierreSoapIn">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorFechaCierre" />
+  </wsdl:message>
+  <wsdl:message name="listaEncuestasPorFechaCierreSoapOut">
+    <wsdl:part name="parameters" element="tns:listaEncuestasPorFechaCierreResponse" />
+  </wsdl:message>
   <wsdl:message name="listaRolesSoapIn">
     <wsdl:part name="parameters" element="tns:listaRoles" />
   </wsdl:message>
@@ -594,6 +638,14 @@
     <wsdl:operation name="listaEncuestasPorFechaIngreso">
       <wsdl:input message="tns:listaEncuestasPorFechaIngresoSoapIn" />
       <wsdl:output message="tns:listaEncuestasPorFechaIngresoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaVigencia">
+      <wsdl:input message="tns:listaEncuestasPorFechaVigenciaSoapIn" />
+      <wsdl:output message="tns:listaEncuestasPorFechaVigenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaCierre">
+      <wsdl:input message="tns:listaEncuestasPorFechaCierreSoapIn" />
+      <wsdl:output message="tns:listaEncuestasPorFechaCierreSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="listaRoles">
       <wsdl:input message="tns:listaRolesSoapIn" />
@@ -769,6 +821,24 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestasPorFechaIngreso">
       <soap:operation soapAction="http://tempuri.org/listaEncuestasPorFechaIngreso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaVigencia">
+      <soap:operation soapAction="http://tempuri.org/listaEncuestasPorFechaVigencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaCierre">
+      <soap:operation soapAction="http://tempuri.org/listaEncuestasPorFechaCierre" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -970,6 +1040,24 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestasPorFechaIngreso">
       <soap12:operation soapAction="http://tempuri.org/listaEncuestasPorFechaIngreso" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaVigencia">
+      <soap12:operation soapAction="http://tempuri.org/listaEncuestasPorFechaVigencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaEncuestasPorFechaCierre">
+      <soap12:operation soapAction="http://tempuri.org/listaEncuestasPorFechaCierre" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

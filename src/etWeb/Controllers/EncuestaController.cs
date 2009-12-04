@@ -104,9 +104,7 @@ namespace etWeb.Controllers
     [autorizoUsuario(requiereRol = "admin, agente")]
     public ActionResult ListaPorFechaIngreso()
     {
-      Fachada etFachada = new Fachada();
-      IList<encuesta> encuestas = etFachada.listaEncuestas().ListaEncuestas;
-      return View(encuestas);
+      return View();
     }
 
     [autorizoUsuario(requiereRol = "admin, agente")]
@@ -123,6 +121,47 @@ namespace etWeb.Controllers
       return View(encuestas);
     }
 
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    public ActionResult ListaPorFechaVigencia()
+    {
+      return View();
+    }
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult ListaPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal)
+    {
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
+      Fachada etFachada = new Fachada();
+      List<encuesta> encuestas = null;
+      if (autorizoUsuario.esAgente())
+        encuestas = etFachada.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, usuarioActual.id_usuario).ToList();
+      else
+        encuestas = etFachada.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, null).ToList();
+      return View(encuestas);
+    }
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    public ActionResult ListaPorFechaCierre()
+    {
+      return View();
+    }
+
+    [autorizoUsuario(requiereRol = "admin, agente")]
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult ListaPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal)
+    {
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
+      Fachada etFachada = new Fachada();
+      List<encuesta> encuestas = null;
+      if (autorizoUsuario.esAgente())
+        encuestas = etFachada.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, usuarioActual.id_usuario).ToList();
+      else
+        encuestas = etFachada.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, null).ToList();
+      return View(encuestas);
+    }
+    
     //
     // GET: /Encuesta/Details/5
     [autorizoUsuario(requiereRol = "agente,admin,cliente")]

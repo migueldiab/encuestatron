@@ -192,6 +192,16 @@ namespace encuestaTron
   {
     return Encuesta.listaEncuestasPorIdCliente(fechaInicial, fechaFinal, idAgente);
   }
+  [WebMethod]
+  public List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+  {
+    return Encuesta.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, idAgente);
+  }
+  [WebMethod]
+  public List<encuesta> listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente)
+  {
+    return Encuesta.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, idAgente);
+  }
 
 #endregion
 
