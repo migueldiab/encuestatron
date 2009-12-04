@@ -36,6 +36,11 @@ namespace DataTypesObjects
       var dbModel = new dbModel(Sistema.connStr);
       return dbModel.encuestas.SingleOrDefault(x => x.nombre == id); 
     }
+    public static bool esAutenticada(encuesta encuesta, String pass)
+    {
+        return (encuesta.contrasena == pass);
+    }
+
 
     public static bool insertarEncuesta(encuesta unaEncuesta)
     {

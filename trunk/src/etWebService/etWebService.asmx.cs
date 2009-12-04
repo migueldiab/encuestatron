@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
+using System.Collections.Generic;
+using etWebService.et;
 
 namespace etWebService
 {
@@ -21,34 +23,29 @@ namespace etWebService
     public class etWebService : System.Web.Services.WebService
     {
 
+        et.Fachada fachada = new et.Fachada();
+
         [WebMethod]
-        public ResultWs getListaEncuestas()
-        {
-          ResultWs resultado = new ResultWs();
-          resultado.Error = "Hello World";
-            return resultado;
+        public et.ResultWs getListaEncuestas()
+        {          
+            return fachada.listaEncuestas();
         }
         [WebMethod]
-        public ResultWs getEncuesta(int id, String user, String pass)
+        public et.ResultWs getEncuesta(int id, String pass)
         {
-          ResultWs resultado = new ResultWs();
-          resultado.Error = "Hello World";
-          return resultado;
+          return fachada.encuestaPorId(id,pass);
         }
 
         [WebMethod]
-        public ResultWs getPreguntaEncuestas()
+        public et.ResultWs getPreguntaEncuesta(int idEncuesta,String passEncuesta,respuesta respuesta)
         {
-          ResultWs resultado = new ResultWs();
-          resultado.Error = "Hello World";
-          return resultado;
+            return fachada.getPregunta(idEncuesta,passEncuesta,respuesta);
         }
         [WebMethod]
-        public ResultWs getResultadoEncuesta(int id, String user, String pass)
+        public et.ResultWs getResultadoEncuesta(int id, String pass)
         {
-          ResultWs resultado = new ResultWs();
-          resultado.Error = "Hello World";
-          return resultado;
+          
+          return null;
         }
 
         private void InitializeComponent()

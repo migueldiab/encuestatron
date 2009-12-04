@@ -57,6 +57,8 @@
     <Compile Include="BL\Agente.cs" />
     <Compile Include="BL\Cliente.cs" />
     <Compile Include="BL\Encuesta.cs" />
+    <Compile Include="BL\Pregunta.cs" />
+    <Compile Include="BL\Respuesta.cs" />
     <Compile Include="BL\Sistema.cs" />
     <Compile Include="eTronDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -107,6 +109,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Models\dbModel.dbml.layout">
       <DependentUpon>dbModel.dbml</DependentUpon>
     </None>
