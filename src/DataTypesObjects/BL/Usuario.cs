@@ -47,8 +47,9 @@ namespace DataTypesObjects
             dbModel.SubmitChanges();
             return true;
           }
-          catch (Exception)
+          catch (Exception e)
           {
+            string error = e.ToString();
             return false;
           }
         }

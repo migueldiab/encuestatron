@@ -164,8 +164,7 @@ namespace encuestaTron
   [WebMethod]
   public ResultWs getPregunta(int idEncuesta, string pass, respuesta respuesta)
   {
-      Encuesta
-      Pregunta pregunta = Pregunta.getPregunta(respuesta.id_proxima_pregunta,idEncuesta);
+      pregunta pregunta = Pregunta.getPregunta((int)respuesta.id_proxima_pregunta, idEncuesta);
       return new ResultWs();
   }
   [WebMethod]
@@ -219,6 +218,11 @@ namespace encuestaTron
     public rol rolPorId(int id)
     {
       return Rol.rolPorId(id);
+    }
+    [WebMethod]
+    public rol rolPorNombre(string nombre)
+    {
+      return Rol.rolPorNombre(nombre);
     }
     [WebMethod]
     public bool insertarRol(rol unRol)

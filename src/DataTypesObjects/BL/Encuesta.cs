@@ -127,11 +127,6 @@ namespace DataTypesObjects
       return lista.ToList();    
     }
 
-    public static bool esAutenticada(encuesta unaEncuesta, string pass)
-    {
-      throw new NotImplementedException();
-    }
-
     public static List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
     {
       var dbModel = new dbModel(Sistema.connStr);

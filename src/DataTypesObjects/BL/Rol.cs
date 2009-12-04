@@ -54,5 +54,12 @@ namespace DataTypesObjects
         return false;
       }
     }
+
+    public static rol rolPorNombre(string nombre)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      rol unRol = dbModel.rols.SingleOrDefault(x => x.nombre == nombre);
+      return unRol;
+    }
   }
 }

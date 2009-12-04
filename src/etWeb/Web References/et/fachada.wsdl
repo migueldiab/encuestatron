@@ -394,6 +394,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="rolPorNombre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rolPorNombreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rolPorNombreResult" type="tns:rol" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="insertarRol">
         <s:complexType>
           <s:sequence>
@@ -557,6 +571,12 @@
   <wsdl:message name="rolPorIdSoapOut">
     <wsdl:part name="parameters" element="tns:rolPorIdResponse" />
   </wsdl:message>
+  <wsdl:message name="rolPorNombreSoapIn">
+    <wsdl:part name="parameters" element="tns:rolPorNombre" />
+  </wsdl:message>
+  <wsdl:message name="rolPorNombreSoapOut">
+    <wsdl:part name="parameters" element="tns:rolPorNombreResponse" />
+  </wsdl:message>
   <wsdl:message name="insertarRolSoapIn">
     <wsdl:part name="parameters" element="tns:insertarRol" />
   </wsdl:message>
@@ -657,6 +677,10 @@
     <wsdl:operation name="rolPorId">
       <wsdl:input message="tns:rolPorIdSoapIn" />
       <wsdl:output message="tns:rolPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rolPorNombre">
+      <wsdl:input message="tns:rolPorNombreSoapIn" />
+      <wsdl:output message="tns:rolPorNombreSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="insertarRol">
       <wsdl:input message="tns:insertarRolSoapIn" />
@@ -860,6 +884,15 @@
     </wsdl:operation>
     <wsdl:operation name="rolPorId">
       <soap:operation soapAction="http://tempuri.org/rolPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rolPorNombre">
+      <soap:operation soapAction="http://tempuri.org/rolPorNombre" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1079,6 +1112,15 @@
     </wsdl:operation>
     <wsdl:operation name="rolPorId">
       <soap12:operation soapAction="http://tempuri.org/rolPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rolPorNombre">
+      <soap12:operation soapAction="http://tempuri.org/rolPorNombre" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

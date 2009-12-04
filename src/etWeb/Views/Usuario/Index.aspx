@@ -6,34 +6,35 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
-
-    <table>
+    <h2>Servicios de Usuarios</h2>
+    <h4>Acciones :</h4>
+    <ul>
+        <li><%= Html.ActionLink("Crear Agente", "CrearAgente") %></li>
+        <li><%= Html.ActionLink("Crear Cliente", "CrearCliente") %></li>
+    </ul>
+    <h4>Lista Usuarios :</h4>
+    <table class="data-table">
         <tr>
-            <th></th>
             <th>
-                nombre
+                Id
             </th>
             <th>
-                email
+                Nombre
             </th>
             <th>
-                id_usuario
+                eMail
             </th>
             <th>
-                contrasena
+                Celular
             </th>
             <th>
-                celular
+                Telefono
             </th>
             <th>
-                telefono
+                Ingreso
             </th>
             <th>
-                f_ingreso
-            </th>
-            <th>
-                id_rol
+                Rol
             </th>
         </tr>
 
@@ -41,20 +42,13 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id = item.id_usuario })%> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.id_usuario })%>
+              <%= Html.ActionLink(Html.Encode(item.id_usuario), "Edit", new { id = item.id_usuario })%>
             </td>
             <td>
                 <%= Html.Encode(item.nombre) %>
             </td>
             <td>
                 <%= Html.Encode(item.email) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.id_usuario) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.contrasena) %>
             </td>
             <td>
                 <%= Html.Encode(item.celular) %>
@@ -73,10 +67,5 @@
     <% } %>
 
     </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
-
 </asp:Content>
 
