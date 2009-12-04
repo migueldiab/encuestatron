@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="etWebService.asmx" />
-    <None Include="Web References\et\Fachada.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -90,35 +89,38 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\et\encuesta.datasource">
+    <None Include="Web References\et\encuesta1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\et\Fachada.wsdl" />
+    <None Include="Web References\et\fachada.wsdl" />
+    <None Include="Web References\et\ListaEncuestaResult1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\et\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\et\ResultWs.datasource">
+    <None Include="Web References\et\ResultWs1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\et\rol.datasource">
+    <None Include="Web References\et\rol1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\et\usuario.datasource">
+    <None Include="Web References\et\usuario1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:49895/Fachada.asmx">
+    <WebReferenceUrl Include="http://localhost/et/fachada.asmx%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\et\</RelPath>
-      <UpdateFromURL>http://localhost:49895/Fachada.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost/et/fachada.asmx%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>etWebService_et_Fachada</CachedSettingsPropName>
+      <CachedSettingsPropName>etWebService_localhost_Fachada</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
@@ -138,8 +140,8 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3381</DevelopmentServerPort>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>4001</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

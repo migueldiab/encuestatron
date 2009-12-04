@@ -19,7 +19,7 @@ namespace DataTypesObjects
         private List<Respuesta> respuestas;
         private Encuesta encuesta;
 
-        public static Pregunta getPregunta(int idPregunta, int idEncuesta)
+        public static pregunta getPregunta(int idPregunta, int idEncuesta)
         {
             var dbModel = new dbModel(Sistema.connStr);
             return dbModel.preguntas.Single(x => (x.id_encuesta == idEncuesta.ToString()) && (x.id == idPregunta));

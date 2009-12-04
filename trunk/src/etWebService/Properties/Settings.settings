@@ -3,10 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="etWebService_localhost_Fachada" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:49882/Fachada.asmx</Value>
-    </Setting>
-    <Setting Name="etWebService_et_Fachada" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:49895/Fachada.asmx</Value>
+      <Value Profile="(Default)">http://localhost/et/fachada.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

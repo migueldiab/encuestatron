@@ -23,26 +23,29 @@ namespace etWebService
     public class etWebService : System.Web.Services.WebService
     {
 
-        et.Fachada fachada = new et.Fachada();
+        Fachada fachada = new Fachada();
 
         [WebMethod]
-        public et.ResultWs getListaEncuestas()
-        {          
-            return fachada.listaEncuestas();
-        }
-        [WebMethod]
-        public et.ResultWs getEncuesta(int id, String pass)
+        public ListaEncuestaResult getListaEncuestas()
         {
-          return fachada.encuestaPorId(id,pass);
+          return null;
+              //fachada.listaEncuestas();
+        }
+        [WebMethod]
+        public ListaEncuestaResult encuestaPorIdPassword(int id, String pass)
+        {
+          return null; // fachada.encuestaPorIdPassword(id, pass);
         }
 
+      /*
         [WebMethod]
-        public et.ResultWs getPreguntaEncuesta(int idEncuesta,String passEncuesta,respuesta respuesta)
+        public ResultWs getPreguntaEncuesta(int idEncuesta, String passEncuesta, respuesta respuesta)
         {
             return fachada.getPregunta(idEncuesta,passEncuesta,respuesta);
         }
+       */
         [WebMethod]
-        public et.ResultWs getResultadoEncuesta(int id, String pass)
+        public ResultWs getResultadoEncuesta(int id, String pass)
         {
           
           return null;

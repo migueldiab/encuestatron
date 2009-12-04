@@ -73,6 +73,8 @@ namespace etWeb.et {
         
         private System.Threading.SendOrPostCallback rolPorIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback rolPorNombreOperationCompleted;
+        
         private System.Threading.SendOrPostCallback insertarRolOperationCompleted;
         
         private System.Threading.SendOrPostCallback actualizarRolOperationCompleted;
@@ -180,6 +182,9 @@ namespace etWeb.et {
         
         /// <remarks/>
         public event rolPorIdCompletedEventHandler rolPorIdCompleted;
+        
+        /// <remarks/>
+        public event rolPorNombreCompletedEventHandler rolPorNombreCompleted;
         
         /// <remarks/>
         public event insertarRolCompletedEventHandler insertarRolCompleted;
@@ -846,6 +851,35 @@ namespace etWeb.et {
             if ((this.rolPorIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.rolPorIdCompleted(this, new rolPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/rolPorNombre", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public rol rolPorNombre(string nombre) {
+            object[] results = this.Invoke("rolPorNombre", new object[] {
+                        nombre});
+            return ((rol)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void rolPorNombreAsync(string nombre) {
+            this.rolPorNombreAsync(nombre, null);
+        }
+        
+        /// <remarks/>
+        public void rolPorNombreAsync(string nombre, object userState) {
+            if ((this.rolPorNombreOperationCompleted == null)) {
+                this.rolPorNombreOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrolPorNombreOperationCompleted);
+            }
+            this.InvokeAsync("rolPorNombre", new object[] {
+                        nombre}, this.rolPorNombreOperationCompleted, userState);
+        }
+        
+        private void OnrolPorNombreOperationCompleted(object arg) {
+            if ((this.rolPorNombreCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.rolPorNombreCompleted(this, new rolPorNombreCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1967,6 +2001,32 @@ namespace etWeb.et {
         private object[] results;
         
         internal rolPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public rol Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((rol)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void rolPorNombreCompletedEventHandler(object sender, rolPorNombreCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class rolPorNombreCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal rolPorNombreCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
