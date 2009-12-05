@@ -101,6 +101,7 @@ namespace encuestaTron
     return Encuesta.borrarEncuestaPorId(id);
   }
 
+
   [WebMethod]
   public ResultWs encuestaPorIdPassword(int id, String pass)
   {
@@ -211,6 +212,16 @@ namespace encuestaTron
   {
     return Encuesta.preguntasPorEncuesta(unaEncuesta);
   } 
+  [WebMethod]
+  public bool borrarPreguntaPorId(int id)
+  {
+    return Encuesta.borrarPreguntaPorId(id);
+  }    
+   [WebMethod]
+  public bool borrarRespuestaPorId(int id)
+  {
+    return Encuesta.borrarRespuestaPorId(id);
+  }      
 #endregion
 
 #region Roles

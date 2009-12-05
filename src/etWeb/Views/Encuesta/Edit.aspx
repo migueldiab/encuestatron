@@ -5,60 +5,46 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Edit</h2>
-
-    <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
-
+    <h2>Editar Encuesta <%= Html.Encode(Model.nombre) %></h2>
+    <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
+    <p style="color: Red;"><%= Html.ViewData["error"] %></p>
     <% using (Html.BeginForm()) {%>
-
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Datos Generales</legend>
             <p>
-                <label for="nombre">nombre:</label>
-                <%= Html.TextBox("nombre", Model.nombre) %>
-                <%= Html.ValidationMessage("nombre", "*") %>
+              <label for="nombre">Nombre :</label>
+              <%= Html.Encode(Model.nombre) %>
             </p>
             <p>
-                <label for="contrasena">contrasena:</label>
-                <%= Html.TextBox("contrasena", Model.contrasena) %>
+                <label for="contrasena">Contraseña :</label>
+                <%= Html.Password("contrasena", Model.contrasena) %>
                 <%= Html.ValidationMessage("contrasena", "*") %>
             </p>
             <p>
-                <label for="f_ingreso">f_ingreso:</label>
-                <%= Html.TextBox("f_ingreso", String.Format("{0:g}", Model.f_ingreso)) %>
-                <%= Html.ValidationMessage("f_ingreso", "*") %>
-            </p>
-            <p>
-                <label for="f_modificacion">f_modificacion:</label>
-                <%= Html.TextBox("f_modificacion", String.Format("{0:g}", Model.f_modificacion)) %>
-                <%= Html.ValidationMessage("f_modificacion", "*") %>
-            </p>
-            <p>
-                <label for="f_vigencia">f_vigencia:</label>
-                <%= Html.TextBox("f_vigencia", String.Format("{0:g}", Model.f_vigencia)) %>
+                <label for="f_vigencia">Fecha de Vigencia :</label>
+                <%= Html.DatePicker("f_vigencia", Html.Encode(String.Format("{0:dd/MM/yyyy}", Model.f_vigencia)))%> 
                 <%= Html.ValidationMessage("f_vigencia", "*") %>
             </p>
             <p>
-                <label for="f_cierre">f_cierre:</label>
-                <%= Html.TextBox("f_cierre", String.Format("{0:g}", Model.f_cierre)) %>
+                <label for="f_cierre">Fecha de Cierre:</label>
+                <%= Html.DatePicker("f_cierre", Html.Encode(String.Format("{0:dd/MM/yyyy}", Model.f_cierre)))%> 
                 <%= Html.ValidationMessage("f_cierre", "*") %>
             </p>
             <p>
-                <label for="id_cliente">id_cliente:</label>
-                <%= Html.TextBox("id_cliente", Model.id_cliente) %>
+                <label for="id_cliente">Cliente :</label>
+                <%= Html.DropDownList("id_cliente")%>
                 <%= Html.ValidationMessage("id_cliente", "*") %>
             </p>
             <p>
-                <input type="submit" value="Save" />
+                <%= Html.Hidden("nombre", Model.nombre)%>
+                <input type="submit" value="Guardar y Agregar Preguntas" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Menu Encuestas", "Index") %>
     </div>
-
+    
 </asp:Content>
-

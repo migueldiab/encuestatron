@@ -17,7 +17,9 @@
           foreach (etWeb.et.respuesta unaRespuesta in listaRespuestas)
           {
             i++;%>
-        <li><%= i + " - " + Html.Encode(unaRespuesta.texto)%></li>
+        <li><%= i + " - " + Html.Encode(unaRespuesta.texto)%>
+            <i><%=Html.ActionLink("[borrar]", "BorrarRespuesta", new { id = unaRespuesta.id, pregunta = unaRespuesta.id_pregunta })%></i>
+        </li>
       <% } } %>
     </ul>
     
@@ -33,14 +35,14 @@
             <p>
                 <%= Html.Hidden("id_pregunta", unaPregunta.id)%>
                 <input type="submit" name="btnSubmit" value="Guardar y Agregar" />
-                <%= Html.ActionLink("Volver a Preguntas", "PreguntasEncuesta", new RouteValueDictionary(new { nombreEncuesta = unaPregunta.id_encuesta }))%>
+                <%= Html.ActionLink(" [Volver a Agregar Preguntas]", "PreguntasEncuesta", new RouteValueDictionary(new { nombreEncuesta = unaPregunta.id_encuesta }))%>
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Menu Encuestas", "Index") %>
     </div>
 
 </asp:Content>

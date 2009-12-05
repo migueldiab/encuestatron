@@ -477,6 +477,34 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="borrarPreguntaPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="borrarPreguntaPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="borrarPreguntaPorIdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="borrarRespuestaPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="borrarRespuestaPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="borrarRespuestaPorIdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="listaRoles">
         <s:complexType />
       </s:element>
@@ -713,6 +741,18 @@
   <wsdl:message name="preguntasPorEncuestaSoapOut">
     <wsdl:part name="parameters" element="tns:preguntasPorEncuestaResponse" />
   </wsdl:message>
+  <wsdl:message name="borrarPreguntaPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:borrarPreguntaPorId" />
+  </wsdl:message>
+  <wsdl:message name="borrarPreguntaPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:borrarPreguntaPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="borrarRespuestaPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:borrarRespuestaPorId" />
+  </wsdl:message>
+  <wsdl:message name="borrarRespuestaPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:borrarRespuestaPorIdResponse" />
+  </wsdl:message>
   <wsdl:message name="listaRolesSoapIn">
     <wsdl:part name="parameters" element="tns:listaRoles" />
   </wsdl:message>
@@ -851,6 +891,14 @@
     <wsdl:operation name="preguntasPorEncuesta">
       <wsdl:input message="tns:preguntasPorEncuestaSoapIn" />
       <wsdl:output message="tns:preguntasPorEncuestaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="borrarPreguntaPorId">
+      <wsdl:input message="tns:borrarPreguntaPorIdSoapIn" />
+      <wsdl:output message="tns:borrarPreguntaPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="borrarRespuestaPorId">
+      <wsdl:input message="tns:borrarRespuestaPorIdSoapIn" />
+      <wsdl:output message="tns:borrarRespuestaPorIdSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="listaRoles">
       <wsdl:input message="tns:listaRolesSoapIn" />
@@ -1111,6 +1159,24 @@
     </wsdl:operation>
     <wsdl:operation name="preguntasPorEncuesta">
       <soap:operation soapAction="http://tempuri.org/preguntasPorEncuesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarPreguntaPorId">
+      <soap:operation soapAction="http://tempuri.org/borrarPreguntaPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarRespuestaPorId">
+      <soap:operation soapAction="http://tempuri.org/borrarRespuestaPorId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1402,6 +1468,24 @@
     </wsdl:operation>
     <wsdl:operation name="preguntasPorEncuesta">
       <soap12:operation soapAction="http://tempuri.org/preguntasPorEncuesta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarPreguntaPorId">
+      <soap12:operation soapAction="http://tempuri.org/borrarPreguntaPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarRespuestaPorId">
+      <soap12:operation soapAction="http://tempuri.org/borrarRespuestaPorId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
