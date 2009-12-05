@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="encuestaTron.bitacora" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AoAhEAADBASAAAAQQAEIIEIFiGACIAAAAAAAAAAAAAQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.429" Collapsed="true" />
+  </Class>
+  <Class Name="encuestaTron.usuario" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>qBAhEAIHEAgAAADgRBmCAhBDiChQAAAQAAYACAIAwAs=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="encuestaTron.cliente" BaseTypeListCollapsed="true">
+    <Position X="5" Y="5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAwAAABABgAAAIAQBGAAIIBiGAIEAQABAIAAAAQAIA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="encuestaTron.encuesta" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IQAwEAAFOEoAAISASAkCBGBBiSIgAAAgAAQACAoAAgQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="encuestaTron.rol" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="8.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAgAABFCBAAAACEQAFAAQABjCAAAAAAAAACGCIQAgA=</HashCode>
+      <FileName>Models\extRol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="encuestaTron.pregunta" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAgAIBBQEACIAAAQgFFIAAZjigAAAGACAAQAgjQAgg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="encuestaTron.respuesta" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAgAAABIAAAgQAEQgFBAAABzCAAABwIhAAAAAAxAgQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.484" Collapsed="true" />
+  </Class>
+  <Class Name="DataTypesObjects.Encuesta">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAgAEAAGAIAASAIAAABAEAAIACEKAiQAAAAE=</HashCode>
+      <FileName>BL\Encuesta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataTypesObjects.Usuario">
+    <Position X="0.5" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>MAEAAAAAAAABAAAAEAAQACAAAAEAAAAAAAAAMAAAABA=</HashCode>
+      <FileName>BL\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataTypesObjects.Rol">
+    <Position X="0.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAQAAAAAAAAAAAAAAAAAAIAAAAQCA=</HashCode>
+      <FileName>BL\Rol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
