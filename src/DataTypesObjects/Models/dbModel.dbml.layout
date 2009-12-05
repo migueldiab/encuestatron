@@ -79,14 +79,14 @@
         <elementListCompartment Id="976e1ee1-5653-482e-bb93-59a501e53f07" absoluteBounds="6.2650000000000006, 6.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.375 : 5.4631982421875); (7.375 : 6.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.375 : 5.4631982421875); (7.375 : 6.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbModel/pregunta/pregunta_respuesta" />
       <nodes>
         <classShapeMoniker Id="e9958b0e-0369-4bf3-a5a7-f11b0d3ad9c7" />
         <classShapeMoniker Id="435a7533-e631-48dc-9816-f4fded72ea48" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.875 : 5.4631982421875); (7.875 : 6.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.875 : 5.4631982421875); (7.875 : 6.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbModel/pregunta/pregunta_respuesta1" />
       <nodes>
         <classShapeMoniker Id="e9958b0e-0369-4bf3-a5a7-f11b0d3ad9c7" />

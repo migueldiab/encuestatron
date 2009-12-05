@@ -19,6 +19,12 @@
       <li><%= Html.ActionLink("Fecha de Vigencia", "ListaPorFechaVigencia")%></li>
       <li><%= Html.ActionLink("Fecha de Cierre", "ListaPorFechaCierre")%></li>      
     </ul>
-    
+    <h4>Ver Resultados : </h4>
+    <% using (Html.BeginForm()) {%>
+      <label for="id_agente">Encuesta :</label>
+      <%= Html.DropDownList("id_encuesta")%>
+      <%= Html.ValidationMessage("id_encuesta", "*")%>
+      <input type="submit" value="Ver" />
+    <% } %>    
 </asp:Content>
 
