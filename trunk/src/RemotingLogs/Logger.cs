@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Http;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
+using System.Runtime.Remoting.Channels.Http;
 namespace Utils
 {
 
@@ -18,7 +18,7 @@ namespace Utils
             Console.WriteLine("El servidor esta activo HTTP");
         }
 
-        public static void Main(String[] args)
+        public static void main(String[] args)
         {
             HttpChannel chan1 = new HttpChannel(8096);
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(Utils.Logger),

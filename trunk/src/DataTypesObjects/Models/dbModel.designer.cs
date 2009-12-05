@@ -20,7 +20,7 @@ namespace encuestaTron.Models
 	using System.Linq.Expressions;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="etTempDB")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="eTronDB")]
 	public partial class dbModel : System.Data.Linq.DataContext
 	{
 		
@@ -40,19 +40,19 @@ namespace encuestaTron.Models
     partial void Insertencuesta(encuestaTron.encuesta instance);
     partial void Updateencuesta(encuestaTron.encuesta instance);
     partial void Deleteencuesta(encuestaTron.encuesta instance);
+    partial void Insertrol(encuestaTron.rol instance);
+    partial void Updaterol(encuestaTron.rol instance);
+    partial void Deleterol(encuestaTron.rol instance);
     partial void Insertpregunta(encuestaTron.pregunta instance);
     partial void Updatepregunta(encuestaTron.pregunta instance);
     partial void Deletepregunta(encuestaTron.pregunta instance);
     partial void Insertrespuesta(encuestaTron.respuesta instance);
     partial void Updaterespuesta(encuestaTron.respuesta instance);
     partial void Deleterespuesta(encuestaTron.respuesta instance);
-    partial void Insertrol(encuestaTron.rol instance);
-    partial void Updaterol(encuestaTron.rol instance);
-    partial void Deleterol(encuestaTron.rol instance);
     #endregion
 		
 		public dbModel() : 
-				base(global::DataTypesObjects.Properties.Settings.Default.etTempDBConnectionString, mappingSource)
+				base(global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -113,6 +113,14 @@ namespace encuestaTron.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<encuestaTron.rol> rols
+		{
+			get
+			{
+				return this.GetTable<encuestaTron.rol>();
+			}
+		}
+		
 		public System.Data.Linq.Table<encuestaTron.pregunta> preguntas
 		{
 			get
@@ -126,14 +134,6 @@ namespace encuestaTron.Models
 			get
 			{
 				return this.GetTable<encuestaTron.respuesta>();
-			}
-		}
-		
-		public System.Data.Linq.Table<encuestaTron.rol> rols
-		{
-			get
-			{
-				return this.GetTable<encuestaTron.rol>();
 			}
 		}
 	}
@@ -1106,6 +1106,144 @@ namespace encuestaTron
 		}
 	}
 	
+	[Table(Name="dbo.rol")]
+	public partial class rol : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _nombre;
+		
+		private string _permiso;
+		
+		private EntitySet<usuario> _usuarios;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    partial void OnpermisoChanging(string value);
+    partial void OnpermisoChanged();
+    #endregion
+		
+		public rol()
+		{
+			this._usuarios = new EntitySet<usuario>(new Action<usuario>(this.attach_usuarios), new Action<usuario>(this.detach_usuarios));
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_permiso", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string permiso
+		{
+			get
+			{
+				return this._permiso;
+			}
+			set
+			{
+				if ((this._permiso != value))
+				{
+					this.OnpermisoChanging(value);
+					this.SendPropertyChanging();
+					this._permiso = value;
+					this.SendPropertyChanged("permiso");
+					this.OnpermisoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="rol_usuario", Storage="_usuarios", OtherKey="id_rol")]
+		internal EntitySet<usuario> usuarios
+		{
+			get
+			{
+				return this._usuarios;
+			}
+			set
+			{
+				this._usuarios.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_usuarios(usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.rol = this;
+		}
+		
+		private void detach_usuarios(usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.rol = null;
+		}
+	}
+	
 	[Table(Name="dbo.pregunta")]
 	public partial class pregunta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1156,7 +1294,7 @@ namespace encuestaTron
 			OnCreated();
 		}
 		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -1323,7 +1461,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="encuesta_pregunta", Storage="_encuesta", ThisKey="id_encuesta", IsForeignKey=true)]
-		internal encuesta encuesta
+		public encuesta encuesta
 		{
 			get
 			{
@@ -1432,7 +1570,7 @@ namespace encuestaTron
 			OnCreated();
 		}
 		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -1627,145 +1765,6 @@ namespace encuestaTron
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
-	
-	[Table(Name="dbo.rol")]
-	public partial class rol : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _nombre;
-		
-		private string _permiso;
-		
-		private EntitySet<usuario> _usuarios;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnombreChanging(string value);
-    partial void OnnombreChanged();
-    partial void OnpermisoChanging(string value);
-    partial void OnpermisoChanged();
-    #endregion
-		
-		public rol()
-		{
-			this._usuarios = new EntitySet<usuario>(new Action<usuario>(this.attach_usuarios), new Action<usuario>(this.detach_usuarios));
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_nombre", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string nombre
-		{
-			get
-			{
-				return this._nombre;
-			}
-			set
-			{
-				if ((this._nombre != value))
-				{
-					this.OnnombreChanging(value);
-					this.SendPropertyChanging();
-					this._nombre = value;
-					this.SendPropertyChanged("nombre");
-					this.OnnombreChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_permiso", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string permiso
-		{
-			get
-			{
-				return this._permiso;
-			}
-			set
-			{
-				if ((this._permiso != value))
-				{
-					this.OnpermisoChanging(value);
-					this.SendPropertyChanging();
-					this._permiso = value;
-					this.SendPropertyChanged("permiso");
-					this.OnpermisoChanged();
-				}
-			}
-		}
-		
-		[Association(Name="rol_usuario", Storage="_usuarios", OtherKey="id_rol")]
-		internal EntitySet<usuario> usuarios
-		{
-			get
-			{
-				return this._usuarios;
-			}
-			set
-			{
-				this._usuarios.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_usuarios(usuario entity)
-		{
-			this.SendPropertyChanging();
-			entity.rol = this;
-		}
-		
-		private void detach_usuarios(usuario entity)
-		{
-			this.SendPropertyChanging();
-			entity.rol = null;
-		}
-
 	}
 }
 #pragma warning restore 1591
