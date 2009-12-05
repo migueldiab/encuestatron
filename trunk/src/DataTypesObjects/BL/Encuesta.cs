@@ -240,7 +240,7 @@ namespace DataTypesObjects
       try
       {
         var dbModel = new dbModel(Sistema.connStr);
-        encuesta unaEncuesta = unaPregunta.encuesta;
+        encuesta unaEncuesta = Encuesta.encuestaPorId(unaPregunta.id_encuesta);
         unaEncuesta.f_modificacion = DateTime.Now;
         dbModel.respuestas.InsertOnSubmit(unaRespuesta);
         dbModel.SubmitChanges();
@@ -270,6 +270,24 @@ namespace DataTypesObjects
                                             where p.id_encuesta == unaEncuesta.nombre
                                             select p;
       return listaPreguntas.ToList();
+    }
+
+    public static bool borrarEncuestaPorId(string id)
+    {
+        var dbModel = new dbModel(Sistema.connStr);
+        encuesta encuestaOriginal = dbModel.encuestas.SingleOrDefault(x => x.nombre == id);
+        try
+        {
+          dbModel.encuestas.DeleteOnSubmit(encuestaOriginal);
+          dbModel.SubmitChanges();
+          return true;
+        }
+        catch (Exception e)
+        {
+          Console.WriteLine(e.ToString());
+          return false;
+        }
+
     }
   }
 }

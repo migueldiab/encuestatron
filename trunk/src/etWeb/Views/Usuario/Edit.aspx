@@ -55,7 +55,9 @@
                 <%= Html.ValidationMessage("id_rol", "*") %>
             </p>
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Guardar" />
+        <%=Html.ActionLink("Borrar", "Borrar", new { id = Model.id_usuario })%> |
+                
             </p>
         </fieldset>
 

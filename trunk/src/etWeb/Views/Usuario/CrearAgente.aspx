@@ -15,37 +15,37 @@
         <fieldset>
             <legend>Información del Agente</legend>
             <p>
-                <label for="id_usuario">id_usuario:</label>
+                <label for="id_usuario">Usuario:</label>
                 <%= Html.TextBox("id_usuario") %>
                 <%= Html.ValidationMessage("id_usuario", "*") %>
             </p>
             <p>
-                <label for="contrasena">contrasena:</label>
+                <label for="contrasena">Contraseña:</label>
                 <%= Html.Password("contrasena") %>
                 <%= Html.ValidationMessage("contrasena", "*") %>
             </p>
             <p>
-                <label for="nombre">nombre:</label>
+                <label for="nombre">Nombre Completo:</label>
                 <%= Html.TextBox("nombre") %>
                 <%= Html.ValidationMessage("nombre", "*") %>
             </p>
             <p>
-                <label for="f_ingreso">f_ingreso:</label>
+                <label for="f_ingreso">Fecha de Ingreso:</label>
                 <%= Html.DatePicker("f_ingreso", Html.Encode(String.Format("{0:dd/MM/yyyy}", DateTime.Now))) %>
                 <%= Html.ValidationMessage("f_ingreso", "*") %>
             </p>                             
             <p>
-                <label for="email">email:</label>
+                <label for="email">eMail:</label>
                 <%= Html.TextBox("email") %>
                 <%= Html.ValidationMessage("email", "*") %>
             </p>
             <p>
-                <label for="celular">celular:</label>
+                <label for="celular">Celular:</label>
                 <%= Html.TextBox("celular") %>
                 <%= Html.ValidationMessage("celular", "*") %>
             </p>
             <p>
-                <label for="telefono">telefono:</label>
+                <label for="telefono">Telefono:</label>
                 <%= Html.TextBox("telefono") %>
                 <%= Html.ValidationMessage("telefono", "*") %>
             </p>

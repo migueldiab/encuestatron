@@ -45,7 +45,7 @@
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Menu Encuestas", "Index") %>
     </div>
 
 </asp:Content>

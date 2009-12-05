@@ -84,6 +84,7 @@ namespace etWeb.Controllers
       [AcceptVerbs(HttpVerbs.Post)]
       public ActionResult CrearAgente(usuario unUsuario)
       {
+        validoUsuario(unUsuario); 
         if (ModelState.IsValid)
         {
           Fachada etFachada = new Fachada();
@@ -123,6 +124,7 @@ namespace etWeb.Controllers
       {
         Fachada etFachada = new Fachada();
         ViewData["id_agente"] = new SelectList(etFachada.listaPorRol("agente"), "id_usuario", "nombre");
+        validoUsuario(unUsuario);
         if (ModelState.IsValid)
         {
           rol rolCliente = etFachada.rolPorNombre("cliente");
@@ -143,6 +145,17 @@ namespace etWeb.Controllers
           ViewData["error"] = "Error al validar modelo";
           return View(unUsuario);
         }
+      }
+
+      private void validoUsuario(usuario unUsuario)
+      {
+        if (unUsuario.contrasena.Length < 4)
+          ModelState.AddModelError("contrasena", "La clave debe ser mayor de 4 digitos.");
+        if (unUsuario.id_usuario.Contains(' '))
+          ModelState.AddModelError("id_usuario", "El usuario no puede contener espacios.");
+        if (unUsuario.id_rol==null)
+          ModelState.AddModelError("id_rol", "Debe seleccionar al menos un rol para el usuario.");
+
       }
 
 

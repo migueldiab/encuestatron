@@ -79,5 +79,25 @@ namespace etWeb.Controllers
         return View(unaEncuesta);
       }
     }
+    /*
+     * Borrar Generico
+     */
+    [autorizoUsuario(requiereRol = "agente")]
+    public ActionResult Borrar(string id)
+    {
+      Fachada etFachada = new Fachada();
+      if (etFachada.borrarEncuestaPorId(id))
+      {
+        return View();
+      }
+      else
+      {
+        ViewData["error"] = "Error al borrar";
+        return RedirectToAction("Details", "Encuesta", new RouteValueDictionary(
+          new { id = id }));
+      }
+    }
+
+    
   }
 }

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "encuestaTron", "encuestaTron.csproj", "{20C82F2F-9F2E-42A8-A6B1-BF01EEE3EA35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wsEncuestas", "..\wsEncuestas\wsEncuestas.csproj", "{FEEEA7F9-BDFA-4013-A51D-A1B34DC3B0BC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "miEncuesta.Com", "..\miEncuesta.Com\miEncuesta.Com.csproj", "{BB867864-F25E-410E-BC40-AE015C724F3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "miEncuesta.Com.Tests", "..\miEncuesta.Com.Tests\miEncuesta.Com.Tests.csproj", "{4DA484F4-7F7F-4C8A-A0D5-ECF18AACD5E6}"
@@ -35,10 +33,6 @@ Global
 		{20C82F2F-9F2E-42A8-A6B1-BF01EEE3EA35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20C82F2F-9F2E-42A8-A6B1-BF01EEE3EA35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20C82F2F-9F2E-42A8-A6B1-BF01EEE3EA35}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FEEEA7F9-BDFA-4013-A51D-A1B34DC3B0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEEEA7F9-BDFA-4013-A51D-A1B34DC3B0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEEEA7F9-BDFA-4013-A51D-A1B34DC3B0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEEEA7F9-BDFA-4013-A51D-A1B34DC3B0BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB867864-F25E-410E-BC40-AE015C724F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB867864-F25E-410E-BC40-AE015C724F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB867864-F25E-410E-BC40-AE015C724F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU

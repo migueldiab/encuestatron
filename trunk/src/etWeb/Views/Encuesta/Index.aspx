@@ -21,10 +21,13 @@
     </ul>
     <h4>Ver Resultados : </h4>
     <% using (Html.BeginForm()) {%>
-      <label for="id_agente">Encuesta :</label>
+      <% if (((SelectList)ViewData["id_encuesta"]).Count()>0) { %>
       <%= Html.DropDownList("id_encuesta")%>
       <%= Html.ValidationMessage("id_encuesta", "*")%>
       <input type="submit" value="Ver" />
+      <% } else { %>
+        <i>--No existen encuestas--</i>
+      <% } %>
     <% } %>    
 </asp:Content>
 

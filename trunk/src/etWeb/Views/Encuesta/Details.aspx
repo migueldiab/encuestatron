@@ -22,8 +22,12 @@
         <% } %>
       </tr>
       <% } %>
-
+  
     
   </table>
+  <ul>
+  <li><%=Html.ActionLink("Borrar Encuesta", "Borrar", new { id = Model.nombre })%> |</li>
+  <li><%=Html.ActionLink("Menu Encuestas", "Index") %></li>
+  </ul>
 </asp:Content>
 
