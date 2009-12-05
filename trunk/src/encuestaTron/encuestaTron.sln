@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypesObjects", "..\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etWebService", "..\etWebService\etWebService.csproj", "{7AADAC61-A549-4C71-B3C1-C7AAD274E83B}"
 EndProject
+Project("{8BC9CEB9-8B4A-11D0-8D11-00A0C91BC942}") = "Logger.exe", "..\RemotingLogs\Logger.exe", "{014B4DB1-91B5-4475-8737-9472E0677536}"
+EndProject
+Project("{8BC9CEB9-8B4A-11D0-8D11-00A0C91BC942}") = "Log.exe", "..\RemotingLogs\Log.exe", "{500F821E-A3F0-48F5-923E-BF755BB57052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{7AADAC61-A549-4C71-B3C1-C7AAD274E83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AADAC61-A549-4C71-B3C1-C7AAD274E83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AADAC61-A549-4C71-B3C1-C7AAD274E83B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{014B4DB1-91B5-4475-8737-9472E0677536}.Debug|Any CPU.ActiveCfg = Debug
+		{014B4DB1-91B5-4475-8737-9472E0677536}.Release|Any CPU.ActiveCfg = Debug
+		{500F821E-A3F0-48F5-923E-BF755BB57052}.Debug|Any CPU.ActiveCfg = Debug
+		{500F821E-A3F0-48F5-923E-BF755BB57052}.Release|Any CPU.ActiveCfg = Debug
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
