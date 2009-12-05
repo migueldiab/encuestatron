@@ -238,6 +238,20 @@
           <s:element minOccurs="1" maxOccurs="1" name="id_proxima_pregunta" nillable="true" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="borrarEncuestaPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="borrarEncuestaPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="borrarEncuestaPorIdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="encuestaPorIdPassword">
         <s:complexType>
           <s:sequence>
@@ -603,6 +617,12 @@
   <wsdl:message name="listaEncuestasSoapOut">
     <wsdl:part name="parameters" element="tns:listaEncuestasResponse" />
   </wsdl:message>
+  <wsdl:message name="borrarEncuestaPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:borrarEncuestaPorId" />
+  </wsdl:message>
+  <wsdl:message name="borrarEncuestaPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:borrarEncuestaPorIdResponse" />
+  </wsdl:message>
   <wsdl:message name="encuestaPorIdPasswordSoapIn">
     <wsdl:part name="parameters" element="tns:encuestaPorIdPassword" />
   </wsdl:message>
@@ -767,6 +787,10 @@
     <wsdl:operation name="listaEncuestas">
       <wsdl:input message="tns:listaEncuestasSoapIn" />
       <wsdl:output message="tns:listaEncuestasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="borrarEncuestaPorId">
+      <wsdl:input message="tns:borrarEncuestaPorIdSoapIn" />
+      <wsdl:output message="tns:borrarEncuestaPorIdSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="encuestaPorIdPassword">
       <wsdl:input message="tns:encuestaPorIdPasswordSoapIn" />
@@ -943,6 +967,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestas">
       <soap:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarEncuestaPorId">
+      <soap:operation soapAction="http://tempuri.org/borrarEncuestaPorId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1225,6 +1258,15 @@
     </wsdl:operation>
     <wsdl:operation name="listaEncuestas">
       <soap12:operation soapAction="http://tempuri.org/listaEncuestas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarEncuestaPorId">
+      <soap12:operation soapAction="http://tempuri.org/borrarEncuestaPorId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -51,6 +51,8 @@ namespace etWeb.et {
         
         private System.Threading.SendOrPostCallback listaEncuestasOperationCompleted;
         
+        private System.Threading.SendOrPostCallback borrarEncuestaPorIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback encuestaPorIdPasswordOperationCompleted;
         
         private System.Threading.SendOrPostCallback encuestaPorIdOperationCompleted;
@@ -161,6 +163,9 @@ namespace etWeb.et {
         
         /// <remarks/>
         public event listaEncuestasCompletedEventHandler listaEncuestasCompleted;
+        
+        /// <remarks/>
+        public event borrarEncuestaPorIdCompletedEventHandler borrarEncuestaPorIdCompleted;
         
         /// <remarks/>
         public event encuestaPorIdPasswordCompletedEventHandler encuestaPorIdPasswordCompleted;
@@ -540,6 +545,35 @@ namespace etWeb.et {
             if ((this.listaEncuestasCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.listaEncuestasCompleted(this, new listaEncuestasCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/borrarEncuestaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool borrarEncuestaPorId(string id) {
+            object[] results = this.Invoke("borrarEncuestaPorId", new object[] {
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void borrarEncuestaPorIdAsync(string id) {
+            this.borrarEncuestaPorIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void borrarEncuestaPorIdAsync(string id, object userState) {
+            if ((this.borrarEncuestaPorIdOperationCompleted == null)) {
+                this.borrarEncuestaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnborrarEncuestaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("borrarEncuestaPorId", new object[] {
+                        id}, this.borrarEncuestaPorIdOperationCompleted, userState);
+        }
+        
+        private void OnborrarEncuestaPorIdOperationCompleted(object arg) {
+            if ((this.borrarEncuestaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.borrarEncuestaPorIdCompleted(this, new borrarEncuestaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1946,6 +1980,32 @@ namespace etWeb.et {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((ListaEncuestaResult)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void borrarEncuestaPorIdCompletedEventHandler(object sender, borrarEncuestaPorIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class borrarEncuestaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal borrarEncuestaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

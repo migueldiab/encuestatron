@@ -95,7 +95,11 @@ namespace encuestaTron
       
     return listaEncuestaResult;
   }
-
+  [WebMethod]
+  public bool borrarEncuestaPorId(string id)
+  {
+    return Encuesta.borrarEncuestaPorId(id);
+  }
 
   [WebMethod]
   public ResultWs encuestaPorIdPassword(int id, String pass)

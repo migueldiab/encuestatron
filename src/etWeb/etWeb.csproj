@@ -128,6 +128,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
+    <Content Include="Views\Encuesta\Borrar.aspx" />
     <Content Include="Views\Encuesta\Create.aspx" />
     <Content Include="Views\Encuesta\Details.aspx" />
     <Content Include="Views\Encuesta\Edit.aspx" />
