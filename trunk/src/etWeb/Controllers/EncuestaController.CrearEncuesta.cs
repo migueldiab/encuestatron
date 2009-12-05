@@ -105,11 +105,12 @@ namespace etWeb.Controllers
       {
         unaPregunta = etFachada.preguntaPorId(Int32.Parse(idPregunta));
       }
-      catch (Exception)
+      catch (Exception e)
       {
         /*
          *  TODO Redirige pero no muestra mensaje de error...
          */
+        Console.WriteLine(e.ToString());
         ViewData["error"] = "Error al cargar pregunta";
         return RedirectToAction("Create", "Encuesta");
       }
@@ -143,5 +144,117 @@ namespace etWeb.Controllers
     }
 
 
+    /*
+     *  Editar Encuesta
+     */
+    [autorizoUsuario(requiereRol = "agente")]
+    public ActionResult Edit(string id)
+    {
+      Fachada etFachada = new Fachada();
+      encuesta unaEncuesta = etFachada.encuestaPorId(id).ListaEncuestas.First();
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
+      var listaClientes = etFachada.listaClientePorAgente(usuarioActual.id_usuario);
+      ViewData["id_cliente"] = new SelectList(listaClientes, "id_usuario", "nombre", unaEncuesta.id_cliente);
+      return View(unaEncuesta);
+    }
+    [autorizoUsuario(requiereRol = "agente")]
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult Edit(string id, encuesta unaEncuesta)
+    {
+      Fachada etFachada = new Fachada();
+      //encuesta unaEncuesta = etFachada.encuestaPorId(id).ListaEncuestas.First();
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
+      var listaClientes = etFachada.listaClientePorAgente(usuarioActual.id_usuario);
+      ViewData["id_cliente"] = new SelectList(listaClientes, "id_usuario", "nombre", unaEncuesta.id_cliente);
+      if (ModelState.IsValid)
+      {
+        if (etFachada.actualizarEncuesta(id, unaEncuesta))
+        {
+          return RedirectToAction("PreguntasEncuesta", "Encuesta", new RouteValueDictionary(
+            new { nombreEncuesta = unaEncuesta.nombre }));
+        }
+        else
+        {
+          ViewData["error"] = "Error al grabar";
+          return View(unaEncuesta);
+        }
+      }
+      else
+      {
+        ViewData["error"] = "Error al validar modelo";
+        return View(unaEncuesta);
+      }
+    }
+
+    /*
+     *  Editar Pregunta
+     */
+    [autorizoUsuario(requiereRol = "agente")]
+    public ActionResult EditarPregunta(int id)
+    {
+      Fachada etFachada = new Fachada();
+      pregunta unaPregunta = etFachada.preguntaPorId(id);
+      return RedirectToAction("RespuestasPregunta", "Encuesta", new RouteValueDictionary(
+  new { idPregunta = id }));
+    }
+
+    /*
+     * Borrar Generico
+     */
+    [autorizoUsuario(requiereRol = "agente")]
+    public ActionResult Borrar(string id)
+    {
+      Fachada etFachada = new Fachada();
+      if (etFachada.borrarEncuestaPorId(id))
+      {
+        return View();
+      }
+      else
+      {
+        ViewData["error"] = "Error al borrar";
+        return RedirectToAction("Details", "Encuesta", new RouteValueDictionary(
+          new { id = id }));
+      }
+    }
+
+    /*
+     * Borrar Pregunta
+     */
+    [autorizoUsuario(requiereRol = "agente")]
+    public ActionResult BorrarPregunta(int id, string encuesta)
+    {
+      Fachada etFachada = new Fachada();
+      if (etFachada.borrarPreguntaPorId(id))
+      {
+        return RedirectToAction("PreguntasEncuesta", "Encuesta", new RouteValueDictionary(
+          new { nombreEncuesta = encuesta }));
+      }
+      else
+      {
+        ViewData["error"] = "Error al borrar";
+        return RedirectToAction("PreguntasEncuesta", "Encuesta", new RouteValueDictionary(
+          new { nombreEncuesta = encuesta }));
+      }
+    }
+
+    /*
+     * Borrar Respuesta
+     */
+    [autorizoUsuario(requiereRol = "agente")]
+    public ActionResult BorrarRespuesta(int id, int pregunta)
+    {
+      Fachada etFachada = new Fachada();
+      if (etFachada.borrarRespuestaPorId(id))
+      {
+        return RedirectToAction("RespuestasPregunta", "Encuesta", new RouteValueDictionary(
+          new { idPregunta = pregunta }));
+      }
+      else
+      {
+        ViewData["error"] = "Error al borrar";
+        return RedirectToAction("RespuestasPregunta", "Encuesta", new RouteValueDictionary(
+          new { idPregunta = pregunta }));
+      }
+    }
   }
 }

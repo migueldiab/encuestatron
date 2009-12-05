@@ -25,7 +25,10 @@
             foreach (etWeb.et.pregunta unaPregunta in listaPreguntas)
             {
               i++;%>
-          <li><%= Html.Encode(unaPregunta.nro_pregunta) + " - " + Html.Encode(unaPregunta.planteo)%></li>
+          <li><%= Html.Encode(unaPregunta.nro_pregunta) + " - " + Html.Encode(unaPregunta.planteo)%>
+              <i><%=Html.ActionLink("[editar]", "EditarPregunta", new { id = unaPregunta.id, encuesta = unaPregunta.id_encuesta })%></i> - 
+              <i><%=Html.ActionLink("[borrar]", "BorrarPregunta", new { id = unaPregunta.id, encuesta = unaPregunta.id_encuesta })%></i>
+          </li>
         <% } } %>
       </ul>
       </fieldset>
@@ -49,7 +52,7 @@
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Menu Enceustas", "Index") %>
     </div>
 
 </asp:Content>

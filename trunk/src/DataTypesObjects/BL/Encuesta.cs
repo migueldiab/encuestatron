@@ -71,12 +71,13 @@ namespace DataTypesObjects
         encOriginal.f_modificacion = DateTime.Now;
         encOriginal.f_vigencia = unaEncuesta.f_vigencia;
         encOriginal.id_cliente = unaEncuesta.id_cliente;
-        encOriginal.preguntas = unaEncuesta.preguntas;        
+        //encOriginal.preguntas = unaEncuesta.preguntas;        
         dbModel.SubmitChanges();
         return true;
       }
-      catch
+      catch (Exception e)
       {
+        Console.WriteLine(e.ToString());
         return false;
       }
     }
@@ -288,6 +289,40 @@ namespace DataTypesObjects
           return false;
         }
 
+    }
+
+    public static bool borrarPreguntaPorId(int id)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      pregunta preguntaOriginal = dbModel.preguntas.SingleOrDefault(x => x.id == id);
+      try
+      {
+        dbModel.preguntas.DeleteOnSubmit(preguntaOriginal);
+        dbModel.SubmitChanges();
+        return true;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+        return false;
+      }
+    }
+
+    public static bool borrarRespuestaPorId(int id)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      respuesta respuestaOriginal = dbModel.respuestas.SingleOrDefault(x => x.id == id);
+      try
+      {
+        dbModel.respuestas.DeleteOnSubmit(respuestaOriginal);
+        dbModel.SubmitChanges();
+        return true;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+        return false;
+      }
     }
   }
 }

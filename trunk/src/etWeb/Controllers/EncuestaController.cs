@@ -42,62 +42,6 @@ namespace etWeb.Controllers
     {
       return RedirectToAction("Details", "Encuesta", new RouteValueDictionary(
           new { id = id_encuesta }));
-    }
-
-    /*
-     *  Editar Encuesta
-     */
-    [autorizoUsuario(requiereRol = "agente")]
-    public ActionResult Edit(string id)
-    {
-      Fachada etFachada = new Fachada();
-      encuesta unaEncuesta = etFachada.encuestaPorId(id).ListaEncuestas.First();
-      usuario usuarioActual = autorizoUsuario.usuarioActual();
-      ViewData["id_cliente"] = new SelectList(etFachada.listaClientePorAgente(usuarioActual.id_usuario), "id_usuario", "nombre");
-      return View(unaEncuesta);
-    }
-    [autorizoUsuario(requiereRol = "agente")]
-    [AcceptVerbs(HttpVerbs.Post)]
-    public ActionResult Edit(string id, encuesta unaEncuesta)
-    {
-      Fachada etFachada = new Fachada();
-      if (ModelState.IsValid)
-      {
-        if (etFachada.actualizarEncuesta(id, unaEncuesta))
-        {
-          return RedirectToAction("Index");
-        }
-        else
-        {
-          ViewData["error"] = "Error al grabar";
-          return View(unaEncuesta);
-        }
-      }
-      else
-      {
-        ViewData["error"] = "Error al validar modelo";
-        return View(unaEncuesta);
-      }
-    }
-    /*
-     * Borrar Generico
-     */
-    [autorizoUsuario(requiereRol = "agente")]
-    public ActionResult Borrar(string id)
-    {
-      Fachada etFachada = new Fachada();
-      if (etFachada.borrarEncuestaPorId(id))
-      {
-        return View();
-      }
-      else
-      {
-        ViewData["error"] = "Error al borrar";
-        return RedirectToAction("Details", "Encuesta", new RouteValueDictionary(
-          new { id = id }));
-      }
-    }
-
-    
+    }    
   }
 }

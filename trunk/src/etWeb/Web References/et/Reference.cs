@@ -83,6 +83,10 @@ namespace etWeb.et {
         
         private System.Threading.SendOrPostCallback preguntasPorEncuestaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback borrarPreguntaPorIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback borrarRespuestaPorIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback listaRolesOperationCompleted;
         
         private System.Threading.SendOrPostCallback rolPorIdOperationCompleted;
@@ -211,6 +215,12 @@ namespace etWeb.et {
         
         /// <remarks/>
         public event preguntasPorEncuestaCompletedEventHandler preguntasPorEncuestaCompleted;
+        
+        /// <remarks/>
+        public event borrarPreguntaPorIdCompletedEventHandler borrarPreguntaPorIdCompleted;
+        
+        /// <remarks/>
+        public event borrarRespuestaPorIdCompletedEventHandler borrarRespuestaPorIdCompleted;
         
         /// <remarks/>
         public event listaRolesCompletedEventHandler listaRolesCompleted;
@@ -1039,6 +1049,64 @@ namespace etWeb.et {
             if ((this.preguntasPorEncuestaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.preguntasPorEncuestaCompleted(this, new preguntasPorEncuestaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/borrarPreguntaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool borrarPreguntaPorId(int id) {
+            object[] results = this.Invoke("borrarPreguntaPorId", new object[] {
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void borrarPreguntaPorIdAsync(int id) {
+            this.borrarPreguntaPorIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void borrarPreguntaPorIdAsync(int id, object userState) {
+            if ((this.borrarPreguntaPorIdOperationCompleted == null)) {
+                this.borrarPreguntaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnborrarPreguntaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("borrarPreguntaPorId", new object[] {
+                        id}, this.borrarPreguntaPorIdOperationCompleted, userState);
+        }
+        
+        private void OnborrarPreguntaPorIdOperationCompleted(object arg) {
+            if ((this.borrarPreguntaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.borrarPreguntaPorIdCompleted(this, new borrarPreguntaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/borrarRespuestaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool borrarRespuestaPorId(int id) {
+            object[] results = this.Invoke("borrarRespuestaPorId", new object[] {
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void borrarRespuestaPorIdAsync(int id) {
+            this.borrarRespuestaPorIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void borrarRespuestaPorIdAsync(int id, object userState) {
+            if ((this.borrarRespuestaPorIdOperationCompleted == null)) {
+                this.borrarRespuestaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnborrarRespuestaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("borrarRespuestaPorId", new object[] {
+                        id}, this.borrarRespuestaPorIdOperationCompleted, userState);
+        }
+        
+        private void OnborrarRespuestaPorIdOperationCompleted(object arg) {
+            if ((this.borrarRespuestaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.borrarRespuestaPorIdCompleted(this, new borrarRespuestaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2396,6 +2464,58 @@ namespace etWeb.et {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((pregunta[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void borrarPreguntaPorIdCompletedEventHandler(object sender, borrarPreguntaPorIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class borrarPreguntaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal borrarPreguntaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void borrarRespuestaPorIdCompletedEventHandler(object sender, borrarRespuestaPorIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class borrarRespuestaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal borrarRespuestaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }
