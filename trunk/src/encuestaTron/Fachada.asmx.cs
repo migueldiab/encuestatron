@@ -105,7 +105,7 @@ namespace encuestaTron
   [WebMethod]
   public ResultWs encuestaPorIdPassword(int id, String pass)
   {
-      ClienteLogger.insertLog("encuestaPorIdPassword(int "+ id+", String "+ pass+")");
+    ClienteLogger.insertLog("encuestaPorIdPassword(int "+ id+", String "+ pass+")");
     ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
     encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
     if (unaEncuesta != null)
