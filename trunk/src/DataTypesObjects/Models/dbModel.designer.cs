@@ -1027,7 +1027,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="encuesta_pregunta", Storage="_preguntas", OtherKey="id_encuesta")]
-		internal EntitySet<pregunta> preguntas
+		public EntitySet<pregunta> preguntas
 		{
 			get
 			{
@@ -1419,7 +1419,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="pregunta_respuesta", Storage="_respuestas", OtherKey="id_pregunta")]
-		internal EntitySet<respuesta> respuestas
+		public EntitySet<respuesta> respuestas
 		{
 			get
 			{
@@ -1432,7 +1432,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="pregunta_respuesta1", Storage="_respuesta", ThisKey="id", IsUnique=true, IsForeignKey=false)]
-		internal respuesta respuesta
+		public respuesta respuesta
 		{
 			get
 			{
@@ -1461,7 +1461,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="encuesta_pregunta", Storage="_encuesta", ThisKey="id_encuesta", IsForeignKey=true)]
-		public encuesta encuesta
+		internal encuesta encuesta
 		{
 			get
 			{
@@ -1679,7 +1679,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="pregunta_respuesta", Storage="_pregunta", ThisKey="id_pregunta", IsForeignKey=true)]
-		public pregunta pregunta
+		internal pregunta pregunta
 		{
 			get
 			{
@@ -1713,7 +1713,7 @@ namespace encuestaTron
 		}
 		
 		[Association(Name="pregunta_respuesta1", Storage="_pregunta1", ThisKey="id", IsForeignKey=true)]
-		public pregunta pregunta1
+		internal pregunta pregunta1
 		{
 			get
 			{

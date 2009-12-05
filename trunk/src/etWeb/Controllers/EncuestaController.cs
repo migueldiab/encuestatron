@@ -24,18 +24,24 @@ namespace etWeb.Controllers
     [autorizoUsuario(requiereRol = "admin,agente, cliente")]
     public ActionResult Index()
     {
-      return View();
-    }
-
-    /*
-     *  Detalles de Encuesta
-     */
-    [autorizoUsuario(requiereRol = "agente,admin,cliente")]
-    public ActionResult Details(string id)
-    {
+      usuario usuarioActual = autorizoUsuario.usuarioActual();
       Fachada etFachada = new Fachada();
-      encuesta unaEncuesta = etFachada.encuestaPorId(id).ListaEncuestas.First();
-      return View(unaEncuesta);
+      List<encuesta> encuestas = null;
+      if (autorizoUsuario.esAgente())
+        encuestas = etFachada.listaEncuestasPorIdAgente(usuarioActual.id_usuario).ToList();
+      else if (autorizoUsuario.esCliente())
+        encuestas = etFachada.listaEncuestasPorIdCliente(usuarioActual.id_usuario).ToList();
+      else
+        encuestas = etFachada.listaEncuestas().ListaEncuestas.ToList();
+      ViewData["id_encuesta"] = new SelectList(encuestas, "nombre", "nombre");
+      return View(encuestas);
+    }
+    [autorizoUsuario(requiereRol = "admin,agente, cliente")]
+    [AcceptVerbs(HttpVerbs.Post)]
+    public ActionResult Index(string id_encuesta)
+    {
+      return RedirectToAction("Details", "Encuesta", new RouteValueDictionary(
+          new { id = id_encuesta }));
     }
 
     /*

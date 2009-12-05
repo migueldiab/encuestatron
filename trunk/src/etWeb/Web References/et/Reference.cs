@@ -1342,6 +1342,76 @@ namespace etWeb.et {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class respuesta {
+        
+        private int idField;
+        
+        private int contadorField;
+        
+        private string textoField;
+        
+        private int id_preguntaField;
+        
+        private System.Nullable<int> id_proxima_preguntaField;
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int contador {
+            get {
+                return this.contadorField;
+            }
+            set {
+                this.contadorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string texto {
+            get {
+                return this.textoField;
+            }
+            set {
+                this.textoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int id_pregunta {
+            get {
+                return this.id_preguntaField;
+            }
+            set {
+                this.id_preguntaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> id_proxima_pregunta {
+            get {
+                return this.id_proxima_preguntaField;
+            }
+            set {
+                this.id_proxima_preguntaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class pregunta {
         
         private int idField;
@@ -1356,7 +1426,9 @@ namespace etWeb.et {
         
         private System.Nullable<int> nro_preguntaField;
         
-        private encuesta encuestaField;
+        private respuesta[] respuestasField;
+        
+        private respuesta respuestaField;
         
         /// <remarks/>
         public int id {
@@ -1421,12 +1493,22 @@ namespace etWeb.et {
         }
         
         /// <remarks/>
-        public encuesta encuesta {
+        public respuesta[] respuestas {
             get {
-                return this.encuestaField;
+                return this.respuestasField;
             }
             set {
-                this.encuestaField = value;
+                this.respuestasField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public respuesta respuesta {
+            get {
+                return this.respuestaField;
+            }
+            set {
+                this.respuestaField = value;
             }
         }
     }
@@ -1452,6 +1534,8 @@ namespace etWeb.et {
         private System.Nullable<System.DateTime> f_cierreField;
         
         private string id_clienteField;
+        
+        private pregunta[] preguntasField;
         
         /// <remarks/>
         public string nombre {
@@ -1525,98 +1609,14 @@ namespace etWeb.et {
                 this.id_clienteField = value;
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class respuesta {
-        
-        private int idField;
-        
-        private int contadorField;
-        
-        private string textoField;
-        
-        private int id_preguntaField;
-        
-        private System.Nullable<int> id_proxima_preguntaField;
-        
-        private pregunta preguntaField;
-        
-        private pregunta pregunta1Field;
         
         /// <remarks/>
-        public int id {
+        public pregunta[] preguntas {
             get {
-                return this.idField;
+                return this.preguntasField;
             }
             set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int contador {
-            get {
-                return this.contadorField;
-            }
-            set {
-                this.contadorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string texto {
-            get {
-                return this.textoField;
-            }
-            set {
-                this.textoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int id_pregunta {
-            get {
-                return this.id_preguntaField;
-            }
-            set {
-                this.id_preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> id_proxima_pregunta {
-            get {
-                return this.id_proxima_preguntaField;
-            }
-            set {
-                this.id_proxima_preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public pregunta pregunta {
-            get {
-                return this.preguntaField;
-            }
-            set {
-                this.preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public pregunta pregunta1 {
-            get {
-                return this.pregunta1Field;
-            }
-            set {
-                this.pregunta1Field = value;
+                this.preguntasField = value;
             }
         }
     }

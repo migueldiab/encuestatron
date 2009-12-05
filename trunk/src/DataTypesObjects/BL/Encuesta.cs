@@ -224,7 +224,7 @@ namespace DataTypesObjects
       catch (Exception e)
       {
         Console.WriteLine(e.ToString());
-        max = 1;
+        max = 0;
       }
       return max;
     }
