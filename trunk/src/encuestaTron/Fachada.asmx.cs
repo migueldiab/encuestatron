@@ -126,9 +126,11 @@ namespace encuestaTron
     return listaEncuestaResult;
   }
 
+
   [WebMethod]
   public ResultWs encuestaPorIdPassword(int id, String pass)
   {
+      ClienteLogger.insertLog("encuestaPorIdPassword(int "+ id+", String "+ pass+")");
     ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
     encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
     if (unaEncuesta != null)
@@ -171,8 +173,7 @@ namespace encuestaTron
   [WebMethod]
   public ResultWs getPregunta(int idEncuesta, string pass, respuesta respuesta)
   {
-      pregunta pregunta = Pregunta.getPregunta((int)respuesta.id_proxima_pregunta, idEncuesta);
-      return new ResultWs();
+     return new ResultWs();
   }
   [WebMethod]
   public List<encuesta> listaEncuestasPorIdAgente(string idAgente)
