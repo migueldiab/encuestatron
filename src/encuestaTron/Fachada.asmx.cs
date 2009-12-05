@@ -25,28 +25,6 @@ namespace encuestaTron
   {
 
 #region Usuarios
-    //  [XmlInclude(typeof(Usuario))]
-    /*
-    [WebMethod]
-    public LoginResult UsuarioLogin(String usuario, String password)
-    {
-        LoginResult retorno = new LoginResult();
-        Usuario user = new Usuario();
-        try
-        {
-            user = Usuario.Login(usuario, password);
-            retorno.IdUsuario = user.Cedula;
-            retorno.NombreCompleto = user.Nombre + " " + user.Apellido;
-            retorno.Token = "qqwerty";
-            retorno.Rol = (user.Roles[0].Id).ToString();
-        }
-        catch (Exception e)
-        {
-            retorno.Error = e.Message;
-        }
-        return retorno;
-    }
-    */
     [WebMethod]
     public bool validarUsuario(String usuario, String password)
     {
@@ -56,8 +34,7 @@ namespace encuestaTron
     public string obtenerPermisosPorUsuario(String usuario)
     {
       return Usuario.obtenerPermisosPorUsuario(usuario);
-    }
-    
+    }    
     [WebMethod]
     public List<usuario> listaUsuarios()
     {
@@ -71,11 +48,8 @@ namespace encuestaTron
     [WebMethod]
     public List<usuario> listaClientePorAgente(string nombreAgente)
     {
-      //return Usuario.listaClientePorAgente(nombreAgente); 
-        return null;
-    }
-    
-    
+      return Usuario.listaClientePorAgente(nombreAgente); 
+    }    
     [WebMethod]
     public bool borrarUsuarioPorId(string id)
     {
@@ -86,7 +60,6 @@ namespace encuestaTron
     {
       return Usuario.usuarioPorId(id);
     }
-
     [WebMethod]
     public bool insertarUsuario(usuario unUsuario)
     {
@@ -97,9 +70,6 @@ namespace encuestaTron
     {
       return Usuario.insertarCliente(unCliente, unAgente);
     }
-
-    
-
     [WebMethod]
     public bool actualizarUsuario(string id, usuario unUsuario)
     {
@@ -195,7 +165,6 @@ namespace encuestaTron
   {
     return Encuesta.actualizarEncuesta(id,unaEncuesta);
   }
-
   [WebMethod]
   public List<encuesta> listaEncuestasPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
   {
@@ -211,7 +180,33 @@ namespace encuestaTron
   {
     return Encuesta.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, idAgente, idCliente);
   }
+  [WebMethod]
+  public int insertarPregunta(pregunta unaPregunta, encuesta unaEncuesta)
+  {
+    return Encuesta.insertarPregunta(unaPregunta, unaEncuesta);
+  }
+  [WebMethod]
+  public int insertarRespuesta(respuesta unaRespuesta, pregunta unaPregunta)
+  {
+    return Encuesta.insertarRespuesta(unaRespuesta, unaPregunta);
+  }
+  [WebMethod]
+  public pregunta preguntaPorId(int idPregunta)
+  {
+    return Encuesta.preguntaPorId(idPregunta);
+  }
 
+  [WebMethod]
+  public List<respuesta> respuestasPorPregunta(pregunta unaPregunta)
+  {
+    return Encuesta.respuestasPorPregunta(unaPregunta);
+  }
+
+  [WebMethod]
+  public List<pregunta> preguntasPorEncuesta(encuesta unaEncuesta)
+  {
+    return Encuesta.preguntasPorEncuesta(unaEncuesta);
+  } 
 #endregion
 
 #region Roles

@@ -1,56 +1,44 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<etWeb.et.encuesta>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	Crear Nueva Encuesta
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
-
+    <h2>Crear Nueva Encuesta</h2>
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
-
+    <p style="color: Red;"><%= Html.ViewData["error"] %></p>
     <% using (Html.BeginForm()) {%>
-
         <fieldset>
-            <legend>Fields</legend>
+            <legend>Cabezal de Encuesta</legend>
             <p>
-                <label for="nombre">nombre:</label>
+                <label for="nombre">Nombre :</label>
                 <%= Html.TextBox("nombre") %>
                 <%= Html.ValidationMessage("nombre", "*") %>
             </p>
             <p>
-                <label for="contrasena">contrasena:</label>
-                <%= Html.TextBox("contrasena") %>
+                <label for="contrasena">Contraseña :</label>
+                <%= Html.Password("contrasena") %>
                 <%= Html.ValidationMessage("contrasena", "*") %>
             </p>
             <p>
-                <label for="f_ingreso">f_ingreso:</label>
-                <%= Html.TextBox("f_ingreso") %>
-                <%= Html.ValidationMessage("f_ingreso", "*") %>
-            </p>
-            <p>
-                <label for="f_modificacion">f_modificacion:</label>
-                <%= Html.TextBox("f_modificacion") %>
-                <%= Html.ValidationMessage("f_modificacion", "*") %>
-            </p>
-            <p>
-                <label for="f_vigencia">f_vigencia:</label>
-                <%= Html.TextBox("f_vigencia") %>
+                <label for="f_vigencia">Fecha de Vigencia :</label>
+                <%= Html.DatePicker("f_vigencia", Html.Encode(String.Format("{0:dd/MM/yyyy}", DateTime.Now)))%> 
                 <%= Html.ValidationMessage("f_vigencia", "*") %>
             </p>
             <p>
-                <label for="f_cierre">f_cierre:</label>
-                <%= Html.TextBox("f_cierre") %>
+                <label for="f_cierre">Fecha de Cierre:</label>
+                <%= Html.DatePicker("f_cierre", Html.Encode(String.Format("{0:dd/MM/yyyy}", DateTime.Now)))%> 
                 <%= Html.ValidationMessage("f_cierre", "*") %>
             </p>
             <p>
-                <label for="id_cliente">id_cliente:</label>
-                <%= Html.TextBox("id_cliente") %>
+                <label for="id_cliente">Cliente :</label>
+                <%= Html.DropDownList("id_cliente") %>
                 <%= Html.ValidationMessage("id_cliente", "*") %>
             </p>
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Agregar Preguntas" />
             </p>
         </fieldset>
 

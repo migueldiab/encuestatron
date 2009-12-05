@@ -61,7 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EncuestaController.CrearEncuesta.cs" />
     <Compile Include="Controllers\EncuestaController.cs" />
+    <Compile Include="Controllers\EncuestaController.Listados.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -131,6 +133,8 @@
     <Content Include="Views\Encuesta\ListaPorFechaCierre.aspx" />
     <Content Include="Views\Encuesta\ListaPorFechaIngreso.aspx" />
     <Content Include="Views\Encuesta\ListaPorFechaVigencia.aspx" />
+    <Content Include="Views\Encuesta\PreguntasEncuesta.aspx" />
+    <Content Include="Views\Encuesta\RespuestasPregunta.aspx" />
     <Content Include="Views\Rol\Create.aspx" />
     <Content Include="Views\Rol\Details.aspx" />
     <Content Include="Views\Rol\Edit.aspx" />
@@ -179,9 +183,15 @@
     <None Include="Web References\et\ListaEncuestaResult.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\et\pregunta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\et\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\et\respuesta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\et\ResultWs.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -197,6 +207,12 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MVC\src\SystemWebMvc\System.Web.Mvc.csproj">
+      <Project>{3D3FFD8A-624D-4E9B-954B-E1C105507975}</Project>
+      <Name>System.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <WebReferenceUrl Include="http://localhost/et/fachada.asmx%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\et\</RelPath>
@@ -206,14 +222,8 @@
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>etWeb_localhost_Fachada</CachedSettingsPropName>
+      <CachedSettingsPropName>etWeb_et_Fachada</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MVC\src\SystemWebMvc\System.Web.Mvc.csproj">
-      <Project>{3D3FFD8A-624D-4E9B-954B-E1C105507975}</Project>
-      <Name>System.Web.Mvc</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

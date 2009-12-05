@@ -47,6 +47,8 @@ namespace DataTypesObjects
       try
       {
         var dbModel = new dbModel(Sistema.connStr);
+        unaEncuesta.f_ingreso = DateTime.Now;
+        unaEncuesta.f_modificacion = DateTime.Now;
         dbModel.encuestas.InsertOnSubmit(unaEncuesta);
         dbModel.SubmitChanges();
         return true;
@@ -66,8 +68,7 @@ namespace DataTypesObjects
       {
         encOriginal.contrasena = unaEncuesta.contrasena;
         encOriginal.f_cierre = unaEncuesta.f_cierre;
-        encOriginal.f_ingreso = unaEncuesta.f_ingreso;
-        encOriginal.f_modificacion = unaEncuesta.f_modificacion;
+        encOriginal.f_modificacion = DateTime.Now;
         encOriginal.f_vigencia = unaEncuesta.f_vigencia;
         encOriginal.id_cliente = unaEncuesta.id_cliente;
         encOriginal.preguntas = unaEncuesta.preguntas;        
@@ -187,6 +188,88 @@ namespace DataTypesObjects
                 select e;
       }
       return lista.ToList();
+    }
+
+    public static int insertarPregunta(pregunta unaPregunta, encuesta unaEncuesta)
+    {
+      try
+      {
+        var dbModel = new dbModel(Sistema.connStr);
+        unaEncuesta.f_modificacion = DateTime.Now;
+        if (unaPregunta.nro_pregunta == null)
+        {
+          unaPregunta.nro_pregunta = obtenerUltimaPregunta(unaEncuesta)+1;
+        }
+        dbModel.preguntas.InsertOnSubmit(unaPregunta);
+        dbModel.SubmitChanges();
+        return unaPregunta.id;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+        return -1;
+      }
+    }
+
+    private static int obtenerUltimaPregunta(encuesta unaEncuesta)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      int max;
+      try
+      {
+        max = (from p in dbModel.preguntas
+                   where p.id_encuesta == unaEncuesta.nombre
+                   select p.nro_pregunta).Max().Value;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+        max = 1;
+      }
+      return max;
+    }
+
+    public static pregunta preguntaPorId(int idPregunta)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      return dbModel.preguntas.Single(x => x.id == idPregunta);  
+    }
+
+    public static int insertarRespuesta(respuesta unaRespuesta, pregunta unaPregunta)
+    {
+      try
+      {
+        var dbModel = new dbModel(Sistema.connStr);
+        encuesta unaEncuesta = unaPregunta.encuesta;
+        unaEncuesta.f_modificacion = DateTime.Now;
+        dbModel.respuestas.InsertOnSubmit(unaRespuesta);
+        dbModel.SubmitChanges();
+        return unaPregunta.id;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+        return -1;
+      }
+    }
+
+    public static List<respuesta> respuestasPorPregunta(pregunta unaPregunta)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      IQueryable<respuesta> listaRespuestas = from r in dbModel.respuestas
+                                        where r.id_pregunta == unaPregunta.id
+                                        select r;
+      return listaRespuestas.ToList();
+    }
+
+    public static List<pregunta> preguntasPorEncuesta(encuesta unaEncuesta)
+    {
+      var dbModel = new dbModel(Sistema.connStr);
+      IQueryable<pregunta> listaPreguntas = from p in dbModel.preguntas
+                                            orderby p.nro_pregunta
+                                            where p.id_encuesta == unaEncuesta.nombre
+                                            select p;
+      return listaPreguntas.ToList();
     }
   }
 }
