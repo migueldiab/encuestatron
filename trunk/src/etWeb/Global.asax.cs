@@ -16,11 +16,12 @@ namespace etWeb
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+
+            HttpContext.Current.RewritePath(HttpContext.Current.Request.ApplicationPath, true);
             routes.MapRoute(
                 "Default",                                              // Route name
-                "sampleasp/{controller}/{action}/{id}",                           // URL with parameters
-                new { controller = "Home", action = "Index", id = ""}    // Parameter defaults
+                "{controller}/{action}/{id}",                           // URL with parameters
+                new { controller = "Home", action = "Index", id = "" }    // Parameter defaults
             );
         }
 
