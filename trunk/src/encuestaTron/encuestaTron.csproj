@@ -76,6 +76,7 @@
       <DependentUpon>Fachada.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="getPreguntaResult.cs" />
     <Compile Include="ListaEncuestaResult.cs" />
     <Compile Include="ClienteLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
