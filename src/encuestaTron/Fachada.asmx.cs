@@ -36,46 +36,55 @@ namespace encuestaTron
     [WebMethod]
     public string obtenerPermisosPorUsuario(String usuario)
     {
+      ClienteLogger.insertLog("obtenerPermisosPorUsuario(" + usuario + ")");
       return Usuario.obtenerPermisosPorUsuario(usuario);
     }    
     [WebMethod]
     public List<usuario> listaUsuarios()
     {
+      ClienteLogger.insertLog("listaUsuarios()");
       return Usuario.listaUsuarios(); 
     }
     [WebMethod]
     public List<usuario> listaPorRol(string rol)
     {
+      ClienteLogger.insertLog("listaPorRol(string rol)");
       return Usuario.listaPorRol(rol); 
     }
     [WebMethod]
     public List<usuario> listaClientePorAgente(string nombreAgente)
     {
+      ClienteLogger.insertLog("listaClientePorAgente(string nombreAgente)");
       return Usuario.listaClientePorAgente(nombreAgente); 
     }    
     [WebMethod]
     public bool borrarUsuarioPorId(string id)
     {
+      ClienteLogger.insertLog("borrarUsuarioPorId(string id)");
       return Usuario.borrarUsuarioPorId(id);
     }
     [WebMethod]
     public usuario usuarioPorId(string id)
     {
+      ClienteLogger.insertLog("usuarioPorId(string id)");
       return Usuario.usuarioPorId(id);
     }
     [WebMethod]
     public bool insertarUsuario(usuario unUsuario)
     {
+      ClienteLogger.insertLog("insertarUsuario(usuario unUsuario)");
       return Usuario.insertarUsuario(unUsuario);
     }
     [WebMethod]
     public bool insertarCliente(usuario unCliente, usuario unAgente)
     {
+      ClienteLogger.insertLog("insertarCliente(usuario unCliente, usuario unAgente)");
       return Usuario.insertarCliente(unCliente, unAgente);
     }
     [WebMethod]
     public bool actualizarUsuario(string id, usuario unUsuario)
     {
+      ClienteLogger.insertLog("actualizarUsuario(string id, usuario unUsuario)");
       return Usuario.actualizarUsuario(id, unUsuario);
     } 
 
@@ -85,7 +94,7 @@ namespace encuestaTron
   [WebMethod]
   public ListaEncuestaResult listaEncuestas()
   {
-      ClienteLogger.insertLog("Fachada.ListaEncuestasResult",Utils.Log.SEVERIDAD.INFO);
+      ClienteLogger.insertLog("Fachada.ListaEncuestasResult",Log.SEVERIDAD.INFO);
       ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
       if (Encuesta.listaEncuestas().Count() > 0)
       {
@@ -94,7 +103,7 @@ namespace encuestaTron
       }
       else
       {
-          ClienteLogger.insertLog("Fachada.ListaEncuestasResult: No se encontraron encuestas",Utils.Log.SEVERIDAD.ERROR);
+          ClienteLogger.insertLog("Fachada.ListaEncuestasResult: No se encontraron encuestas",Log.SEVERIDAD.ERROR);
           listaEncuestaResult.Error = "No se encontraron encuestas";
       }
       
@@ -110,11 +119,8 @@ namespace encuestaTron
   [WebMethod]
   public ListaEncuestaResult encuestaPorIdPassword(String id, String pass)
   {
-<<<<<<< .mine
-      ClienteLogger.insertLog("encuestaPorIdPassword(String "+ id+", String "+ pass+")",Utils.Log.SEVERIDAD.INFO);
-=======
+      ClienteLogger.insertLog("encuestaPorIdPassword(String "+ id+", String "+ pass+")",Log.SEVERIDAD.INFO);
     ClienteLogger.insertLog("encuestaPorIdPassword(int "+ id+", String "+ pass+")");
->>>>>>> .r90
     ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
     encuesta unaEncuesta = Encuesta.encuestaPorId(id);
     if (unaEncuesta != null)
@@ -127,13 +133,13 @@ namespace encuestaTron
       }
       else
       {
-          ClienteLogger.insertLog("No se valido la contraseña para la encuesta id: " + id, Utils.Log.SEVERIDAD.ALERT);
+          ClienteLogger.insertLog("No se valido la contraseña para la encuesta id: " + id, Log.SEVERIDAD.ALERT);
         listaEncuestaResult.Error = "No se valido la contraseña para la encuesta id: " + id;
       }
     }
     else
     {
-        ClienteLogger.insertLog("No se encontro encuesta con id: " + id, Utils.Log.SEVERIDAD.ALERT);
+        ClienteLogger.insertLog("No se encontro encuesta con id: " + id, Log.SEVERIDAD.ALERT);
       listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
     }
 
@@ -143,7 +149,7 @@ namespace encuestaTron
   [WebMethod]
   public ListaEncuestaResult encuestaPorId(string id)
   {
-      ClienteLogger.insertLog("ListaEncuestaResult "+ id, Utils.Log.SEVERIDAD.INFO);
+      ClienteLogger.insertLog("ListaEncuestaResult "+ id, Log.SEVERIDAD.INFO);
  
     ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
     encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
@@ -154,7 +160,7 @@ namespace encuestaTron
     }
     else
     {
-        ClienteLogger.insertLog("No se encontro encuesta con id: " + id, Utils.Log.SEVERIDAD.ALERT);
+        ClienteLogger.insertLog("No se encontro encuesta con id: " + id, Log.SEVERIDAD.ALERT);
       listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
     }
     return listaEncuestaResult;
@@ -163,7 +169,7 @@ namespace encuestaTron
   [WebMethod]
   public getPreguntaResult getPreguntaPorId(int idPregunta)
   {
-      ClienteLogger.insertLog("getPreguntaPorId: " + idPregunta, Utils.Log.SEVERIDAD.ALERT);
+      ClienteLogger.insertLog("getPreguntaPorId: " + idPregunta, Log.SEVERIDAD.ALERT);
 
       getPreguntaResult getPreguntaResult = new getPreguntaResult();
       try
@@ -176,7 +182,7 @@ namespace encuestaTron
           }
           else
           {
-              ClienteLogger.insertLog("No se encontro pregunta con id: " + idPregunta, Utils.Log.SEVERIDAD.ALERT);
+              ClienteLogger.insertLog("No se encontro pregunta con id: " + idPregunta, Log.SEVERIDAD.ALERT);
 
               getPreguntaResult.Pregunta = null;
               getPreguntaResult.Error ="No se encontro pregunta con id: "+ idPregunta;
@@ -185,7 +191,7 @@ namespace encuestaTron
       }
       catch (Exception)
       {
-          ClienteLogger.insertLog("ERROR DESCONOSIDO: " + idPregunta, Utils.Log.SEVERIDAD.ERROR);
+          ClienteLogger.insertLog("ERROR DESCONOSIDO: " + idPregunta, Log.SEVERIDAD.ERROR);
         getPreguntaResult.Pregunta =null;
          getPreguntaResult.Error ="Error en fachada";  
           
@@ -196,15 +202,15 @@ namespace encuestaTron
       [WebMethod]
   public ResultWs guardarEncuesta(List<respuesta> respuestas)
   {
-      ClienteLogger.insertLog("guardarEncuesta: ", Utils.Log.SEVERIDAD.ALERT);
+      ClienteLogger.insertLog("guardarEncuesta: ", Log.SEVERIDAD.ALERT);
       ResultWs result = new ResultWs();
       String error = null;
       foreach (respuesta res in respuestas)
       {
-          ClienteLogger.insertLog("Se intenta guardar respuesta " + res.id, Utils.Log.SEVERIDAD.ALERT);
+          ClienteLogger.insertLog("Se intenta guardar respuesta " + res.id, Log.SEVERIDAD.ALERT);
           if (!Encuesta.incrementarContadorRespuesta(res))
           {
-              ClienteLogger.insertLog("No se pudo incrementar respuesta: " + res.id , Utils.Log.SEVERIDAD.ERROR);
+              ClienteLogger.insertLog("No se pudo incrementar respuesta: " + res.id , Log.SEVERIDAD.ERROR);
               error = res.id + " no incrementada";
           }
       }
@@ -214,73 +220,87 @@ namespace encuestaTron
   [WebMethod]
   public List<encuesta> listaEncuestasPorIdAgente(string idAgente)
   {
+    ClienteLogger.insertLog("listaEncuestasPorIdAgente(string idAgente)");
     return Encuesta.listaEncuestasPorIdAgente(idAgente);
   }
   [WebMethod]
   public List<encuesta> listaEncuestasPorIdCliente(string idCliente)
   {
+    ClienteLogger.insertLog("listaEncuestasPorIdCliente(string idCliente)");
     return Encuesta.listaEncuestasPorIdCliente(idCliente);
   }
   [WebMethod]
   public bool insertarEncuesta(encuesta unaEncuesta)
   {
+    ClienteLogger.insertLog("insertarEncuesta(encuesta unaEncuesta)");
     return Encuesta.insertarEncuesta(unaEncuesta);
   }      
   [WebMethod]
   public bool actualizarEncuesta(string id, encuesta unaEncuesta)
   {
+    ClienteLogger.insertLog("actualizarEncuesta(string id, encuesta unaEncuesta)");
     return Encuesta.actualizarEncuesta(id,unaEncuesta);
   }
   [WebMethod]
   public List<encuesta> listaEncuestasPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
   {
+    ClienteLogger.insertLog("listaEncuestasPorFechaIngreso(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)");
     return Encuesta.listaEncuestasPorFechaIngreso(fechaInicial, fechaFinal, idAgente, idCliente);
   }
   [WebMethod]
   public List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
   {
+    ClienteLogger.insertLog("listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)");
     return Encuesta.listaEncuestasPorFechaVigencia(fechaInicial, fechaFinal, idAgente, idCliente);
   }
   [WebMethod]
   public List<encuesta> listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
   {
+    ClienteLogger.insertLog("listaEncuestasPorFechaCierre(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)");
     return Encuesta.listaEncuestasPorFechaCierre(fechaInicial, fechaFinal, idAgente, idCliente);
   }
   [WebMethod]
   public int insertarPregunta(pregunta unaPregunta, encuesta unaEncuesta)
   {
+    ClienteLogger.insertLog("insertarPregunta(pregunta unaPregunta, encuesta unaEncuesta)");
     return Encuesta.insertarPregunta(unaPregunta, unaEncuesta);
   }
   [WebMethod]
   public int insertarRespuesta(respuesta unaRespuesta, pregunta unaPregunta)
   {
+    ClienteLogger.insertLog("insertarRespuesta(respuesta unaRespuesta, pregunta unaPregunta)");
     return Encuesta.insertarRespuesta(unaRespuesta, unaPregunta);
   }
   [WebMethod]
   public pregunta preguntaPorId(int idPregunta)
   {
+    ClienteLogger.insertLog("preguntaPorId(int idPregunta)");
     return Encuesta.preguntaPorId(idPregunta);
   }
 
   [WebMethod]
   public List<respuesta> respuestasPorPregunta(pregunta unaPregunta)
   {
+    ClienteLogger.insertLog("respuestasPorPregunta(pregunta unaPregunta)");
     return Encuesta.respuestasPorPregunta(unaPregunta);
   }
 
   [WebMethod]
   public List<pregunta> preguntasPorEncuesta(encuesta unaEncuesta)
   {
+    ClienteLogger.insertLog("preguntasPorEncuesta(encuesta unaEncuesta)");
     return Encuesta.preguntasPorEncuesta(unaEncuesta);
   } 
   [WebMethod]
   public bool borrarPreguntaPorId(int id)
   {
+    ClienteLogger.insertLog("borrarPreguntaPorId(int id)");
     return Encuesta.borrarPreguntaPorId(id);
   }    
    [WebMethod]
   public bool borrarRespuestaPorId(int id)
   {
+    ClienteLogger.insertLog("borrarRespuestaPorId(int id)");
     return Encuesta.borrarRespuestaPorId(id);
   }      
 #endregion
@@ -290,27 +310,32 @@ namespace encuestaTron
     [WebMethod]
     public List<rol> listaRoles()
     {
+      ClienteLogger.insertLog("listaRoles()");
       return Rol.listaRoles();
     }
 
     [WebMethod]
     public rol rolPorId(int id)
     {
+      ClienteLogger.insertLog("rolPorId(int id)");
       return Rol.rolPorId(id);
     }
     [WebMethod]
     public rol rolPorNombre(string nombre)
     {
+      ClienteLogger.insertLog("rolPorNombre(string nombre)");
       return Rol.rolPorNombre(nombre);
     }
     [WebMethod]
     public bool insertarRol(rol unRol)
     {
+      ClienteLogger.insertLog("insertarRol(rol unRol)");
       return Rol.insertarRol(unRol);
     } 
     [WebMethod]
     public bool actualizarRol(int id, rol unRol)
     {
+      ClienteLogger.insertLog("actualizarRol(int "+id+", rol "+unRol+")");
       return Rol.actualizarRol(id, unRol);
     }
 #endregion

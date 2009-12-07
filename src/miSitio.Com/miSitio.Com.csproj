@@ -99,10 +99,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:4001/etWebService.asmx">
+    <WebReferenceUrl Include="http://localhost:5001/etWebService/etWebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\etWebService\</RelPath>
-      <UpdateFromURL>http://localhost:4001/etWebService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:5001/etWebService/etWebService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

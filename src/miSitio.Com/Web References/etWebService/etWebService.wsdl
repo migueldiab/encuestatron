@@ -287,10 +287,10 @@
   </wsdl:binding>
   <wsdl:service name="etWebService">
     <wsdl:port name="etWebServiceSoap" binding="tns:etWebServiceSoap">
-      <soap:address location="http://localhost:4001/etWebService.asmx" />
+      <soap:address location="http://localhost:5001/etWebService/etWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="etWebServiceSoap12" binding="tns:etWebServiceSoap12">
-      <soap12:address location="http://localhost:4001/etWebService.asmx" />
+      <soap12:address location="http://localhost:5001/etWebService/etWebService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
