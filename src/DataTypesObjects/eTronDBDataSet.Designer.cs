@@ -3600,7 +3600,7 @@ SELECT id_Log, fecha_Log, usuario_Log, descripcion_Log, severidad_Log FROM bitac
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString;
+            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3988,7 +3988,7 @@ SELECT nombre, contrasena, f_ingreso, f_modificacion, f_vigencia, f_cierre, id_a
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString;
+            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4468,7 +4468,7 @@ SELECT nombre, contrasena, f_ingreso, f_modificacion, f_vigencia, f_cierre, id_a
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString;
+            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4794,7 +4794,7 @@ SELECT id_usuario, id_permiso FROM permiso_usuario WHERE (id_permiso = @id_permi
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString;
+            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5113,7 +5113,7 @@ SELECT id, planteo, condicion, f_ultima_respuesta, id_encuesta FROM pregunta WHE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString;
+            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5506,7 +5506,7 @@ SELECT id, contador, texto, id_pregunta FROM respuesta WHERE (id = @id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString;
+            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5845,7 +5845,7 @@ SELECT nombre, email, usuario, contrasena, celular, telefono, f_ingreso FROM usu
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString;
+            this._connection.ConnectionString = global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

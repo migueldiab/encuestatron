@@ -19,7 +19,7 @@
                 <li>Económico.</li>
             </ul>
             <div class="photo-container align-right" style="width:202px;">
-                <div class="photo-content"> <img src="../../Content/images/photo-small-02.jpg" alt="Photo Small 2" /> </div>
+                <div class="photo-content"> <img src="./Content/images/photo-small-02.jpg" alt="Photo Small 2" /> </div>
                 <div class="photo-caption">Miles de encuestas a su alcance</div>
             </div>
             <p> Ma quande lingues coalesce, li grammatica del resultant lingue es plu simplic e regulari quam ti del coalescent lingues. Li nov lingua franca va esser plu simplic e regulari quam li existent Europan lingues. It va esser tam simplic quam Occidental: in fact, it va esser Occidental. A un Angleso it va semblar un simplificat Angles, quam un skeptic Cambridge amico dit me que Occidental es. </p>

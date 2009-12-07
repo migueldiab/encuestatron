@@ -17,7 +17,6 @@ namespace etWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            HttpContext.Current.RewritePath(HttpContext.Current.Request.ApplicationPath, true);
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters

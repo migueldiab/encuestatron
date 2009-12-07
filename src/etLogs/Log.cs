@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Utils
+namespace etLogs
 {
     [Serializable]
     public class Log
@@ -10,6 +10,9 @@ namespace Utils
         private String descripcion;
         private SEVERIDAD severidad;
 
+        public static void Main(String[] args)
+        {
+        }
         public enum SEVERIDAD
         {
             INFO,

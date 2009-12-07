@@ -2,29 +2,16 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataTypesObjects.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="eTronDBConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="etDBConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=ACER\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmin&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=.\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmin&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=ACER\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmin</Value>
+      <Value Profile="(Default)">Data Source=.\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmin</Value>
     </Setting>
-    <Setting Name="etTempDBConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=.\SQLEXPRESS;AttachDbFilename=D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\App_Data\etTempDB.mdf;Integrated Security=True;User Instance=True&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=.\SQLEXPRESS;AttachDbFilename=D:\Data\Documentos\Ort\Ap.Net\encuestaTron\src\etWeb\App_Data\etTempDB.mdf;Integrated Security=True;User Instance=True</Value>
-    </Setting>
-    <Setting Name="eTronDBConnectionString1" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=LORIEN\SQLEXPRESS;Initial Catalog=eTronDB;Persist Security Info=True;User ID=admin;Password=adminadmin&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=LORIEN\SQLEXPRESS;Initial Catalog=eTronDB;Persist Security Info=True;User ID=admin;Password=adminadmin</Value>
+    <Setting Name="etDB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=.\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmin</Value>
     </Setting>
   </Settings>
 </SettingsFile>
