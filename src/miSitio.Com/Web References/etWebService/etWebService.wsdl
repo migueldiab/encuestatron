@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getListaEncuestas">
+        <s:complexType />
+      </s:element>
+      <s:element name="getListaEncuestasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getListaEncuestasResult" type="tns:ListaEncuestaResult2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ListaEncuestaResult2">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResultWs2">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ListaEncuestas" type="tns:ArrayOfEncuestaPortal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResultWs2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEncuestaPortal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EncuestaPortal" nillable="true" type="tns:EncuestaPortal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EncuestaPortal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Preguntas" type="tns:ArrayOfPregunta" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaDesde" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFin" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPregunta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="pregunta" nillable="true" type="tns:pregunta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pregunta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="planteo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_ultima_respuesta" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="id_encuesta" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="nro_pregunta" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="respuestas" type="tns:ArrayOfRespuesta" />
+          <s:element minOccurs="0" maxOccurs="1" name="respuesta" type="tns:respuesta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRespuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="respuesta" nillable="true" type="tns:respuesta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="respuesta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="contador" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="texto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_pregunta" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="id_proxima_pregunta" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="encuestaPorIdPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="encuestaPorIdPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encuestaPorIdPasswordResult" type="tns:ListaEncuestaResult2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSiguientePreguntaEncuesta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="respuesta" type="tns:respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSiguientePreguntaEncuestaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getSiguientePreguntaEncuestaResult" type="tns:getPreguntaResult2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="getPreguntaResult2">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResultWs2">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Pregunta" type="tns:pregunta" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="guardarEncuesta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="respuestas" type="tns:ArrayOfRespuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarEncuestaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guardarEncuestaResult" type="tns:ResultWs" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultWs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListaEncuestaResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResultWs">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ListaEncuestas" type="tns:ArrayOfEncuesta" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfEncuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="encuesta" nillable="true" type="tns:encuesta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="encuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contrasena" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_ingreso" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_modificacion" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_vigencia" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="f_cierre" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="id_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="preguntas" type="tns:ArrayOfPregunta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="getPreguntaResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResultWs">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Pregunta" type="tns:pregunta" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getListaEncuestasSoapIn">
+    <wsdl:part name="parameters" element="tns:getListaEncuestas" />
+  </wsdl:message>
+  <wsdl:message name="getListaEncuestasSoapOut">
+    <wsdl:part name="parameters" element="tns:getListaEncuestasResponse" />
+  </wsdl:message>
+  <wsdl:message name="encuestaPorIdPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:encuestaPorIdPassword" />
+  </wsdl:message>
+  <wsdl:message name="encuestaPorIdPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:encuestaPorIdPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSiguientePreguntaEncuestaSoapIn">
+    <wsdl:part name="parameters" element="tns:getSiguientePreguntaEncuesta" />
+  </wsdl:message>
+  <wsdl:message name="getSiguientePreguntaEncuestaSoapOut">
+    <wsdl:part name="parameters" element="tns:getSiguientePreguntaEncuestaResponse" />
+  </wsdl:message>
+  <wsdl:message name="guardarEncuestaSoapIn">
+    <wsdl:part name="parameters" element="tns:guardarEncuesta" />
+  </wsdl:message>
+  <wsdl:message name="guardarEncuestaSoapOut">
+    <wsdl:part name="parameters" element="tns:guardarEncuestaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="etWebServiceSoap">
+    <wsdl:operation name="getListaEncuestas">
+      <wsdl:input message="tns:getListaEncuestasSoapIn" />
+      <wsdl:output message="tns:getListaEncuestasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorIdPassword">
+      <wsdl:input message="tns:encuestaPorIdPasswordSoapIn" />
+      <wsdl:output message="tns:encuestaPorIdPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSiguientePreguntaEncuesta">
+      <wsdl:input message="tns:getSiguientePreguntaEncuestaSoapIn" />
+      <wsdl:output message="tns:getSiguientePreguntaEncuestaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarEncuesta">
+      <wsdl:input message="tns:guardarEncuestaSoapIn" />
+      <wsdl:output message="tns:guardarEncuestaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="etWebServiceSoap" type="tns:etWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getListaEncuestas">
+      <soap:operation soapAction="http://tempuri.org/getListaEncuestas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorIdPassword">
+      <soap:operation soapAction="http://tempuri.org/encuestaPorIdPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSiguientePreguntaEncuesta">
+      <soap:operation soapAction="http://tempuri.org/getSiguientePreguntaEncuesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarEncuesta">
+      <soap:operation soapAction="http://tempuri.org/guardarEncuesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="etWebServiceSoap12" type="tns:etWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getListaEncuestas">
+      <soap12:operation soapAction="http://tempuri.org/getListaEncuestas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="encuestaPorIdPassword">
+      <soap12:operation soapAction="http://tempuri.org/encuestaPorIdPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSiguientePreguntaEncuesta">
+      <soap12:operation soapAction="http://tempuri.org/getSiguientePreguntaEncuesta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarEncuesta">
+      <soap12:operation soapAction="http://tempuri.org/guardarEncuesta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="etWebService">
+    <wsdl:port name="etWebServiceSoap" binding="tns:etWebServiceSoap">
+      <soap:address location="http://localhost:4001/etWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="etWebServiceSoap12" binding="tns:etWebServiceSoap12">
+      <soap12:address location="http://localhost:4001/etWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

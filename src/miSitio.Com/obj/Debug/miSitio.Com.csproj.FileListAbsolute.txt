@@ -1,0 +1,5 @@
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\miSitio.Com\bin\miSitio.Com.dll
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\miSitio.Com\bin\miSitio.Com.pdb
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\miSitio.Com\obj\Debug\ResolveAssemblyReference.cache
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\miSitio.Com\obj\Debug\miSitio.Com.dll
+E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\miSitio.Com\obj\Debug\miSitio.Com.pdb
