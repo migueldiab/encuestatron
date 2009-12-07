@@ -15,6 +15,7 @@ using System.Collections.Generic;
 
 namespace encuestaTron
 {
+    [Serializable]
     public class ListaEncuestaResult: ResultWs
     {
         private List<encuesta> listaEncuestas = new List<encuesta>();
