@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="miSitio_Com_etWebService_etWebService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:4001/etWebService.asmx</Value>
+      <Value Profile="(Default)">http://localhost:5001/etWebService/etWebService.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,0 +1,8 @@
+<publishData>
+  <publishTarget publishUrl="C:\tmpws\">
+    <file relUrl="bin/etWebService.dll" publishTime="12/07/2009 03:30:05" />
+    <file relUrl="bin/etWebService.pdb" publishTime="12/07/2009 03:30:05" />
+    <file relUrl="etWebService.asmx" publishTime="12/04/2009 19:58:19" />
+    <file relUrl="Web.config" publishTime="12/07/2009 03:25:06" />
+  </publishTarget>
+</publishData>

@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="etWebService.asmx" />
-    <None Include="Web References\et\Fachada.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +94,7 @@
     <None Include="Web References\et\encuesta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\et\Fachada.wsdl" />
+    <None Include="Web References\et\fachada.wsdl" />
     <None Include="Web References\et\getPreguntaResult.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -123,10 +122,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:49895/Fachada.asmx">
+    <WebReferenceUrl Include="http://localhost/et/fachada.asmx%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\et\</RelPath>
-      <UpdateFromURL>http://localhost:49895/Fachada.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost/et/fachada.asmx%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

@@ -51,11 +51,15 @@ namespace etWebService.et {
         
         private System.Threading.SendOrPostCallback listaEncuestasOperationCompleted;
         
+        private System.Threading.SendOrPostCallback borrarEncuestaPorIdOperationCompleted;
+        
         private System.Threading.SendOrPostCallback encuestaPorIdPasswordOperationCompleted;
         
         private System.Threading.SendOrPostCallback encuestaPorIdOperationCompleted;
         
-        private System.Threading.SendOrPostCallback getPreguntaOperationCompleted;
+        private System.Threading.SendOrPostCallback getPreguntaPorIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback guardarEncuestaOperationCompleted;
         
         private System.Threading.SendOrPostCallback listaEncuestasPorIdAgenteOperationCompleted;
         
@@ -70,6 +74,20 @@ namespace etWebService.et {
         private System.Threading.SendOrPostCallback listaEncuestasPorFechaVigenciaOperationCompleted;
         
         private System.Threading.SendOrPostCallback listaEncuestasPorFechaCierreOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback insertarPreguntaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback insertarRespuestaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback preguntaPorIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback respuestasPorPreguntaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback preguntasPorEncuestaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback borrarPreguntaPorIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback borrarRespuestaPorIdOperationCompleted;
         
         private System.Threading.SendOrPostCallback listaRolesOperationCompleted;
         
@@ -153,13 +171,19 @@ namespace etWebService.et {
         public event listaEncuestasCompletedEventHandler listaEncuestasCompleted;
         
         /// <remarks/>
+        public event borrarEncuestaPorIdCompletedEventHandler borrarEncuestaPorIdCompleted;
+        
+        /// <remarks/>
         public event encuestaPorIdPasswordCompletedEventHandler encuestaPorIdPasswordCompleted;
         
         /// <remarks/>
         public event encuestaPorIdCompletedEventHandler encuestaPorIdCompleted;
         
         /// <remarks/>
-        public event getPreguntaCompletedEventHandler getPreguntaCompleted;
+        public event getPreguntaPorIdCompletedEventHandler getPreguntaPorIdCompleted;
+        
+        /// <remarks/>
+        public event guardarEncuestaCompletedEventHandler guardarEncuestaCompleted;
         
         /// <remarks/>
         public event listaEncuestasPorIdAgenteCompletedEventHandler listaEncuestasPorIdAgenteCompleted;
@@ -181,6 +205,27 @@ namespace etWebService.et {
         
         /// <remarks/>
         public event listaEncuestasPorFechaCierreCompletedEventHandler listaEncuestasPorFechaCierreCompleted;
+        
+        /// <remarks/>
+        public event insertarPreguntaCompletedEventHandler insertarPreguntaCompleted;
+        
+        /// <remarks/>
+        public event insertarRespuestaCompletedEventHandler insertarRespuestaCompleted;
+        
+        /// <remarks/>
+        public event preguntaPorIdCompletedEventHandler preguntaPorIdCompleted;
+        
+        /// <remarks/>
+        public event respuestasPorPreguntaCompletedEventHandler respuestasPorPreguntaCompleted;
+        
+        /// <remarks/>
+        public event preguntasPorEncuestaCompletedEventHandler preguntasPorEncuestaCompleted;
+        
+        /// <remarks/>
+        public event borrarPreguntaPorIdCompletedEventHandler borrarPreguntaPorIdCompleted;
+        
+        /// <remarks/>
+        public event borrarRespuestaPorIdCompletedEventHandler borrarRespuestaPorIdCompleted;
         
         /// <remarks/>
         public event listaRolesCompletedEventHandler listaRolesCompleted;
@@ -519,21 +564,50 @@ namespace etWebService.et {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/encuestaPorIdPassword", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ResultWs encuestaPorIdPassword(int id, string pass) {
-            object[] results = this.Invoke("encuestaPorIdPassword", new object[] {
-                        id,
-                        pass});
-            return ((ResultWs)(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/borrarEncuestaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool borrarEncuestaPorId(string id) {
+            object[] results = this.Invoke("borrarEncuestaPorId", new object[] {
+                        id});
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void encuestaPorIdPasswordAsync(int id, string pass) {
+        public void borrarEncuestaPorIdAsync(string id) {
+            this.borrarEncuestaPorIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void borrarEncuestaPorIdAsync(string id, object userState) {
+            if ((this.borrarEncuestaPorIdOperationCompleted == null)) {
+                this.borrarEncuestaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnborrarEncuestaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("borrarEncuestaPorId", new object[] {
+                        id}, this.borrarEncuestaPorIdOperationCompleted, userState);
+        }
+        
+        private void OnborrarEncuestaPorIdOperationCompleted(object arg) {
+            if ((this.borrarEncuestaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.borrarEncuestaPorIdCompleted(this, new borrarEncuestaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/encuestaPorIdPassword", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ListaEncuestaResult encuestaPorIdPassword(string id, string pass) {
+            object[] results = this.Invoke("encuestaPorIdPassword", new object[] {
+                        id,
+                        pass});
+            return ((ListaEncuestaResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void encuestaPorIdPasswordAsync(string id, string pass) {
             this.encuestaPorIdPasswordAsync(id, pass, null);
         }
         
         /// <remarks/>
-        public void encuestaPorIdPasswordAsync(int id, string pass, object userState) {
+        public void encuestaPorIdPasswordAsync(string id, string pass, object userState) {
             if ((this.encuestaPorIdPasswordOperationCompleted == null)) {
                 this.encuestaPorIdPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnencuestaPorIdPasswordOperationCompleted);
             }
@@ -579,35 +653,60 @@ namespace etWebService.et {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getPregunta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ResultWs getPregunta(int idEncuesta, string pass, respuesta respuesta) {
-            object[] results = this.Invoke("getPregunta", new object[] {
-                        idEncuesta,
-                        pass,
-                        respuesta});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getPreguntaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public getPreguntaResult getPreguntaPorId(int idPregunta) {
+            object[] results = this.Invoke("getPreguntaPorId", new object[] {
+                        idPregunta});
+            return ((getPreguntaResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getPreguntaPorIdAsync(int idPregunta) {
+            this.getPreguntaPorIdAsync(idPregunta, null);
+        }
+        
+        /// <remarks/>
+        public void getPreguntaPorIdAsync(int idPregunta, object userState) {
+            if ((this.getPreguntaPorIdOperationCompleted == null)) {
+                this.getPreguntaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetPreguntaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("getPreguntaPorId", new object[] {
+                        idPregunta}, this.getPreguntaPorIdOperationCompleted, userState);
+        }
+        
+        private void OngetPreguntaPorIdOperationCompleted(object arg) {
+            if ((this.getPreguntaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getPreguntaPorIdCompleted(this, new getPreguntaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/guardarEncuesta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ResultWs guardarEncuesta(respuesta[] respuestas) {
+            object[] results = this.Invoke("guardarEncuesta", new object[] {
+                        respuestas});
             return ((ResultWs)(results[0]));
         }
         
         /// <remarks/>
-        public void getPreguntaAsync(int idEncuesta, string pass, respuesta respuesta) {
-            this.getPreguntaAsync(idEncuesta, pass, respuesta, null);
+        public void guardarEncuestaAsync(respuesta[] respuestas) {
+            this.guardarEncuestaAsync(respuestas, null);
         }
         
         /// <remarks/>
-        public void getPreguntaAsync(int idEncuesta, string pass, respuesta respuesta, object userState) {
-            if ((this.getPreguntaOperationCompleted == null)) {
-                this.getPreguntaOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetPreguntaOperationCompleted);
+        public void guardarEncuestaAsync(respuesta[] respuestas, object userState) {
+            if ((this.guardarEncuestaOperationCompleted == null)) {
+                this.guardarEncuestaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnguardarEncuestaOperationCompleted);
             }
-            this.InvokeAsync("getPregunta", new object[] {
-                        idEncuesta,
-                        pass,
-                        respuesta}, this.getPreguntaOperationCompleted, userState);
+            this.InvokeAsync("guardarEncuesta", new object[] {
+                        respuestas}, this.guardarEncuestaOperationCompleted, userState);
         }
         
-        private void OngetPreguntaOperationCompleted(object arg) {
-            if ((this.getPreguntaCompleted != null)) {
+        private void OnguardarEncuestaOperationCompleted(object arg) {
+            if ((this.guardarEncuestaCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getPreguntaCompleted(this, new getPreguntaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.guardarEncuestaCompleted(this, new guardarEncuestaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -831,6 +930,213 @@ namespace etWebService.et {
             if ((this.listaEncuestasPorFechaCierreCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.listaEncuestasPorFechaCierreCompleted(this, new listaEncuestasPorFechaCierreCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/insertarPregunta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int insertarPregunta(pregunta unaPregunta, encuesta unaEncuesta) {
+            object[] results = this.Invoke("insertarPregunta", new object[] {
+                        unaPregunta,
+                        unaEncuesta});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void insertarPreguntaAsync(pregunta unaPregunta, encuesta unaEncuesta) {
+            this.insertarPreguntaAsync(unaPregunta, unaEncuesta, null);
+        }
+        
+        /// <remarks/>
+        public void insertarPreguntaAsync(pregunta unaPregunta, encuesta unaEncuesta, object userState) {
+            if ((this.insertarPreguntaOperationCompleted == null)) {
+                this.insertarPreguntaOperationCompleted = new System.Threading.SendOrPostCallback(this.OninsertarPreguntaOperationCompleted);
+            }
+            this.InvokeAsync("insertarPregunta", new object[] {
+                        unaPregunta,
+                        unaEncuesta}, this.insertarPreguntaOperationCompleted, userState);
+        }
+        
+        private void OninsertarPreguntaOperationCompleted(object arg) {
+            if ((this.insertarPreguntaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.insertarPreguntaCompleted(this, new insertarPreguntaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/insertarRespuesta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int insertarRespuesta(respuesta unaRespuesta, pregunta unaPregunta) {
+            object[] results = this.Invoke("insertarRespuesta", new object[] {
+                        unaRespuesta,
+                        unaPregunta});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void insertarRespuestaAsync(respuesta unaRespuesta, pregunta unaPregunta) {
+            this.insertarRespuestaAsync(unaRespuesta, unaPregunta, null);
+        }
+        
+        /// <remarks/>
+        public void insertarRespuestaAsync(respuesta unaRespuesta, pregunta unaPregunta, object userState) {
+            if ((this.insertarRespuestaOperationCompleted == null)) {
+                this.insertarRespuestaOperationCompleted = new System.Threading.SendOrPostCallback(this.OninsertarRespuestaOperationCompleted);
+            }
+            this.InvokeAsync("insertarRespuesta", new object[] {
+                        unaRespuesta,
+                        unaPregunta}, this.insertarRespuestaOperationCompleted, userState);
+        }
+        
+        private void OninsertarRespuestaOperationCompleted(object arg) {
+            if ((this.insertarRespuestaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.insertarRespuestaCompleted(this, new insertarRespuestaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/preguntaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public pregunta preguntaPorId(int idPregunta) {
+            object[] results = this.Invoke("preguntaPorId", new object[] {
+                        idPregunta});
+            return ((pregunta)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void preguntaPorIdAsync(int idPregunta) {
+            this.preguntaPorIdAsync(idPregunta, null);
+        }
+        
+        /// <remarks/>
+        public void preguntaPorIdAsync(int idPregunta, object userState) {
+            if ((this.preguntaPorIdOperationCompleted == null)) {
+                this.preguntaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnpreguntaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("preguntaPorId", new object[] {
+                        idPregunta}, this.preguntaPorIdOperationCompleted, userState);
+        }
+        
+        private void OnpreguntaPorIdOperationCompleted(object arg) {
+            if ((this.preguntaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.preguntaPorIdCompleted(this, new preguntaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/respuestasPorPregunta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public respuesta[] respuestasPorPregunta(pregunta unaPregunta) {
+            object[] results = this.Invoke("respuestasPorPregunta", new object[] {
+                        unaPregunta});
+            return ((respuesta[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void respuestasPorPreguntaAsync(pregunta unaPregunta) {
+            this.respuestasPorPreguntaAsync(unaPregunta, null);
+        }
+        
+        /// <remarks/>
+        public void respuestasPorPreguntaAsync(pregunta unaPregunta, object userState) {
+            if ((this.respuestasPorPreguntaOperationCompleted == null)) {
+                this.respuestasPorPreguntaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrespuestasPorPreguntaOperationCompleted);
+            }
+            this.InvokeAsync("respuestasPorPregunta", new object[] {
+                        unaPregunta}, this.respuestasPorPreguntaOperationCompleted, userState);
+        }
+        
+        private void OnrespuestasPorPreguntaOperationCompleted(object arg) {
+            if ((this.respuestasPorPreguntaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.respuestasPorPreguntaCompleted(this, new respuestasPorPreguntaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/preguntasPorEncuesta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public pregunta[] preguntasPorEncuesta(encuesta unaEncuesta) {
+            object[] results = this.Invoke("preguntasPorEncuesta", new object[] {
+                        unaEncuesta});
+            return ((pregunta[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void preguntasPorEncuestaAsync(encuesta unaEncuesta) {
+            this.preguntasPorEncuestaAsync(unaEncuesta, null);
+        }
+        
+        /// <remarks/>
+        public void preguntasPorEncuestaAsync(encuesta unaEncuesta, object userState) {
+            if ((this.preguntasPorEncuestaOperationCompleted == null)) {
+                this.preguntasPorEncuestaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnpreguntasPorEncuestaOperationCompleted);
+            }
+            this.InvokeAsync("preguntasPorEncuesta", new object[] {
+                        unaEncuesta}, this.preguntasPorEncuestaOperationCompleted, userState);
+        }
+        
+        private void OnpreguntasPorEncuestaOperationCompleted(object arg) {
+            if ((this.preguntasPorEncuestaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.preguntasPorEncuestaCompleted(this, new preguntasPorEncuestaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/borrarPreguntaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool borrarPreguntaPorId(int id) {
+            object[] results = this.Invoke("borrarPreguntaPorId", new object[] {
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void borrarPreguntaPorIdAsync(int id) {
+            this.borrarPreguntaPorIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void borrarPreguntaPorIdAsync(int id, object userState) {
+            if ((this.borrarPreguntaPorIdOperationCompleted == null)) {
+                this.borrarPreguntaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnborrarPreguntaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("borrarPreguntaPorId", new object[] {
+                        id}, this.borrarPreguntaPorIdOperationCompleted, userState);
+        }
+        
+        private void OnborrarPreguntaPorIdOperationCompleted(object arg) {
+            if ((this.borrarPreguntaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.borrarPreguntaPorIdCompleted(this, new borrarPreguntaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/borrarRespuestaPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool borrarRespuestaPorId(int id) {
+            object[] results = this.Invoke("borrarRespuestaPorId", new object[] {
+                        id});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void borrarRespuestaPorIdAsync(int id) {
+            this.borrarRespuestaPorIdAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void borrarRespuestaPorIdAsync(int id, object userState) {
+            if ((this.borrarRespuestaPorIdOperationCompleted == null)) {
+                this.borrarRespuestaPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnborrarRespuestaPorIdOperationCompleted);
+            }
+            this.InvokeAsync("borrarRespuestaPorId", new object[] {
+                        id}, this.borrarRespuestaPorIdOperationCompleted, userState);
+        }
+        
+        private void OnborrarRespuestaPorIdOperationCompleted(object arg) {
+            if ((this.borrarRespuestaPorIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.borrarRespuestaPorIdCompleted(this, new borrarRespuestaPorIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1168,6 +1474,76 @@ namespace etWebService.et {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class respuesta {
+        
+        private int idField;
+        
+        private int contadorField;
+        
+        private string textoField;
+        
+        private int id_preguntaField;
+        
+        private System.Nullable<int> id_proxima_preguntaField;
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int contador {
+            get {
+                return this.contadorField;
+            }
+            set {
+                this.contadorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string texto {
+            get {
+                return this.textoField;
+            }
+            set {
+                this.textoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int id_pregunta {
+            get {
+                return this.id_preguntaField;
+            }
+            set {
+                this.id_preguntaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> id_proxima_pregunta {
+            get {
+                return this.id_proxima_preguntaField;
+            }
+            set {
+                this.id_proxima_preguntaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class pregunta {
         
         private int idField;
@@ -1181,6 +1557,10 @@ namespace etWebService.et {
         private string id_encuestaField;
         
         private System.Nullable<int> nro_preguntaField;
+        
+        private respuesta[] respuestasField;
+        
+        private respuesta respuestaField;
         
         /// <remarks/>
         public int id {
@@ -1243,98 +1623,24 @@ namespace etWebService.et {
                 this.nro_preguntaField = value;
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class respuesta {
-        
-        private int idField;
-        
-        private int contadorField;
-        
-        private string textoField;
-        
-        private int id_preguntaField;
-        
-        private System.Nullable<int> id_proxima_preguntaField;
-        
-        private pregunta preguntaField;
-        
-        private pregunta pregunta1Field;
         
         /// <remarks/>
-        public int id {
+        public respuesta[] respuestas {
             get {
-                return this.idField;
+                return this.respuestasField;
             }
             set {
-                this.idField = value;
+                this.respuestasField = value;
             }
         }
         
         /// <remarks/>
-        public int contador {
+        public respuesta respuesta {
             get {
-                return this.contadorField;
+                return this.respuestaField;
             }
             set {
-                this.contadorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string texto {
-            get {
-                return this.textoField;
-            }
-            set {
-                this.textoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int id_pregunta {
-            get {
-                return this.id_preguntaField;
-            }
-            set {
-                this.id_preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> id_proxima_pregunta {
-            get {
-                return this.id_proxima_preguntaField;
-            }
-            set {
-                this.id_proxima_preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public pregunta pregunta {
-            get {
-                return this.preguntaField;
-            }
-            set {
-                this.preguntaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public pregunta pregunta1 {
-            get {
-                return this.pregunta1Field;
-            }
-            set {
-                this.pregunta1Field = value;
+                this.respuestaField = value;
             }
         }
     }
@@ -1360,6 +1666,8 @@ namespace etWebService.et {
         private System.Nullable<System.DateTime> f_cierreField;
         
         private string id_clienteField;
+        
+        private pregunta[] preguntasField;
         
         /// <remarks/>
         public string nombre {
@@ -1433,9 +1741,20 @@ namespace etWebService.et {
                 this.id_clienteField = value;
             }
         }
+        
+        /// <remarks/>
+        public pregunta[] preguntas {
+            get {
+                return this.preguntasField;
+            }
+            set {
+                this.preguntasField = value;
+            }
+        }
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(getPreguntaResult))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ListaEncuestaResult))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
@@ -1453,6 +1772,27 @@ namespace etWebService.et {
             }
             set {
                 this.errorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class getPreguntaResult : ResultWs {
+        
+        private pregunta preguntaField;
+        
+        /// <remarks/>
+        public pregunta Pregunta {
+            get {
+                return this.preguntaField;
+            }
+            set {
+                this.preguntaField = value;
             }
         }
     }
@@ -1766,6 +2106,32 @@ namespace etWebService.et {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void borrarEncuestaPorIdCompletedEventHandler(object sender, borrarEncuestaPorIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class borrarEncuestaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal borrarEncuestaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
     public delegate void encuestaPorIdPasswordCompletedEventHandler(object sender, encuestaPorIdPasswordCompletedEventArgs e);
     
     /// <remarks/>
@@ -1782,10 +2148,10 @@ namespace etWebService.et {
         }
         
         /// <remarks/>
-        public ResultWs Result {
+        public ListaEncuestaResult Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((ResultWs)(this.results[0]));
+                return ((ListaEncuestaResult)(this.results[0]));
             }
         }
     }
@@ -1818,17 +2184,43 @@ namespace etWebService.et {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
-    public delegate void getPreguntaCompletedEventHandler(object sender, getPreguntaCompletedEventArgs e);
+    public delegate void getPreguntaPorIdCompletedEventHandler(object sender, getPreguntaPorIdCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getPreguntaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class getPreguntaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal getPreguntaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal getPreguntaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public getPreguntaResult Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((getPreguntaResult)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void guardarEncuestaCompletedEventHandler(object sender, guardarEncuestaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class guardarEncuestaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal guardarEncuestaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2020,6 +2412,188 @@ namespace etWebService.et {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((encuesta[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void insertarPreguntaCompletedEventHandler(object sender, insertarPreguntaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class insertarPreguntaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal insertarPreguntaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void insertarRespuestaCompletedEventHandler(object sender, insertarRespuestaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class insertarRespuestaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal insertarRespuestaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void preguntaPorIdCompletedEventHandler(object sender, preguntaPorIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class preguntaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal preguntaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public pregunta Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((pregunta)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void respuestasPorPreguntaCompletedEventHandler(object sender, respuestasPorPreguntaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class respuestasPorPreguntaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal respuestasPorPreguntaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public respuesta[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((respuesta[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void preguntasPorEncuestaCompletedEventHandler(object sender, preguntasPorEncuestaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class preguntasPorEncuestaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal preguntasPorEncuestaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public pregunta[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((pregunta[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void borrarPreguntaPorIdCompletedEventHandler(object sender, borrarPreguntaPorIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class borrarPreguntaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal borrarPreguntaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    public delegate void borrarRespuestaPorIdCompletedEventHandler(object sender, borrarRespuestaPorIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.4927")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class borrarRespuestaPorIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal borrarRespuestaPorIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

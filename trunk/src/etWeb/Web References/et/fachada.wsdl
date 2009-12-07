@@ -255,7 +255,7 @@
       <s:element name="encuestaPorIdPassword">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -263,7 +263,7 @@
       <s:element name="encuestaPorIdPasswordResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="encuestaPorIdPasswordResult" type="tns:ResultWs" />
+            <s:element minOccurs="0" maxOccurs="1" name="encuestaPorIdPasswordResult" type="tns:ListaEncuestaResult" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -281,19 +281,40 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="getPregunta">
+      <s:element name="getPreguntaPorId">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="idEncuesta" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="respuesta" type="tns:respuesta" />
+            <s:element minOccurs="1" maxOccurs="1" name="idPregunta" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="getPreguntaResponse">
+      <s:element name="getPreguntaPorIdResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="getPreguntaResult" type="tns:ResultWs" />
+            <s:element minOccurs="0" maxOccurs="1" name="getPreguntaPorIdResult" type="tns:getPreguntaResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="getPreguntaResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResultWs">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Pregunta" type="tns:pregunta" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="guardarEncuesta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="respuestas" type="tns:ArrayOfRespuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarEncuestaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guardarEncuestaResult" type="tns:ResultWs" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -663,11 +684,17 @@
   <wsdl:message name="encuestaPorIdSoapOut">
     <wsdl:part name="parameters" element="tns:encuestaPorIdResponse" />
   </wsdl:message>
-  <wsdl:message name="getPreguntaSoapIn">
-    <wsdl:part name="parameters" element="tns:getPregunta" />
+  <wsdl:message name="getPreguntaPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:getPreguntaPorId" />
   </wsdl:message>
-  <wsdl:message name="getPreguntaSoapOut">
-    <wsdl:part name="parameters" element="tns:getPreguntaResponse" />
+  <wsdl:message name="getPreguntaPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:getPreguntaPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="guardarEncuestaSoapIn">
+    <wsdl:part name="parameters" element="tns:guardarEncuesta" />
+  </wsdl:message>
+  <wsdl:message name="guardarEncuestaSoapOut">
+    <wsdl:part name="parameters" element="tns:guardarEncuestaResponse" />
   </wsdl:message>
   <wsdl:message name="listaEncuestasPorIdAgenteSoapIn">
     <wsdl:part name="parameters" element="tns:listaEncuestasPorIdAgente" />
@@ -840,9 +867,13 @@
       <wsdl:input message="tns:encuestaPorIdSoapIn" />
       <wsdl:output message="tns:encuestaPorIdSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="getPregunta">
-      <wsdl:input message="tns:getPreguntaSoapIn" />
-      <wsdl:output message="tns:getPreguntaSoapOut" />
+    <wsdl:operation name="getPreguntaPorId">
+      <wsdl:input message="tns:getPreguntaPorIdSoapIn" />
+      <wsdl:output message="tns:getPreguntaPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarEncuesta">
+      <wsdl:input message="tns:guardarEncuestaSoapIn" />
+      <wsdl:output message="tns:guardarEncuestaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="listaEncuestasPorIdAgente">
       <wsdl:input message="tns:listaEncuestasPorIdAgenteSoapIn" />
@@ -1049,8 +1080,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getPregunta">
-      <soap:operation soapAction="http://tempuri.org/getPregunta" style="document" />
+    <wsdl:operation name="getPreguntaPorId">
+      <soap:operation soapAction="http://tempuri.org/getPreguntaPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarEncuesta">
+      <soap:operation soapAction="http://tempuri.org/guardarEncuesta" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1358,8 +1398,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getPregunta">
-      <soap12:operation soapAction="http://tempuri.org/getPregunta" style="document" />
+    <wsdl:operation name="getPreguntaPorId">
+      <soap12:operation soapAction="http://tempuri.org/getPreguntaPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarEncuesta">
+      <soap12:operation soapAction="http://tempuri.org/guardarEncuesta" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
