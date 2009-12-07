@@ -31,6 +31,17 @@ namespace DataTypesObjects
       return encuestas;
     }
 
+    public static bool incrementarContadorRespuesta(respuesta newResp)
+    {
+        var dbModel = new dbModel(Sistema.connStr);
+        respuesta oldResp = dbModel.respuestas.SingleOrDefault(x => x.id == newResp.id);
+        oldResp.contador = oldResp.contador + 1;
+        dbModel.SubmitChanges();
+        return true;
+
+
+    }
+
     public static encuesta encuestaPorId(string id)
     {
       var dbModel = new dbModel(Sistema.connStr);
@@ -38,7 +49,9 @@ namespace DataTypesObjects
     }
     public static bool esAutenticada(encuesta encuesta, String pass)
     {
-        return (encuesta.contrasena == pass);
+         
+        return (encuesta.contrasena.Trim()==pass);
+        
     }
 
 
@@ -128,6 +141,13 @@ namespace DataTypesObjects
       }
       return lista.ToList();    
     }
+
+
+    //public static bool esAutenticada(encuesta unaEncuesta, string pass)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
 
     public static List<encuesta> listaEncuestasPorFechaVigencia(DateTime fechaInicial, DateTime fechaFinal, string idAgente, string idCliente)
     {
