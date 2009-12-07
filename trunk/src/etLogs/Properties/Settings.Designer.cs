@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataTypesObjects.Properties {
+namespace etLogs.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,21 +26,11 @@ namespace DataTypesObjects.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmi" +
-            "n")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=.\\sqlexpress;Database=eTronDb;User ID=admin;Password=adminadmin;Trusted_Co" +
+            "nnection=False;")]
         public string etDBConnectionString {
             get {
                 return ((string)(this["etDBConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmi" +
-            "n")]
-        public string etDB {
-            get {
-                return ((string)(this["etDB"]));
             }
         }
     }

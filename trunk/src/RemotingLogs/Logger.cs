@@ -19,7 +19,7 @@ namespace Utils
             Console.WriteLine("El servidor esta activo HTTP");
         }
 
-        public static void main(String[] args)
+        public static void Main(String[] args)
         {
             HttpChannel chan1 = new HttpChannel(8096);
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(Utils.Logger),

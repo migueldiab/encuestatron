@@ -17,9 +17,10 @@ namespace encuestaTron
 {
   public class Sistema
   {
-    public static string connStr = "Data Source=.\\SQLEXPRESS;Initial Catalog=eTronDB;User ID=admin;Password=adminadmin";
-
+    public static string connStr = ConfigurationManager.ConnectionStrings["etDBConnectionString"].ConnectionString;
+     
     public bool connectDb() {
+      
       string db_server = getAppConfig("db_server");
       string db_name = getAppConfig("db_name");
       string db_user = getAppConfig("db_user");

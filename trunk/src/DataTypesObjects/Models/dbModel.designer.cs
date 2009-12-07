@@ -52,7 +52,7 @@ namespace encuestaTron.Models
     #endregion
 		
 		public dbModel() : 
-				base(global::DataTypesObjects.Properties.Settings.Default.eTronDBConnectionString1, mappingSource)
+				base(global::DataTypesObjects.Properties.Settings.Default.etDBConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

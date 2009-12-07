@@ -10,6 +10,8 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 using encuestaTron.Models;
 using DataTypesObjects;
+using etLogs;
+using System.Configuration;
 
 namespace encuestaTron
 {
@@ -28,6 +30,7 @@ namespace encuestaTron
     [WebMethod]
     public bool validarUsuario(String usuario, String password)
     {
+      ClienteLogger.insertLog("validarUsuario(" + usuario + ", " + password + ")");
       return Usuario.validarUsuario(usuario, password);
     }
     [WebMethod]
@@ -246,34 +249,29 @@ namespace encuestaTron
   [WebMethod]
   public int insertarPregunta(pregunta unaPregunta, encuesta unaEncuesta)
   {
-   //TODO: return Encuesta.insertarPregunta(unaPregunta, unaEncuesta);
-      return 0;
+    return Encuesta.insertarPregunta(unaPregunta, unaEncuesta);
   }
   [WebMethod]
   public int insertarRespuesta(respuesta unaRespuesta, pregunta unaPregunta)
   {
-    //TODO return Encuesta.insertarRespuesta(unaRespuesta, unaPregunta);
-      return 0;
+    return Encuesta.insertarRespuesta(unaRespuesta, unaPregunta);
   }
   [WebMethod]
   public pregunta preguntaPorId(int idPregunta)
   {
-    //TODO:return Encuesta.preguntaPorId(idPregunta);
-      return null;
+    return Encuesta.preguntaPorId(idPregunta);
   }
 
   [WebMethod]
   public List<respuesta> respuestasPorPregunta(pregunta unaPregunta)
   {
-    //TODO: return Encuesta.respuestasPorPregunta(unaPregunta);
-      return null;
+    return Encuesta.respuestasPorPregunta(unaPregunta);
   }
 
   [WebMethod]
   public List<pregunta> preguntasPorEncuesta(encuesta unaEncuesta)
   {
-    //TODO: return Encuesta.preguntasPorEncuesta(unaEncuesta);
-      return null;
+    return Encuesta.preguntasPorEncuesta(unaEncuesta);
   } 
   [WebMethod]
   public bool borrarPreguntaPorId(int id)

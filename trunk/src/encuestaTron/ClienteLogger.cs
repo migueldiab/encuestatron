@@ -9,14 +9,13 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.IO;
 using System.Threading;
-using Utils;
+using etLogs;
 
 
 namespace encuestaTron
@@ -27,7 +26,7 @@ namespace encuestaTron
         delegate void grabarDelegate();
         private static bool channelYaRegistrado = false;
 
-        public static void insertLog(string mensaje,int idUsuario,Utils.Log.SEVERIDAD severidad)
+        public static void insertLog(string mensaje,int idUsuario,Log.SEVERIDAD severidad)
         {
              Log log;
              DateTime fecha = new DateTime();
@@ -35,13 +34,13 @@ namespace encuestaTron
              log = new Log(fecha, idUsuario,mensaje, severidad);
              insertLog(log);
         }
-        public static void insertLog(string mensaje,Utils.Log.SEVERIDAD severidad)
+        public static void insertLog(string mensaje,Log.SEVERIDAD severidad)
         {
             insertLog(mensaje, 0, severidad);
         }
         public static void insertLog(string mensaje)
         {
-            insertLog(mensaje, Utils.Log.SEVERIDAD.INFO);
+            insertLog(mensaje, Log.SEVERIDAD.INFO);
         }
         private static int insertLog(Log log)
         {
@@ -49,18 +48,14 @@ namespace encuestaTron
             try
             {
                 HttpChannel chan1 = new HttpChannel();
-
                 if (!channelYaRegistrado)
                 {
                     ChannelServices.RegisterChannel(chan1, false);
                     channelYaRegistrado = true;
                 }
-                
- 
                 Logger logger = (Logger)Activator.GetObject(
-                    typeof(Utils.Logger),
+                    typeof(Logger),
                     "http://localhost:8096/DoLog");
-
 
             
                 enviarDelegate insDelegate = new enviarDelegate(logger.Insertar);
@@ -72,18 +67,20 @@ namespace encuestaTron
 
                 Console.WriteLine("Llamando a Logger");
                 Boolean isLoggerAlive = false;
-                while (!isLoggerAlive)
+                int retries = 0;
+                while (!isLoggerAlive && retries<10)
                 {
+                  retries++;
                     try
                     {
                         Console.WriteLine("try service .....");
                         isLoggerAlive = logger.isAlive();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         Console.WriteLine("service is down");
-                        System.Diagnostics.Process.Start(@"E:\ORT\6to Sem\Aplicaciones.NET 2009\OBL\Nueva carpeta\src\RemotingLogs\Logger.exe");
-                        Console.WriteLine("service started....");
+                        
+
                     }
 
                 }

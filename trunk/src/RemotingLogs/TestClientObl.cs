@@ -17,13 +17,9 @@ namespace Utils
         public static int Main(string[] args)
         {
 
-            HttpChannel chan1 = new HttpChannel();
-            ChannelServices.RegisterChannel(chan1, false);
-            Logger logger = (Logger)Activator.GetObject(
-                typeof(Utils.Logger),
-                "http://localhost:8096/DoLog");
-
-
+          Logger logger = (Logger)Activator.GetObject(
+              typeof(Utils.Logger),
+              "http://localhost:8096/DoLog");
             try
             {
                 enviarDelegate insDelegate = new enviarDelegate(logger.Insertar);
@@ -45,7 +41,7 @@ namespace Utils
                     catch (Exception)
                     {
                         Console.WriteLine("service is down");
-                        System.Diagnostics.Process.Start("Logger.exe");
+                        //System.Diagnostics.Process.Start("Logger.exe");
                         Console.WriteLine("service started....");
                     }
 
