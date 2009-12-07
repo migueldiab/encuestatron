@@ -54,21 +54,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="etWebService.asmx" />
+    <None Include="Web References\et\Fachada.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EncuestaPortal.cs" />
     <Compile Include="etWebService.asmx.cs">
       <DependentUpon>etWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ListaEncuestaResult.cs" />
+    <Compile Include="getPreguntaResult2.cs" />
+    <Compile Include="ListaEncuestaResult2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ResultWs.cs" />
+    <Compile Include="ResultWs2.cs" />
     <Compile Include="Web References\et\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,13 +95,22 @@
     <None Include="Web References\et\encuesta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\et\fachada.wsdl" />
+    <None Include="Web References\et\Fachada.wsdl" />
+    <None Include="Web References\et\getPreguntaResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\et\ListaEncuestaResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\et\pregunta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\et\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\et\respuesta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\et\ResultWs.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -111,10 +123,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost/et/fachada.asmx%3fwsdl">
+    <WebReferenceUrl Include="http://localhost:49895/Fachada.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\et\</RelPath>
-      <UpdateFromURL>http://localhost/et/fachada.asmx%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost:49895/Fachada.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
