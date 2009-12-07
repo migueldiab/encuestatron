@@ -11,10 +11,10 @@ namespace DataTypesObjects
     public class Pregunta
     {
 
-        public static pregunta getPregunta(int idPregunta, int idEncuesta)
+        public static pregunta getPreguntaporId(int idPregunta)
         {
             var dbModel = new dbModel(Sistema.connStr);
-            return dbModel.preguntas.Single(x => (x.id_encuesta == idEncuesta.ToString()) && (x.id == idPregunta));
+            return dbModel.preguntas.SingleOrDefault(x => x.id == idPregunta);
         }
 
 
