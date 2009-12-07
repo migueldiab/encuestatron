@@ -1,0 +1,8 @@
+<publishData>
+  <publishTarget publishUrl="C:\Inetpub\wwwroot\">
+    <file relUrl="bin/miSitio.Com.dll" publishTime="12/05/2009 15:10:17" />
+    <file relUrl="bin/miSitio.Com.pdb" publishTime="12/05/2009 15:10:17" />
+    <file relUrl="Default.aspx" publishTime="12/05/2009 14:36:09" />
+    <file relUrl="Web.config" publishTime="12/05/2009 14:10:54" />
+  </publishTarget>
+</publishData>
