@@ -82,6 +82,7 @@ namespace encuestaTron
   [WebMethod]
   public ListaEncuestaResult listaEncuestas()
   {
+      ClienteLogger.insertLog("Fachada.ListaEncuestasResult",Utils.Log.SEVERIDAD.INFO);
       ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
       if (Encuesta.listaEncuestas().Count() > 0)
       {
@@ -90,6 +91,7 @@ namespace encuestaTron
       }
       else
       {
+          ClienteLogger.insertLog("Fachada.ListaEncuestasResult: No se encontraron encuestas",Utils.Log.SEVERIDAD.ERROR);
           listaEncuestaResult.Error = "No se encontraron encuestas";
       }
       
@@ -103,25 +105,32 @@ namespace encuestaTron
 
 
   [WebMethod]
-  public ResultWs encuestaPorIdPassword(int id, String pass)
+  public ListaEncuestaResult encuestaPorIdPassword(String id, String pass)
   {
+<<<<<<< .mine
+      ClienteLogger.insertLog("encuestaPorIdPassword(String "+ id+", String "+ pass+")",Utils.Log.SEVERIDAD.INFO);
+=======
     ClienteLogger.insertLog("encuestaPorIdPassword(int "+ id+", String "+ pass+")");
+>>>>>>> .r90
     ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
-    encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
+    encuesta unaEncuesta = Encuesta.encuestaPorId(id);
     if (unaEncuesta != null)
     {
-      if (Encuesta.esAutenticada(unaEncuesta, pass))
+        
+      if (Encuesta.esAutenticada(unaEncuesta,pass))
       {
         listaEncuestaResult.ListaEncuestas.Add(unaEncuesta);
         listaEncuestaResult.Error = null;
       }
       else
       {
+          ClienteLogger.insertLog("No se valido la contraseña para la encuesta id: " + id, Utils.Log.SEVERIDAD.ALERT);
         listaEncuestaResult.Error = "No se valido la contraseña para la encuesta id: " + id;
       }
     }
     else
     {
+        ClienteLogger.insertLog("No se encontro encuesta con id: " + id, Utils.Log.SEVERIDAD.ALERT);
       listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
     }
 
@@ -131,6 +140,8 @@ namespace encuestaTron
   [WebMethod]
   public ListaEncuestaResult encuestaPorId(string id)
   {
+      ClienteLogger.insertLog("ListaEncuestaResult "+ id, Utils.Log.SEVERIDAD.INFO);
+ 
     ListaEncuestaResult listaEncuestaResult = new ListaEncuestaResult();
     encuesta unaEncuesta = Encuesta.encuestaPorId(id.ToString());
     if (unaEncuesta != null)
@@ -140,15 +151,62 @@ namespace encuestaTron
     }
     else
     {
+        ClienteLogger.insertLog("No se encontro encuesta con id: " + id, Utils.Log.SEVERIDAD.ALERT);
       listaEncuestaResult.Error = "No se encontro encuesta con id: " + id;
     }
     return listaEncuestaResult;
   }
 
   [WebMethod]
-  public ResultWs getPregunta(int idEncuesta, string pass, respuesta respuesta)
+  public getPreguntaResult getPreguntaPorId(int idPregunta)
   {
-     return new ResultWs();
+      ClienteLogger.insertLog("getPreguntaPorId: " + idPregunta, Utils.Log.SEVERIDAD.ALERT);
+
+      getPreguntaResult getPreguntaResult = new getPreguntaResult();
+      try
+      {
+          pregunta pregunta = Pregunta.getPreguntaporId(idPregunta);
+          if (pregunta != null)
+          {
+              getPreguntaResult.Pregunta = pregunta;
+              getPreguntaResult.Error = null;
+          }
+          else
+          {
+              ClienteLogger.insertLog("No se encontro pregunta con id: " + idPregunta, Utils.Log.SEVERIDAD.ALERT);
+
+              getPreguntaResult.Pregunta = null;
+              getPreguntaResult.Error ="No se encontro pregunta con id: "+ idPregunta;
+          }
+          
+      }
+      catch (Exception)
+      {
+          ClienteLogger.insertLog("ERROR DESCONOSIDO: " + idPregunta, Utils.Log.SEVERIDAD.ERROR);
+        getPreguntaResult.Pregunta =null;
+         getPreguntaResult.Error ="Error en fachada";  
+          
+      }
+      
+      return getPreguntaResult ;
+  }
+      [WebMethod]
+  public ResultWs guardarEncuesta(List<respuesta> respuestas)
+  {
+      ClienteLogger.insertLog("guardarEncuesta: ", Utils.Log.SEVERIDAD.ALERT);
+      ResultWs result = new ResultWs();
+      String error = null;
+      foreach (respuesta res in respuestas)
+      {
+          ClienteLogger.insertLog("Se intenta guardar respuesta " + res.id, Utils.Log.SEVERIDAD.ALERT);
+          if (!Encuesta.incrementarContadorRespuesta(res))
+          {
+              ClienteLogger.insertLog("No se pudo incrementar respuesta: " + res.id , Utils.Log.SEVERIDAD.ERROR);
+              error = res.id + " no incrementada";
+          }
+      }
+      result.Error = error;
+      return result;
   }
   [WebMethod]
   public List<encuesta> listaEncuestasPorIdAgente(string idAgente)
@@ -188,29 +246,34 @@ namespace encuestaTron
   [WebMethod]
   public int insertarPregunta(pregunta unaPregunta, encuesta unaEncuesta)
   {
-    return Encuesta.insertarPregunta(unaPregunta, unaEncuesta);
+   //TODO: return Encuesta.insertarPregunta(unaPregunta, unaEncuesta);
+      return 0;
   }
   [WebMethod]
   public int insertarRespuesta(respuesta unaRespuesta, pregunta unaPregunta)
   {
-    return Encuesta.insertarRespuesta(unaRespuesta, unaPregunta);
+    //TODO return Encuesta.insertarRespuesta(unaRespuesta, unaPregunta);
+      return 0;
   }
   [WebMethod]
   public pregunta preguntaPorId(int idPregunta)
   {
-    return Encuesta.preguntaPorId(idPregunta);
+    //TODO:return Encuesta.preguntaPorId(idPregunta);
+      return null;
   }
 
   [WebMethod]
   public List<respuesta> respuestasPorPregunta(pregunta unaPregunta)
   {
-    return Encuesta.respuestasPorPregunta(unaPregunta);
+    //TODO: return Encuesta.respuestasPorPregunta(unaPregunta);
+      return null;
   }
 
   [WebMethod]
   public List<pregunta> preguntasPorEncuesta(encuesta unaEncuesta)
   {
-    return Encuesta.preguntasPorEncuesta(unaEncuesta);
+    //TODO: return Encuesta.preguntasPorEncuesta(unaEncuesta);
+      return null;
   } 
   [WebMethod]
   public bool borrarPreguntaPorId(int id)
